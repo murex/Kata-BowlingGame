@@ -1,39 +1,51 @@
 # Bowling Game Kata
 
-[![Kata Image](images/Team.jpg)](https://images.unsplash.com/photo-1556565681-306458ef93cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)
-_`Replace above picture with something more relevant for this kata`_
+![Bowling Game](./images/BowlingGame.png)
 
 ## Description
 
-_`Add kata description here`_
+Available [here](http://codingdojo.org/kata/Bowling/)
 
 ## Session Quick Retrospective
 
-You can fill it from [here](./Quick%20Retrospective.md)
+You can fill it from [here](QuickRetrospective.md)
 
 ## Useful Links
 
 ### For this Kata
 
-_`Add here any link deemed relevant for this kata`_
+- [Acceptance Test Example 1](http://www.labviewcraftsmen.com/blog/bowling-kata-unit-test-framework#)
+- [Acceptance Test Example 2](http://slocums.homestead.com/gamescore.html)
+- [Online Bowling Score Calculator](http://www.bowlinggenius.com/)
 
 ### General
 
 - Handy for any type of turn-based session: [Online Timer](https://agility.jahed.dev/)
+- [Coaching Plan Wiki Page](https://mxwiki.murex.com/confluence/display/DEVS/%5BXP+Coaching%5D+A+Kata+Plan+to+go+from+learning+TDD+to+refactoring+existing+code)
 
 ## Session Information
 
 ### Style & Duration
 
-_`Indicate expected kata duration here`_
+This is a Prepared Kata that is expected to last 2 hours!
+
+In this format, the animator takes the role of solving the problem live during the session.
+
+Read [here](http://codingdojo.org/PreparedKata/) for more details!
+
+We only use it for the first session.
+
+The goal is to explain and show the ideal TDD approach of solving a problem.
 
 ### Topic
 
-_`Indicate main topic of this kata here`_
+Basic TDD
 
 ### Focus Points
 
-_`Indicate main focus points covered during this kata`_
+- Red-Green-refactor
+- Baby Steps
+- YAGNI
 
 ### Source Files
 
