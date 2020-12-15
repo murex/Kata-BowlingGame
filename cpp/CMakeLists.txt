@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.10.0)
 
-set(kataId bowling-game)
+set(kataId kata-bowlinggame)
 
-project(${kataId}-kata CXX)
+project(${kataId} CXX)
 
 enable_testing()
 
