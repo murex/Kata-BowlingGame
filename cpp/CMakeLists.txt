@@ -1,90 +1,71 @@
-cmake_minimum_required(VERSION 3.10.0)
+cmake_minimum_required(VERSION 3.19.3)
 
-set(kataId kata-bowlinggame)
+project(Kata-BowlingGame CXX)
 
-project(${kataId} CXX)
-
+set(CMAKE_CXX_STANDARD 14)
 enable_testing()
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-if (NOT TARGET gtest)
-	# Download and unpack googletest at configure time
-	configure_file(thirdparty.gtest.in.txt googletest-download/CMakeLists.txt)
-	execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
-	  RESULT_VARIABLE result
-	  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/googletest-download )
-	if(result)
-	  message(FATAL_ERROR "CMake step for googletest failed: ${result}")
-	endif()
-	execute_process(COMMAND ${CMAKE_COMMAND} --build .
-	  RESULT_VARIABLE result
-	  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/googletest-download )
-	if(result)
-	  message(FATAL_ERROR "Build step for googletest failed: ${result}")
-	endif()
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib CACHE PATH "Where to place compiled static libraries.")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib CACHE PATH "Where to place compiled shared libraries.")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin CACHE PATH "Where to place compiled executables.")
 
-	# Prevent overriding the parent project's compiler/linker
-	# settings on Windows
-	set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+# We use CPM for 3rd-party dependencies management
+include(cmake/CPM.cmake)
+include(cmake/FindGoogleTest.cmake)
 
-	# Add googletest directly to our build. This defines
-	# the gtest and gtest_main targets.
-	add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/googletest-src
-					 ${CMAKE_CURRENT_BINARY_DIR}/googletest-build
-					 EXCLUDE_FROM_ALL)
+add_library(Kata-BowlingGame-shared SHARED)
 
-	# The gtest/gtest_main targets carry header search path
-	# dependencies automatically when using CMake 2.8.11 or
-	# later. Otherwise we have to add them here ourselves.
-	if (CMAKE_VERSION VERSION_LESS 2.8.11)
-	  include_directories("${gtest_SOURCE_DIR}/include")
-	endif()
+target_compile_definitions(Kata-BowlingGame-shared PRIVATE BOWLING_GAME_EXPORTS)
 
-   set_property(TARGET gtest PROPERTY FOLDER "Thirdparties")
-   set_property(TARGET gtest_main PROPERTY FOLDER "Thirdparties")
-endif()
-
-add_library(${kataId} SHARED)
-
-target_compile_definitions(${kataId} PRIVATE BOWLING_GAME_EXPORTS)
-
-target_sources(${kataId}
-	PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/production/games/bowling/BowlingGame.cpp
+target_sources(Kata-BowlingGame-shared
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/kata/bowling_game/BowlingGame.cpp
     PUBLIC
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/production/games/bowling/BowlingGame.hpp
-		${CMAKE_CURRENT_SOURCE_DIR}/include/production/games/bowling/config.hpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/kata/bowling_game/BowlingGame.hpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/kata/bowling_game/config.hpp
 )
 
-target_include_directories(${kataId}
+target_include_directories(Kata-BowlingGame-shared
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/src
     PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-add_executable(${kataId}-test)
+add_executable(Kata-BowlingGame-test)
 
-target_sources(${kataId}-test
-	PRIVATE
+target_sources(Kata-BowlingGame-test
+    PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/test/BowlingGameTest.cpp
 )
 
-target_include_directories(${kataId}-test
+target_include_directories(Kata-BowlingGame-test
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/test
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-target_link_libraries(${kataId}-test
+target_link_libraries(Kata-BowlingGame-test
     PRIVATE
-	    ${kataId}
+        Kata-BowlingGame-shared
         gtest_main)
-		
-add_test(NAME ctest-${kataId} COMMAND ${kataId}-test)
 
-set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${kataId}-test)
-set_property(TARGET ${kataId} PROPERTY FOLDER "Katas")
-set_property(TARGET ${kataId}-test PROPERTY FOLDER "Katas")
+add_test(NAME ctest-Kata-BowlingGame COMMAND Kata-BowlingGame-test)
+
+add_custom_target(Docs
+    SOURCES
+        ../README.md
+        ../QuickRetrospective.md)
+
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT Kata-BowlingGame-test)
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY XCODE_STARTUP_PROJECT Kata-BowlingGame-test)
+
+set_property(TARGET Kata-BowlingGame-shared PROPERTY FOLDER "Kata")
+set_property(TARGET Kata-BowlingGame-test PROPERTY FOLDER "Kata")
+set_property(TARGET Docs PROPERTY FOLDER "Kata")
+
+set_property(TARGET gtest gtest_main PROPERTY FOLDER "Third-Party/GoogleTest")
 
 set_property(GLOBAL PROPERTY PREDEFINED_TARGETS_FOLDER "CMake Generated")
