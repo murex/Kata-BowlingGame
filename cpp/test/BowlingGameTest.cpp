@@ -1,11 +1,9 @@
 
-#include <production/games/bowling/BowlingGame.hpp>
+#include <kata/bowling_game/BowlingGame.hpp>
 
 #include <gtest/gtest.h>
 
 #include <vector>
-
-using namespace std;
 
 int bowlingScore(const std::vector<int>& rolls)
 {
