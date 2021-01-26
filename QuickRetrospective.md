@@ -1,6 +1,6 @@
 # Quick Retrospective
 
-## Bowling Game Kata
+## Bowling Game
 
 | Team | Date |
 | ---- | ---- |
