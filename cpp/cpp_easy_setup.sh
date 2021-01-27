@@ -30,12 +30,12 @@ MINGW64_NT-*)
     ;;
 *)
     echo "os $(uname -s) is currently not supported."
-    exit
+    exit 1
     ;;
 esac
 
 base_dir=$(dirname -- "$0")
-cd "${base_dir}" || exit
+cd "${base_dir}" || exit 1
 
 cmake_version="3.19.3"
 cmake_expected_dir="cmake-${cmake_version}-${os}-${arch}"
@@ -44,38 +44,38 @@ cmake_archive_url="http://github.com/Kitware/CMake/releases/download/v${cmake_ve
 cmake_home="cmake-${os}-${arch}"
 
 build_dir="build"
-mkdir -p "${build_dir}"
-cd "${build_dir}" || exit
+mkdir -p "${build_dir}" || exit 1
+cd "${build_dir}" || exit 1
 
 cmake_build_dir="cmake"
 mkdir -p "${cmake_build_dir}"
-cd "${cmake_build_dir}" || exit
+cd "${cmake_build_dir}" || exit 1
 
 if ! [ -f "${cmake_expected_archive_file}" ]
 then
-  curl -# -L "${cmake_archive_url}" -o "${cmake_expected_archive_file}"
+  curl -# -L "${cmake_archive_url}" -o "${cmake_expected_archive_file}" || exit 1
 
   case "${archive_extension}" in
   zip)
-    unzip -q -o "${cmake_expected_archive_file}"
+    unzip -q -o "${cmake_expected_archive_file}" || exit 1
     ;;
   tar.gz)
-    tar zxf "${cmake_expected_archive_file}"
+    tar zxf "${cmake_expected_archive_file}" || exit 1
     ;;
   *)
     echo "Archive format ${archive_extension} is currently not supported."
-    exit
+    exit 1
     ;;
   esac
 
   [ -d "${cmake_home}" ] && rm -Rf "${cmake_home}"
-  mv "${cmake_expected_dir}" "${cmake_home}"
+  mv "${cmake_expected_dir}" "${cmake_home}" || exit 1
 fi
 
 cd ..
 
 cmake_bin_path="${cmake_build_dir}/${cmake_home}/${cmake_bin_dir}"
 
-eval ${cmake_bin_path}/${cmake} "${cmake_generator_options}" -S .. -B .
-${cmake_bin_path}/${cmake} --build . --config Debug
-${cmake_bin_path}/${ctest} -C Debug
+eval ${cmake_bin_path}/${cmake} "${cmake_generator_options}" -S .. -B . || exit 1
+${cmake_bin_path}/${cmake} --build . --config Debug  || exit 1
+${cmake_bin_path}/${ctest} -C Debug || exit 1
