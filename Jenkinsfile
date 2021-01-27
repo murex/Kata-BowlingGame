@@ -21,7 +21,7 @@ pipeline {
                     try {
                         sh '''
                             cd ./java
-                            chmod +x ./gradlew && ./gradlew clean test --no-daemon'
+                            chmod +x ./gradlew && ./gradlew clean test --no-daemon
                         '''
                     } finally {
                         junit '**/build/test-results/test/*.xml'
