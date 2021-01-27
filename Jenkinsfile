@@ -14,6 +14,23 @@ pipeline {
     }
 
     stages {
+
+        stage('[Java] Gradle') {
+            steps {
+                script {
+                    try {
+                        sh '''
+                            cd ./java
+                            chmod +x ./gradlew && ./gradlew clean test --no-daemon'
+                        '''
+                    } finally {
+                        junit '**/build/test-results/test/*.xml'
+                        //make the junit test results available in any case (success & failure)
+                    }
+                }
+            }
+        }
+
         stage('[C++] Retrieve cmake') {
             steps {
                 sh '''
