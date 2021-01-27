@@ -1,5 +1,12 @@
 plugins {
     id 'java'
+    id("java-library")
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
+    }
 }
 
 repositories {
@@ -12,7 +19,6 @@ dependencies {
 
 group = 'com.murex.xpcoaching'
 version = '1.0-SNAPSHOT'
-sourceCompatibility = '11'
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
