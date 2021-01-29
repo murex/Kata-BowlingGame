@@ -18,7 +18,7 @@ pipeline {
 //        GENOFF_DIR = "/genoff.new/${VERSION}"
         JAVA_HOME = "/usr/local/java/jdk-11.0.2"
 //        SONAR = "http://ci-proc-tpm/sonar"
-        MAVEN_HOME = "/nfs_tools/common/maven/maven-3.6.3-takari"
+//        MAVEN_HOME = "/nfs_tools/common/maven/maven-3.6.3-takari"
         MAVEN_OPTS = "-Xms1G -Xmx10G -XX:NewRatio=8"
         JAVA_LD_LIBRARY_PATH = "${JAVA_HOME}/lib/server"
         PYTHON_PATH="/opt/rh/python27/root/usr"
@@ -50,7 +50,7 @@ pipeline {
                     try {
                         sh '''
                             cd ./java
-                            ${MAVEN_HOME}/bin/mvn clean test
+                            ./mvnw clean test
                         '''
                     } finally {
                         junit '**/build/test-results/test/*.xml'
