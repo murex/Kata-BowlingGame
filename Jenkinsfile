@@ -47,7 +47,7 @@ pipeline {
                             ./mvnw clean test
                         '''
                     } finally {
-                        junit '**/target/test-results/test/*.xml'
+                        junit '**/target/surefire-reports/*.xml'
                     }
                 }
             }
