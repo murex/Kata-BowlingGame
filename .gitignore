@@ -10,9 +10,6 @@
 GoldenMasterTest.*.txt
 *.txt.bak
 
-# C++ Build Directories
-**/build-dir/**
-
 # ---------------------------------------------------------
 # End of specific adjutments
 # ---------------------------------------------------------
