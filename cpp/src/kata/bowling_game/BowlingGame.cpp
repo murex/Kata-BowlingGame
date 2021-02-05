@@ -8,7 +8,7 @@ namespace bowling_game {
 
 int bowlingScore(const std::vector<int> & rolls)
 {
-	return 0;
+   return 0;
 }
 
 } // namespace bowling_game
