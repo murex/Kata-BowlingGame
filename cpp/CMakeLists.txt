@@ -41,12 +41,6 @@ target_sources(Kata-BowlingGame-test
         ${CMAKE_CURRENT_SOURCE_DIR}/test/BowlingGameTest.cpp
 )
 
-target_include_directories(Kata-BowlingGame-test
-    PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/test
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
-)
-
 target_link_libraries(Kata-BowlingGame-test
     PRIVATE
         Kata-BowlingGame-shared
