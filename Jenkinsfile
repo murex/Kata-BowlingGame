@@ -23,45 +23,70 @@ pipeline {
     }
 
     stages {
-        stage('Gradle') {
-            steps {
-                script {
-                    try {
+        stage('Toolchains') {
+            failFast false
+            parallel {
+                stage('Gradle') {
+                    when { expression { fileExists("./java/gradlew") } }
+                    steps {
+                        script {
+                            try {
+                                sh '''
+                                    cd ./java
+                                    ./gradlew clean test --no-daemon
+                                '''
+                            } finally {
+                                junit '**/build/test-results/test/*.xml'
+                            }
+                        }
+                    }
+                }
+
+                stage('Maven') {
+                    when { expression { fileExists("./java/mvnw") } }
+                    steps {
+                        script {
+                            try {
+                                sh '''
+                                    cd ./java
+                                    ./mvnw clean test
+                                '''
+                            } finally {
+                                junit '**/target/surefire-reports/*.xml'
+                            }
+                        }
+                    }
+                }
+
+                stage('Cmake') {
+                    when { expression { fileExists("./cpp/cpp_easy_setup.sh") } }
+                    steps {
                         sh '''
-                            cd ./java
-                            ./gradlew clean test --no-daemon
+                            cd ./cpp
+                            rm -rf ./build
+                            source /opt/rh/devtoolset-8/enable
+                            ./cpp_easy_setup.sh
                         '''
-                    } finally {
-                        junit '**/build/test-results/test/*.xml'
                     }
                 }
             }
         }
+    }
 
-        stage('Maven') {
-            steps {
-                script {
-                    try {
-                        sh '''
-                            cd ./java
-                            ./mvnw clean test
-                        '''
-                    } finally {
-                        junit '**/target/surefire-reports/*.xml'
-                    }
-                }
-            }
-        }
-
-        stage('Cmake') {
-            steps {
-                sh '''
-                    cd ./cpp
-                    rm -rf ./build
-                    source /opt/rh/devtoolset-8/enable
-                    ./cpp_easy_setup.sh
-                '''
-            }
+    post {
+        failure {
+            mail    to: "dxp-tech-coaches@murex.com",
+                    subject: "Failed Pipeline: ${env.JOB_NAME}",
+                    mimeType: 'text/html',
+                    charset: 'UTF-8',
+                    body: """
+                        <h1>Something is wrong with this job</h1>
+                        <ul>
+                            <li>Job Name: ${env.JOB_NAME}</li>
+                            <li>Build Number: ${env.BUILD_NUMBER}</li>
+                            <li>Build URL: ${env.BUILD_URL}</li>
+                        </ul>
+                    """
         }
     }
 }
