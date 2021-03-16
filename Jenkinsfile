@@ -77,6 +77,8 @@ pipeline {
         failure {
             mail    to: "dxp-tech-coaches@murex.com",
                     subject: "Failed Pipeline: ${env.JOB_NAME}",
+                    from: '',
+                    replyTo: '',
                     mimeType: 'text/html',
                     charset: 'UTF-8',
                     body: """
