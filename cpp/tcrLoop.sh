@@ -2,6 +2,6 @@
 
 while true
 do
-    ./inotify-win.exe -r -e modify ./src ./test ./include
+    ./scripts/inotify-win.exe -r -e modify ./src ./test ./include
     ./tcr.sh
 done
