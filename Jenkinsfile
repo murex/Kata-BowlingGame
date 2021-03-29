@@ -73,22 +73,22 @@ pipeline {
         }
     }
 
-    post {
-        failure {
-            mail    to: "dxp-tech-coaches@murex.com",
-                    subject: "Failed Pipeline: ${env.JOB_NAME}",
-                    from: '',
-                    replyTo: '',
-                    mimeType: 'text/html',
-                    charset: 'UTF-8',
-                    body: """
-                        <h1>Something is wrong with this job</h1>
-                        <ul>
-                            <li>Job Name: ${env.JOB_NAME}</li>
-                            <li>Build Number: ${env.BUILD_NUMBER}</li>
-                            <li>Build URL: ${env.BUILD_URL}</li>
-                        </ul>
-                    """
-        }
-    }
+//    post {
+//        failure {
+//            mail    to: "dxp-tech-coaches@murex.com",
+//                    subject: "Failed Pipeline: ${env.JOB_NAME}",
+//                    from: '',
+//                    replyTo: '',
+//                    mimeType: 'text/html',
+//                    charset: 'UTF-8',
+//                    body: """
+//                        <h1>Something is wrong with this job</h1>
+//                        <ul>
+//                            <li>Job Name: ${env.JOB_NAME}</li>
+//                            <li>Build Number: ${env.BUILD_NUMBER}</li>
+//                            <li>Build URL: ${env.BUILD_URL}</li>
+//                        </ul>
+//                    """
+//        }
+//    }
 }
