@@ -6,6 +6,11 @@ BASE_DIR="$(cd "$(dirname -- "$0")" && pwd)"
 SCRIPT_DIR="$(dirname "${BASE_DIR}")/tcr"
 
 # ------------------------------------------------------------------------------
+# For POSIX-compliant list manipulation (Cf. https://github.com/Ventto/libshlist)
+# ------------------------------------------------------------------------------
+. "${SCRIPT_DIR}/liblist.sh"
+
+# ------------------------------------------------------------------------------
 # For TCR-specific traces and errors
 # ------------------------------------------------------------------------------
 
@@ -30,16 +35,14 @@ case "${LANGUAGE}" in
 java)
   TOOLCHAIN="gradle"
   WORK_DIR="${BASE_DIR}"
-  SRC_DIR="${BASE_DIR}/src/main"
-  INCLUDE_DIR=""
-  TEST_DIR="${BASE_DIR}/src/test"
+  SRC_DIRS="$(list "${BASE_DIR}/src/main")"
+  TEST_DIRS="$(list "${BASE_DIR}/src/test")"
   ;;
 cpp)
   TOOLCHAIN="cmake"
   WORK_DIR="${BASE_DIR}/build"
-  SRC_DIR="${BASE_DIR}/src"
-  INCLUDE_DIR="${BASE_DIR}/include"
-  TEST_DIR="${BASE_DIR}/test"
+  SRC_DIRS="$(list "${BASE_DIR}/src" "${BASE_DIR}/include")"
+  TEST_DIRS="$(list "${BASE_DIR}/test")"
   ;;
 *)
   tcr_error "Unable to detect language."
@@ -52,7 +55,7 @@ esac
 
 tcr_watch_fs() {
   tcr_info "Going to sleep until something interesting happens"
-  "${SCRIPT_DIR}"/inotify-win.exe -r -e modify "${SRC_DIR}" "${INCLUDE_DIR}" "${TEST_DIR}"
+  "${SCRIPT_DIR}"/inotify-win.exe -r -e modify ${SRC_DIRS} ${TEST_DIRS}
   # TODO Extend to other OS's than Windows
 }
 
@@ -119,7 +122,7 @@ tcr_commit() {
 
 tcr_revert() {
   tcr_info "Reverting changes"
-  git checkout HEAD -- "${SRC_DIR}" "${INCLUDE_DIR}"
+  git checkout HEAD -- ${SRC_DIRS}
 }
 
 # ------------------------------------------------------------------------------
