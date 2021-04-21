@@ -16,4 +16,4 @@ jobs:
           token: ${{ secrets.PERSONAL_TOKEN }}
           base: master
           head: master
-          auto_approve: true
+          auto_approve: false
