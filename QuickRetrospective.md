@@ -31,3 +31,4 @@ _`How can we apply this in the future?`_
 -
 
 ![Retrospective](./images/Retrospective.jpg)
+[Image Source](https://commons.wikimedia.org/wiki/File:Too_Busy_To_Improve_-_Performance_Management_-_Square_Wheels.png)
