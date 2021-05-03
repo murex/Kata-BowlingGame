@@ -113,7 +113,9 @@ tcr_commit() {
   current_branch=$(git rev-parse --abbrev-ref HEAD)
   tcr_info "Committing changes on branch ${current_branch}"
   git commit -am TCR
-  git push --no-recurse-submodules origin "${current_branch}"
+  if [ "${AUTO_PUSH_MODE}" -eq 1 ]; then
+    git push --no-recurse-submodules origin "${current_branch}"
+  fi
 }
 
 # ------------------------------------------------------------------------------
@@ -165,16 +167,48 @@ update_toolchain() {
 }
 
 # ------------------------------------------------------------------------------
+# Display usage information
+# ------------------------------------------------------------------------------
+
+show_help() {
+  tcr_info "Usage: $0 [OPTION]..."
+  tcr_info "Run TCR (Test && Commit || Revert)"
+  tcr_info ""
+  tcr_info "  -h, --help                 show help information"
+  tcr_info "  -n, --no-loop              run TCR once and exit"
+  tcr_info "                             the script runs indefinitely by default"
+  tcr_info "  -p, --auto-push            enable git push after every commit"
+  tcr_info "                             auto-push is disabled by default"
+  tcr_info "  -t, --toolchain TOOLCHAIN  indicate the toolchain to be used by TCR"
+  tcr_info "                             supported toolchains:"
+  tcr_info "                             - gradle (java, default)"
+  tcr_info "                             - maven (java)"
+  tcr_info "                             - cmake (C++, default)"
+}
+
+# ------------------------------------------------------------------------------
 # TCR Main Loop
 # ------------------------------------------------------------------------------
 
 # Loop through arguments and process them
+
+help_mode=0
 tcr_loop_mode=1
+AUTO_PUSH_MODE=0
+
 set +u
 for arg in "$@"; do
   case $arg in
+  -h | --help)
+    help_mode=1
+    shift
+    ;;
   -n | --no-loop)
     tcr_loop_mode=0
+    shift
+    ;;
+  -p | --auto-push)
+    AUTO_PUSH_MODE=1
     shift
     ;;
   -t | --toolchain)
@@ -182,13 +216,29 @@ for arg in "$@"; do
     shift
     shift
     ;;
+  *)
+    help_mode=1
+    shift
+    ;;
   esac
 done
 set -u
 
+if [ ${help_mode} -eq 1 ]; then
+  show_help
+  exit 1
+fi
+
 cd "${WORK_DIR}" || exit 1
 
 tcr_info "Starting. Language=${LANGUAGE}, Toolchain=${TOOLCHAIN}"
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+if [ "${AUTO_PUSH_MODE}" -eq 1 ]; then
+  auto_push_state="enabled"
+else
+  auto_push_state="disabled"
+fi
+tcr_info "Running on git branch \"${current_branch}\" with auto push ${auto_push_state}"
 
 if [ ${tcr_loop_mode} -eq 1 ]; then
   while true; do
@@ -197,5 +247,6 @@ if [ ${tcr_loop_mode} -eq 1 ]; then
   done
 else
   # Run TCR only once
+  tcr_info "Auto loop is disabled. Running TCR only once."
   tcr_run
 fi
