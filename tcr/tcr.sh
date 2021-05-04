@@ -55,8 +55,18 @@ esac
 
 tcr_watch_fs() {
   tcr_info "Going to sleep until something interesting happens"
-  "${SCRIPT_DIR}"/inotify-win.exe -r -e modify ${SRC_DIRS} ${TEST_DIRS}
-  # TODO Extend to other OS's than Windows
+
+  case $(uname -s) in
+  Darwin)
+    fswatch -1 -r ${SRC_DIRS} ${TEST_DIRS}
+    ;;
+  MINGW64_NT-*)
+    "${SCRIPT_DIR}"/inotify-win.exe -r -e modify ${SRC_DIRS} ${TEST_DIRS}
+    ;;
+  *)
+    tcr_error "os $(uname -s) is currently not supported."
+    ;;
+  esac
 }
 
 # ------------------------------------------------------------------------------
@@ -67,14 +77,23 @@ tcr_build() {
   tcr_info "Launching Build"
   case "${TOOLCHAIN}" in
   gradle)
-    ./gradlew build -x test
+    ./gradlew build -x test || true
     ;;
   maven)
-    ./mvnw test-compile
+    ./mvnw test-compile || true
     ;;
   cmake)
-    ./cmake/cmake-win64-x64/bin/cmake.exe --build . --config Debug
-    # TODO Extend to other OS's than Windows
+    case $(uname -s) in
+    Darwin)
+      ./cmake/cmake-macos-x64/bin/cmake.exe --build . --config Debug || true
+      ;;
+    MINGW64_NT-*)
+      ./cmake/cmake-win64-x64/bin/cmake.exe --build . --config Debug || true
+      ;;
+    *)
+      tcr_error "os $(uname -s) is currently not supported."
+      ;;
+    esac
     ;;
   *)
     tcr_error "Toolchain ${TOOLCHAIN} is not supported"
@@ -96,8 +115,17 @@ tcr_test() {
     ./mvnw test
     ;;
   cmake)
-    ./cmake/cmake-win64-x64/bin/ctest.exe --output-on-failure -C Debug
-    # TODO Extend to other OS's than Windows
+    case $(uname -s) in
+    Darwin)
+      ./cmake/cmake-macos-x64/bin/ctest.exe --output-on-failure -C Debug
+      ;;
+    MINGW64_NT-*)
+      ./cmake/cmake-win64-x64/bin/ctest.exe --output-on-failure -C Debug
+      ;;
+    *)
+      tcr_error "os $(uname -s) is currently not supported."
+      ;;
+    esac
     ;;
   *)
     tcr_error "Toolchain ${TOOLCHAIN} is not supported"
