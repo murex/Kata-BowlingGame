@@ -50,23 +50,36 @@ cpp)
 esac
 
 # ------------------------------------------------------------------------------
+# Detect running OS and set parameters accordingly
+# ------------------------------------------------------------------------------
+
+OS=$(uname -s)
+
+case ${OS} in
+Darwin)
+  FS_WATCH_CMD="fswatch -1 -r"
+  CMAKE_BIN_PATH="./cmake/cmake-macos-universal/CMake.app/Contents/bin"
+  CMAKE_CMD="${CMAKE_BIN_PATH}/cmake"
+  CTEST_CMD="${CMAKE_BIN_PATH}/ctest"
+  ;;
+MINGW64_NT-*)
+  FS_WATCH_CMD="${SCRIPT_DIR}/inotify-win.exe -r -e modify"
+  CMAKE_BIN_PATH="./cmake/cmake-win64-x64/bin"
+  CMAKE_CMD="${CMAKE_BIN_PATH}/cmake.exe"
+  CTEST_CMD="${CMAKE_BIN_PATH}/ctest.exe"
+  ;;
+*)
+  tcr_error "OS $(OS) is currently not supported."
+  ;;
+esac
+
+# ------------------------------------------------------------------------------
 # File System watch
 # ------------------------------------------------------------------------------
 
 tcr_watch_fs() {
   tcr_info "Going to sleep until something interesting happens"
-
-  case $(uname -s) in
-  Darwin)
-    fswatch -1 -r ${SRC_DIRS} ${TEST_DIRS}
-    ;;
-  MINGW64_NT-*)
-    "${SCRIPT_DIR}"/inotify-win.exe -r -e modify ${SRC_DIRS} ${TEST_DIRS}
-    ;;
-  *)
-    tcr_error "os $(uname -s) is currently not supported."
-    ;;
-  esac
+  ${FS_WATCH_CMD} ${SRC_DIRS} ${TEST_DIRS}
 }
 
 # ------------------------------------------------------------------------------
@@ -83,17 +96,7 @@ tcr_build() {
     ./mvnw test-compile || true
     ;;
   cmake)
-    case $(uname -s) in
-    Darwin)
-      ./cmake/cmake-macos-x64/bin/cmake.exe --build . --config Debug || true
-      ;;
-    MINGW64_NT-*)
-      ./cmake/cmake-win64-x64/bin/cmake.exe --build . --config Debug || true
-      ;;
-    *)
-      tcr_error "os $(uname -s) is currently not supported."
-      ;;
-    esac
+    ${CMAKE_CMD} --build . --config Debug || true
     ;;
   *)
     tcr_error "Toolchain ${TOOLCHAIN} is not supported"
@@ -115,17 +118,7 @@ tcr_test() {
     ./mvnw test
     ;;
   cmake)
-    case $(uname -s) in
-    Darwin)
-      ./cmake/cmake-macos-x64/bin/ctest.exe --output-on-failure -C Debug
-      ;;
-    MINGW64_NT-*)
-      ./cmake/cmake-win64-x64/bin/ctest.exe --output-on-failure -C Debug
-      ;;
-    *)
-      tcr_error "os $(uname -s) is currently not supported."
-      ;;
-    esac
+    ${CTEST_CMD} --output-on-failure -C Debug
     ;;
   *)
     tcr_error "Toolchain ${TOOLCHAIN} is not supported"
@@ -216,7 +209,7 @@ set -u
 
 cd "${WORK_DIR}" || exit 1
 
-tcr_info "Starting. Language=${LANGUAGE}, Toolchain=${TOOLCHAIN}"
+tcr_info "Starting. OS=${OS}, Language=${LANGUAGE}, Toolchain=${TOOLCHAIN}"
 
 if [ ${tcr_loop_mode} -eq 1 ]; then
   while true; do
