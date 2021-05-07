@@ -11,67 +11,96 @@ SCRIPT_DIR="$(dirname "${BASE_DIR}")/tcr"
 . "${SCRIPT_DIR}/liblist.sh"
 
 # ------------------------------------------------------------------------------
+# Force termination on Ctrl-C to bypass infinite loop around fswatch/inotify
+# ------------------------------------------------------------------------------
+
+force_termination() {
+  kill -s TERM $$
+  tcr_info "Exiting"
+  exit 0
+}
+
+trap force_termination INT TERM
+
+# ------------------------------------------------------------------------------
 # For TCR-specific traces and errors
 # ------------------------------------------------------------------------------
 
 tcr_info() {
   message="$1"
-  printf "%b" "\e[1;36m[TCR] ${message} \e[0m\n"
+  echo "${message}" | while IFS= read -r line; do printf "%b" "\e[1;36m[TCR] ${line} \e[0m\n"; done
 }
 
 tcr_error() {
   message="$1"
-  printf "%b" "\e[1;31m[TCR] ${message}. Aborting. \e[0m\n"
+  echo "${message}" | while IFS= read -r line; do printf "%b" "\e[1;31m[TCR] ${line} \e[0m\n"; done
+  printf "%b" "\e[1;31m[TCR] Aborting. \e[0m\n"
   exit 1
+}
+
+# ------------------------------------------------------------------------------
+# Verify that fswatch command is available on the machine path
+# ------------------------------------------------------------------------------
+
+check_fswatch_availability() {
+  command_name="fswatch"
+  if ! type "${command_name}" >/dev/null 2>/dev/null; then
+    tcr_error "Command ${command_name} not found.\nCf. https://emcrisostomo.github.io/fswatch/getting.html"
+  fi
 }
 
 # ------------------------------------------------------------------------------
 # Detect kata language and set parameters accordingly
 # ------------------------------------------------------------------------------
 
-LANGUAGE=${BASE_DIR##*/}
+detect_kata_language() {
+  LANGUAGE=${BASE_DIR##*/}
 
-case "${LANGUAGE}" in
-java)
-  TOOLCHAIN="gradle"
-  WORK_DIR="${BASE_DIR}"
-  SRC_DIRS="$(list "${BASE_DIR}/src/main")"
-  TEST_DIRS="$(list "${BASE_DIR}/src/test")"
-  ;;
-cpp)
-  TOOLCHAIN="cmake"
-  WORK_DIR="${BASE_DIR}/build"
-  SRC_DIRS="$(list "${BASE_DIR}/src" "${BASE_DIR}/include")"
-  TEST_DIRS="$(list "${BASE_DIR}/test")"
-  ;;
-*)
-  tcr_error "Unable to detect language."
-  ;;
-esac
+  case "${LANGUAGE}" in
+  java)
+    TOOLCHAIN="gradle"
+    WORK_DIR="${BASE_DIR}"
+    SRC_DIRS="$(list "${BASE_DIR}/src/main")"
+    TEST_DIRS="$(list "${BASE_DIR}/src/test")"
+    ;;
+  cpp)
+    TOOLCHAIN="cmake"
+    WORK_DIR="${BASE_DIR}/build"
+    SRC_DIRS="$(list "${BASE_DIR}/src" "${BASE_DIR}/include")"
+    TEST_DIRS="$(list "${BASE_DIR}/test")"
+    ;;
+  *)
+    tcr_error "Unable to detect language."
+    ;;
+  esac
+}
 
 # ------------------------------------------------------------------------------
 # Detect running OS and set parameters accordingly
 # ------------------------------------------------------------------------------
 
-OS=$(uname -s)
+detect_running_os() {
+  OS=$(uname -s)
 
-case ${OS} in
-Darwin)
-  FS_WATCH_CMD="fswatch -1 -r"
-  CMAKE_BIN_PATH="./cmake/cmake-macos-universal/CMake.app/Contents/bin"
-  CMAKE_CMD="${CMAKE_BIN_PATH}/cmake"
-  CTEST_CMD="${CMAKE_BIN_PATH}/ctest"
-  ;;
-MINGW64_NT-*)
-  FS_WATCH_CMD="${SCRIPT_DIR}/inotify-win.exe -r -e modify"
-  CMAKE_BIN_PATH="./cmake/cmake-win64-x64/bin"
-  CMAKE_CMD="${CMAKE_BIN_PATH}/cmake.exe"
-  CTEST_CMD="${CMAKE_BIN_PATH}/ctest.exe"
-  ;;
-*)
-  tcr_error "OS $(OS) is currently not supported."
-  ;;
-esac
+  case ${OS} in
+  Darwin)
+    check_fswatch_availability
+    FS_WATCH_CMD="fswatch -1 -r"
+    CMAKE_BIN_PATH="./cmake/cmake-macos-universal/CMake.app/Contents/bin"
+    CMAKE_CMD="${CMAKE_BIN_PATH}/cmake"
+    CTEST_CMD="${CMAKE_BIN_PATH}/ctest"
+    ;;
+  MINGW64_NT-*)
+    FS_WATCH_CMD="${SCRIPT_DIR}/inotify-win.exe -r -e modify"
+    CMAKE_BIN_PATH="./cmake/cmake-win64-x64/bin"
+    CMAKE_CMD="${CMAKE_BIN_PATH}/cmake.exe"
+    CTEST_CMD="${CMAKE_BIN_PATH}/ctest.exe"
+    ;;
+  *)
+    tcr_error "OS $(OS) is currently not supported."
+    ;;
+  esac
+}
 
 # ------------------------------------------------------------------------------
 # File System watch
@@ -131,11 +160,10 @@ tcr_test() {
 # ------------------------------------------------------------------------------
 
 tcr_commit() {
-  current_branch=$(git rev-parse --abbrev-ref HEAD)
-  tcr_info "Committing changes on branch ${current_branch}"
+  tcr_info "Committing changes on branch ${GIT_WORKING_BRANCH}"
   git commit -am TCR
   if [ "${AUTO_PUSH_MODE}" -eq 1 ]; then
-    git push --no-recurse-submodules origin "${current_branch}"
+    git push --no-recurse-submodules origin "${GIT_WORKING_BRANCH}"
   fi
 }
 
@@ -211,6 +239,9 @@ show_help() {
 # TCR Main Loop
 # ------------------------------------------------------------------------------
 
+detect_running_os
+detect_kata_language
+
 # Loop through arguments and process them
 
 help_mode=0
@@ -251,15 +282,11 @@ if [ ${help_mode} -eq 1 ]; then
 fi
 
 cd "${WORK_DIR}" || exit 1
+GIT_WORKING_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 tcr_info "Starting. Language=${LANGUAGE}, Toolchain=${TOOLCHAIN}"
-current_branch=$(git rev-parse --abbrev-ref HEAD)
-if [ "${AUTO_PUSH_MODE}" -eq 1 ]; then
-  auto_push_state="enabled"
-else
-  auto_push_state="disabled"
-fi
-tcr_info "Running on git branch \"${current_branch}\" with auto push ${auto_push_state}"
+[ "${AUTO_PUSH_MODE}" -eq 1 ] && auto_push_state="enabled" || auto_push_state="disabled"
+tcr_info "Running on git branch \"${GIT_WORKING_BRANCH}\" with auto push ${auto_push_state}"
 
 if [ ${tcr_loop_mode} -eq 1 ]; then
   while true; do
@@ -268,6 +295,8 @@ if [ ${tcr_loop_mode} -eq 1 ]; then
   done
 else
   # Run TCR only once
-  tcr_info "Auto loop is disabled. Running TCR only once."
+  tcr_info "Auto loop is disabled. Running TCR only once"
   tcr_run
 fi
+
+tcr_info "Exiting"
