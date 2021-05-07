@@ -15,7 +15,7 @@ SCRIPT_DIR="$(dirname "${BASE_DIR}")/tcr"
 # ------------------------------------------------------------------------------
 
 force_termination() {
-  kill -s TERM $$
+  kill -s "${TERMINATION_SIGNAL}" $$
   tcr_info "Exiting"
   exit 0
 }
@@ -28,13 +28,13 @@ trap force_termination INT TERM
 
 tcr_info() {
   message="$1"
-  echo "${message}" | while IFS= read -r line; do printf "%b" "\e[1;36m[TCR] ${line} \e[0m\n"; done
+  printf "%b" "${message}\n" | while IFS= read -r line; do printf "%b" "\e[1;36m[TCR] ${line} \e[0m\n"; done
 }
 
 tcr_error() {
   message="$1"
-  echo "${message}" | while IFS= read -r line; do printf "%b" "\e[1;31m[TCR] ${line} \e[0m\n"; done
-  printf "%b" "\e[1;31m[TCR] Aborting. \e[0m\n"
+  printf "%b" "${message}\n" | while IFS= read -r line; do printf "%b" "\e[1;31m[TCR] ${line} \e[0m\n"; done
+  printf "%b" "\e[1;31m[TCR] Aborting \e[0m\n"
   exit 1
 }
 
@@ -70,7 +70,7 @@ detect_kata_language() {
     TEST_DIRS="$(list "${BASE_DIR}/test")"
     ;;
   *)
-    tcr_error "Unable to detect language."
+    tcr_error "Unable to detect language"
     ;;
   esac
 }
@@ -85,19 +85,21 @@ detect_running_os() {
   case ${OS} in
   Darwin)
     check_fswatch_availability
+    TERMINATION_SIGNAL=TERM
     FS_WATCH_CMD="fswatch -1 -r"
     CMAKE_BIN_PATH="./cmake/cmake-macos-universal/CMake.app/Contents/bin"
     CMAKE_CMD="${CMAKE_BIN_PATH}/cmake"
     CTEST_CMD="${CMAKE_BIN_PATH}/ctest"
     ;;
   MINGW64_NT-*)
+    TERMINATION_SIGNAL=INT
     FS_WATCH_CMD="${SCRIPT_DIR}/inotify-win.exe -r -e modify"
     CMAKE_BIN_PATH="./cmake/cmake-win64-x64/bin"
     CMAKE_CMD="${CMAKE_BIN_PATH}/cmake.exe"
     CTEST_CMD="${CMAKE_BIN_PATH}/ctest.exe"
     ;;
   *)
-    tcr_error "OS $(OS) is currently not supported."
+    tcr_error "OS $(OS) is currently not supported"
     ;;
   esac
 }
@@ -269,8 +271,9 @@ for arg in "$@"; do
     shift
     ;;
   *)
-    help_mode=1
-    shift
+    if [ "$1" != "" ]; then
+      tcr_error "Option not recognized: \"$1\"\nRun \"$0 -h\" for available options"
+    fi
     ;;
   esac
 done
