@@ -4,6 +4,8 @@ This kata uses material from the following third-parties:
 
 * [inotify-win tool for Windows](https://github.com/thekid/inotify-win), BSD License
 
+* [fswatch tool for MacOS](https://github.com/emcrisostomo/fswatch), GNU General Public License Version 3.0
+
 * [POSIX Shell List library](https://github.com/Ventto/libshlist/), MIT License
 
 * [Gradle build tool](https://gradle.org/), Apache License Version 2.0
