@@ -15,8 +15,9 @@ SCRIPT_DIR="$(dirname "${BASE_DIR}")/tcr"
 # ------------------------------------------------------------------------------
 
 force_termination() {
-  kill -s "${TERMINATION_SIGNAL}" $$
   tcr_info "Exiting"
+  trap - "${TERMINATION_SIGNAL}"
+  kill -s "${TERMINATION_SIGNAL}" $$
   exit 0
 }
 
@@ -88,6 +89,14 @@ detect_running_os() {
     TERMINATION_SIGNAL=TERM
     FS_WATCH_CMD="fswatch -1 -r"
     CMAKE_BIN_PATH="./cmake/cmake-macos-universal/CMake.app/Contents/bin"
+    CMAKE_CMD="${CMAKE_BIN_PATH}/cmake"
+    CTEST_CMD="${CMAKE_BIN_PATH}/ctest"
+    ;;
+  Linux)
+    check_fswatch_availability
+    TERMINATION_SIGNAL=TERM
+    FS_WATCH_CMD="fswatch -1 -m poll_monitor -r"
+    CMAKE_BIN_PATH="./cmake/cmake-Linux-x86_64/bin"
     CMAKE_CMD="${CMAKE_BIN_PATH}/cmake"
     CTEST_CMD="${CMAKE_BIN_PATH}/ctest"
     ;;
@@ -289,7 +298,7 @@ GIT_WORKING_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 tcr_info "Starting. Language=${LANGUAGE}, Toolchain=${TOOLCHAIN}"
 [ "${AUTO_PUSH_MODE}" -eq 1 ] && auto_push_state="enabled" || auto_push_state="disabled"
-tcr_info "Running on git branch \"${GIT_WORKING_BRANCH}\" with auto push ${auto_push_state}"
+tcr_info "Running on git branch \"${GIT_WORKING_BRANCH}\" with auto-push ${auto_push_state}"
 
 if [ ${tcr_loop_mode} -eq 1 ]; then
   while true; do
@@ -298,7 +307,7 @@ if [ ${tcr_loop_mode} -eq 1 ]; then
   done
 else
   # Run TCR only once
-  tcr_info "Auto loop is disabled. Running TCR only once"
+  tcr_info "Auto-loop is disabled. Running TCR only once"
   tcr_run
 fi
 
