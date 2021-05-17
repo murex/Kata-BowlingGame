@@ -40,14 +40,23 @@ tcr_error() {
 }
 
 # ------------------------------------------------------------------------------
-# Verify that fswatch command is available on the machine path
+# Verify that a command is available on the machine path
 # ------------------------------------------------------------------------------
 
-check_fswatch_availability() {
-  command_name="fswatch"
+check_command_availability() {
+  command_name="$1"
+  help_url="$2"
   if ! type "${command_name}" >/dev/null 2>/dev/null; then
-    tcr_error "Command ${command_name} not found.\nCf. https://emcrisostomo.github.io/fswatch/getting.html"
+    tcr_error "Command ${command_name} not found.\nCf. ${help_url}"
   fi
+}
+
+check_fswatch_availability() {
+  check_command_availability fswatch "https://emcrisostomo.github.io/fswatch/getting.html"
+}
+
+check_inotifywait_availability() {
+  check_command_availability inotifywait "https://github.com/inotify-tools/inotify-tools/wiki"
 }
 
 # ------------------------------------------------------------------------------
@@ -93,9 +102,9 @@ detect_running_os() {
     CTEST_CMD="${CMAKE_BIN_PATH}/ctest"
     ;;
   Linux)
-    check_fswatch_availability
+    check_inotifywait_availability
     TERMINATION_SIGNAL=TERM
-    FS_WATCH_CMD="fswatch -1 -m poll_monitor -r"
+    FS_WATCH_CMD="inotifywait -r -e modify"
     CMAKE_BIN_PATH="./cmake/cmake-Linux-x86_64/bin"
     CMAKE_CMD="${CMAKE_BIN_PATH}/cmake"
     CTEST_CMD="${CMAKE_BIN_PATH}/ctest"
