@@ -21,6 +21,8 @@ You can fill it from [here](./QuickRetrospective.md)
 
 ### General
 
+
+- [TCR (Test && Commit || Revert) wrapper](tcr/TCR.md) utility
 - Handy for any type of turn-based session: [Online Timer](https://agility.jahed.dev/)
 
 ## Session Information

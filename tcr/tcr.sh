@@ -11,17 +11,17 @@ SCRIPT_DIR="$(dirname "${BASE_DIR}")/tcr"
 . "${SCRIPT_DIR}/liblist.sh"
 
 # ------------------------------------------------------------------------------
-# Force termination on Ctrl-C to bypass infinite loop around fswatch/inotify
+# Catch Ctrl-C to bypass infinite loop around fswatch/inotify
 # ------------------------------------------------------------------------------
 
-force_termination() {
-  tcr_info "Exiting"
-  trap - "${TERMINATION_SIGNAL}"
-  kill -s "${TERMINATION_SIGNAL}" $$
-  exit 0
+tcr_catch_ctrl_c() {
+  echo
+  # Before leaving, we push latest changes to origin if needed
+  tcr_sync_up
+  # And then we restart the script. This trick prevents having multiple CTRL-C
+  # not being handled properly in some situations
+  exec "$0"
 }
-
-trap force_termination INT TERM
 
 # ------------------------------------------------------------------------------
 # For TCR-specific traces and errors
@@ -43,7 +43,7 @@ tcr_error() {
 # Verify that a command is available on the machine path
 # ------------------------------------------------------------------------------
 
-check_command_availability() {
+tcr_check_command_availability() {
   command_name="$1"
   help_url="$2"
   if ! type "${command_name}" >/dev/null 2>/dev/null; then
@@ -51,19 +51,19 @@ check_command_availability() {
   fi
 }
 
-check_fswatch_availability() {
-  check_command_availability fswatch "https://emcrisostomo.github.io/fswatch/getting.html"
+tcr_check_fswatch_availability() {
+  tcr_check_command_availability fswatch "https://emcrisostomo.github.io/fswatch/getting.html"
 }
 
-check_inotifywait_availability() {
-  check_command_availability inotifywait "https://github.com/inotify-tools/inotify-tools/wiki"
+tcr_check_inotifywait_availability() {
+  tcr_check_command_availability inotifywait "https://github.com/inotify-tools/inotify-tools/wiki"
 }
 
 # ------------------------------------------------------------------------------
 # Detect kata language and set parameters accordingly
 # ------------------------------------------------------------------------------
 
-detect_kata_language() {
+tcr_detect_kata_language() {
   LANGUAGE=${BASE_DIR##*/}
 
   case "${LANGUAGE}" in
@@ -89,28 +89,25 @@ detect_kata_language() {
 # Detect running OS and set parameters accordingly
 # ------------------------------------------------------------------------------
 
-detect_running_os() {
+tcr_detect_running_os() {
   OS=$(uname -s)
 
   case ${OS} in
   Darwin)
-    check_fswatch_availability
-    TERMINATION_SIGNAL=TERM
+    tcr_check_fswatch_availability
     FS_WATCH_CMD="fswatch -1 -r"
     CMAKE_BIN_PATH="./cmake/cmake-macos-universal/CMake.app/Contents/bin"
     CMAKE_CMD="${CMAKE_BIN_PATH}/cmake"
     CTEST_CMD="${CMAKE_BIN_PATH}/ctest"
     ;;
   Linux)
-    check_inotifywait_availability
-    TERMINATION_SIGNAL=TERM
+    tcr_check_inotifywait_availability
     FS_WATCH_CMD="inotifywait -r -e modify"
     CMAKE_BIN_PATH="./cmake/cmake-Linux-x86_64/bin"
     CMAKE_CMD="${CMAKE_BIN_PATH}/cmake"
     CTEST_CMD="${CMAKE_BIN_PATH}/ctest"
     ;;
   MINGW64_NT-*)
-    TERMINATION_SIGNAL=INT
     FS_WATCH_CMD="${SCRIPT_DIR}/inotify-win.exe -r -e modify"
     CMAKE_BIN_PATH="./cmake/cmake-win64-x64/bin"
     CMAKE_CMD="${CMAKE_BIN_PATH}/cmake.exe"
@@ -120,6 +117,28 @@ detect_running_os() {
     tcr_error "OS $(OS) is currently not supported"
     ;;
   esac
+}
+
+# ------------------------------------------------------------------------------
+# Synchronize local git clone contents from origin
+# ------------------------------------------------------------------------------
+
+tcr_sync_down() {
+  tcr_info "Pulling latest changes from origin on branch ${GIT_WORKING_BRANCH}"
+  git pull --no-recurse-submodules origin "${GIT_WORKING_BRANCH}"
+  GIT_PUSH_PENDING=0
+}
+
+# ------------------------------------------------------------------------------
+# Synchronize local git clone to origin
+# ------------------------------------------------------------------------------
+
+tcr_sync_up() {
+  if [ "${GIT_PUSH_PENDING}" -eq 1 ]; then
+    tcr_info "Pushing latest changes to origin on branch ${GIT_WORKING_BRANCH}"
+    git push --no-recurse-submodules origin "${GIT_WORKING_BRANCH}"
+    GIT_PUSH_PENDING=0
+  fi
 }
 
 # ------------------------------------------------------------------------------
@@ -182,9 +201,7 @@ tcr_test() {
 tcr_commit() {
   tcr_info "Committing changes on branch ${GIT_WORKING_BRANCH}"
   git commit -am TCR
-  if [ "${AUTO_PUSH_MODE}" -eq 1 ]; then
-    git push --no-recurse-submodules origin "${GIT_WORKING_BRANCH}"
-  fi
+  GIT_PUSH_PENDING=1
 }
 
 # ------------------------------------------------------------------------------
@@ -208,7 +225,7 @@ tcr_run() {
 # Setting the toolchain to be used from command line
 # ------------------------------------------------------------------------------
 
-update_toolchain() {
+tcr_update_toolchain() {
   required_toolchain="$1"
   if [ -z "${required_toolchain}" ]; then
     tcr_error "Toolchain is not specified"
@@ -236,18 +253,90 @@ update_toolchain() {
 }
 
 # ------------------------------------------------------------------------------
+# Ask user to indicate in which mode we should operate
+# ------------------------------------------------------------------------------
+
+tcr_what_shall_we_do() {
+
+  trap tcr_catch_ctrl_c INT TERM
+
+  tcr_info "-------------------------------------------------------------------------"
+  tcr_info "Language=${LANGUAGE}, Toolchain=${TOOLCHAIN}"
+  tcr_info "Running on git branch \"${GIT_WORKING_BRANCH}\""
+
+  old_stty_cfg=$(stty -g)
+
+  while true; do
+    tcr_info "-------------------------------------------------------------------------"
+    tcr_info "What shall we do?"
+    tcr_info "\td -> Driver mode"
+    tcr_info "\tn -> Navigator mode"
+    tcr_info "\tq -> Quit"
+
+    stty raw -echo
+    answer=$(head -c 1)
+    stty "${old_stty_cfg}"
+
+    tcr_info ""
+    case ${answer} in
+    [dD])
+      tcr_run_as_driver
+      ;;
+    [nN])
+      tcr_run_as_navigator
+      ;;
+    [qQ])
+      tcr_quit
+      ;;
+    esac
+  done
+}
+
+# ------------------------------------------------------------------------------
+# Run TCR in driver mode, e.g. actually run TCR
+# ------------------------------------------------------------------------------
+
+tcr_run_as_driver() {
+  tcr_info "Entering Driver mode. Press CTRL-C to go back to the main menu"
+
+  tcr_sync_down
+
+  while true; do
+    tcr_watch_fs
+    tcr_run
+  done
+}
+
+# ------------------------------------------------------------------------------
+# Run TCR in navigator mode, e.g. regularly pull the repository contents
+# ------------------------------------------------------------------------------
+
+tcr_run_as_navigator() {
+  tcr_info "Entering Navigator mode. Press CTRL-C to go back to the main menu"
+
+  while true; do
+    tcr_sync_down
+  done
+}
+
+# ------------------------------------------------------------------------------
+# Quit TCR
+# ------------------------------------------------------------------------------
+
+tcr_quit() {
+  tcr_info "That's All Folks!"
+  exit 0
+}
+
+# ------------------------------------------------------------------------------
 # Display usage information
 # ------------------------------------------------------------------------------
 
-show_help() {
+tcr_show_help() {
   tcr_info "Usage: $0 [OPTION]..."
   tcr_info "Run TCR (Test && Commit || Revert)"
   tcr_info ""
   tcr_info "  -h, --help                 show help information"
-  tcr_info "  -n, --no-loop              run TCR once and exit"
-  tcr_info "                             the script runs indefinitely by default"
-  tcr_info "  -p, --auto-push            enable git push after every commit"
-  tcr_info "                             auto-push is disabled by default"
   tcr_info "  -t, --toolchain TOOLCHAIN  indicate the toolchain to be used by TCR"
   tcr_info "                             supported toolchains:"
   tcr_info "                             - gradle (java, default)"
@@ -259,32 +348,20 @@ show_help() {
 # TCR Main Loop
 # ------------------------------------------------------------------------------
 
-detect_running_os
-detect_kata_language
+tcr_detect_running_os
+tcr_detect_kata_language
 
 # Loop through arguments and process them
-
-help_mode=0
-tcr_loop_mode=1
-AUTO_PUSH_MODE=0
 
 set +u
 for arg in "$@"; do
   case $arg in
   -h | --help)
-    help_mode=1
-    shift
-    ;;
-  -n | --no-loop)
-    tcr_loop_mode=0
-    shift
-    ;;
-  -p | --auto-push)
-    AUTO_PUSH_MODE=1
-    shift
+    tcr_show_help
+    exit 1
     ;;
   -t | --toolchain)
-    update_toolchain "$2"
+    tcr_update_toolchain "$2"
     shift
     shift
     ;;
@@ -297,27 +374,7 @@ for arg in "$@"; do
 done
 set -u
 
-if [ ${help_mode} -eq 1 ]; then
-  show_help
-  exit 1
-fi
-
 cd "${WORK_DIR}" || exit 1
 GIT_WORKING_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
-tcr_info "Starting. Language=${LANGUAGE}, Toolchain=${TOOLCHAIN}"
-[ "${AUTO_PUSH_MODE}" -eq 1 ] && auto_push_state="enabled" || auto_push_state="disabled"
-tcr_info "Running on git branch \"${GIT_WORKING_BRANCH}\" with auto-push ${auto_push_state}"
-
-if [ ${tcr_loop_mode} -eq 1 ]; then
-  while true; do
-    tcr_watch_fs
-    tcr_run
-  done
-else
-  # Run TCR only once
-  tcr_info "Auto-loop is disabled. Running TCR only once"
-  tcr_run
-fi
-
-tcr_info "Exiting"
+tcr_what_shall_we_do
