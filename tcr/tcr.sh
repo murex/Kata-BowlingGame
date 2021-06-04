@@ -3,6 +3,7 @@
 set -eu
 
 BASE_DIR="$(cd "$(dirname -- "$0")" && pwd)"
+WRAPPER_PATH="${BASE_DIR}/$(basename "$0")"
 SCRIPT_DIR="$(dirname "${BASE_DIR}")/tcr"
 
 # ------------------------------------------------------------------------------
@@ -17,10 +18,10 @@ SCRIPT_DIR="$(dirname "${BASE_DIR}")/tcr"
 tcr_catch_ctrl_c() {
   echo
   # Before leaving, we push latest changes to origin if needed
-  tcr_sync_up
+  tcr_push
   # And then we restart the script. This trick prevents having multiple CTRL-C
   # not being handled properly in some situations
-  exec "$0"
+  exec "${WRAPPER_PATH}"
 }
 
 # ------------------------------------------------------------------------------
@@ -120,20 +121,20 @@ tcr_detect_running_os() {
 }
 
 # ------------------------------------------------------------------------------
-# Synchronize local git clone contents from origin
+# Pull branch contents from origin
 # ------------------------------------------------------------------------------
 
-tcr_sync_down() {
+tcr_pull() {
   tcr_info "Pulling latest changes from origin on branch ${GIT_WORKING_BRANCH}"
   git pull --no-recurse-submodules origin "${GIT_WORKING_BRANCH}"
   GIT_PUSH_PENDING=0
 }
 
 # ------------------------------------------------------------------------------
-# Synchronize local git clone to origin
+# Push branch contents to origin
 # ------------------------------------------------------------------------------
 
-tcr_sync_up() {
+tcr_push() {
   if [ "${GIT_PUSH_PENDING}" -eq 1 ]; then
     tcr_info "Pushing latest changes to origin on branch ${GIT_WORKING_BRANCH}"
     git push --no-recurse-submodules origin "${GIT_WORKING_BRANCH}"
@@ -145,7 +146,7 @@ tcr_sync_up() {
 # File System watch
 # ------------------------------------------------------------------------------
 
-tcr_watch_fs() {
+tcr_watch_filesystem() {
   tcr_info "Going to sleep until something interesting happens"
   ${FS_WATCH_CMD} ${SRC_DIRS} ${TEST_DIRS}
 }
@@ -258,6 +259,8 @@ tcr_update_toolchain() {
 
 tcr_what_shall_we_do() {
 
+  GIT_PUSH_PENDING=0
+
   trap tcr_catch_ctrl_c INT TERM
 
   tcr_info "-------------------------------------------------------------------------"
@@ -269,9 +272,9 @@ tcr_what_shall_we_do() {
   while true; do
     tcr_info "-------------------------------------------------------------------------"
     tcr_info "What shall we do?"
-    tcr_info "\td -> Driver mode"
-    tcr_info "\tn -> Navigator mode"
-    tcr_info "\tq -> Quit"
+    tcr_info "\tD -> Driver mode"
+    tcr_info "\tN -> Navigator mode"
+    tcr_info "\tQ -> Quit"
 
     stty raw -echo
     answer=$(head -c 1)
@@ -299,10 +302,10 @@ tcr_what_shall_we_do() {
 tcr_run_as_driver() {
   tcr_info "Entering Driver mode. Press CTRL-C to go back to the main menu"
 
-  tcr_sync_down
+  tcr_pull
 
   while true; do
-    tcr_watch_fs
+    tcr_watch_filesystem
     tcr_run
   done
 }
@@ -315,7 +318,7 @@ tcr_run_as_navigator() {
   tcr_info "Entering Navigator mode. Press CTRL-C to go back to the main menu"
 
   while true; do
-    tcr_sync_down
+    tcr_pull
   done
 }
 
@@ -374,6 +377,7 @@ for arg in "$@"; do
 done
 set -u
 
+mkdir -p "${WORK_DIR}"
 cd "${WORK_DIR}" || exit 1
 GIT_WORKING_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
