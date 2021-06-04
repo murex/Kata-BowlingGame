@@ -3,7 +3,7 @@
 ## What is TCR
 
 TCR is a programming workflow, which stands for **Test && Commit || Revert**.
-Kent Beck came up with this concept in [this post](https://medium.com/@kentbeck_7670/test-commit-revert-870bbd756864).
+Kent Beck and Oddmund Strømme came up with this concept in [this post](https://medium.com/@kentbeck_7670/test-commit-revert-870bbd756864).
 
 Since then several people experimented with this idea.
 
@@ -46,17 +46,29 @@ Open a shell window and type the following,
 replacing `<kata-repository-url>`, `<kata-root-directory>` and `<my-branch>`
 with the appropriate value.
 
+#### First participant (the one creating the branch)
+
 ```shell
 > git clone <kata-repository-url>
 > cd <kata-root-directory> 
 > git checkout -b <my-branch>
-> git pull origin <my-branch>
+> git push origin <my-branch>
 ```
 
 You can name `<my-branch>` as you wish, as long as all contributors in a pair or mob work on the same branch!
 
 TCR script applies a great number of commits to your git repository (every time it detects changes and tests are green).
-For this reason we strongly advise you to avoid running it directly on your repository's `master` branch!
+For this reason we strongly advise you to avoid running it directly on your repository's `master` branch,
+or even on your features/commit/dev branches!
+
+#### Other participants
+
+```shell
+> git clone <kata-repository-url>
+> cd <kata-root-directory> 
+> git checkout <my-branch>
+> git pull origin <my-branch>
+```
 
 ### Launching the script
 
@@ -83,15 +95,15 @@ After starting the script, you will see a menu that looks like the following:
 [TCR] Running on git branch "<my-branch>"
 [TCR] -------------------------------------------------------------------------
 [TCR] What shall we do?
-[TCR]   d -> Driver mode
-[TCR]   n -> Navigator mode
-[TCR]   q -> Quit
+[TCR]   D -> Driver mode
+[TCR]   N -> Navigator mode
+[TCR]   Q -> Quit
 ```
 
 If you're not familiar with the Driver and Navigator modes,
 you can refer to [here](https://mobprogramming.org/mob-programming-basics/).
 
-In our script the driver is primarily the participant actively interacting with the keyboard,
+In the TCR script the driver is primarily the participant actively interacting with the keyboard,
 while the navigators are all other participants.
 
 ### Driver mode
@@ -166,9 +178,9 @@ Here are the toolchains currently supported:
 
 | Toolchain | Language | Default |
 | --- | --- | --- |
-| gradle | Java | X |
+| gradle | Java | &check; |
 | maven | Java | |
-| cmake | C++ | X |
+| cmake | C++ | &check; |
 
 Please note that you do not need to install any of these toolchains on your machine in order to use them.
 We provide the wrappers allowing to download and run them in the context of the kata.
