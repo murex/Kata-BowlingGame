@@ -1,9 +1,10 @@
 #!/usr/bin/env sh
 
-set -eu
+set -u
 
 BASE_DIR="$(cd "$(dirname -- "$0")" && pwd)"
 WRAPPER_PATH="${BASE_DIR}/$(basename "$0")"
+COMMAND_ARGS=$*
 SCRIPT_DIR="$(dirname "${BASE_DIR}")/tcr"
 
 # ------------------------------------------------------------------------------
@@ -17,11 +18,10 @@ SCRIPT_DIR="$(dirname "${BASE_DIR}")/tcr"
 
 tcr_catch_ctrl_c() {
   echo
-  # Before leaving, we push latest changes to origin if needed
-  tcr_push
-  # And then we restart the script. This trick prevents having multiple CTRL-C
+  # We restart the script. This trick prevents having multiple CTRL-C
   # not being handled properly in some situations
-  exec "${WRAPPER_PATH}"
+  # shellcheck disable=SC2086
+  exec "${WRAPPER_PATH}" ${COMMAND_ARGS}
 }
 
 # ------------------------------------------------------------------------------
@@ -31,6 +31,18 @@ tcr_catch_ctrl_c() {
 tcr_info() {
   message="$1"
   printf "%b" "${message}\n" | while IFS= read -r line; do printf "%b" "\e[1;36m[TCR] ${line} \e[0m\n"; done
+}
+
+tcr_horizontal_line() {
+  term_columns=$(tput cols)
+  repeated=$(("${term_columns}" - 7))
+  line=$(head -c "${repeated}" </dev/zero | tr '\0' '-')
+  tcr_info "$line"
+}
+
+tcr_warning() {
+  message="$1"
+  printf "%b" "${message}\n" | while IFS= read -r line; do printf "%b" "\e[1;33m[TCR] ${line} \e[0m\n"; done
 }
 
 tcr_error() {
@@ -121,13 +133,25 @@ tcr_detect_running_os() {
 }
 
 # ------------------------------------------------------------------------------
+# Detect git working branch
+# ------------------------------------------------------------------------------
+
+tcr_detect_git_working_branch() {
+  GIT_WORKING_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  GIT_WORKING_BRANCH_EXISTS_ON_ORIGIN=$(git branch -r | grep -c "origin/${GIT_WORKING_BRANCH}" || [ $? = 1 ])
+}
+
+# ------------------------------------------------------------------------------
 # Pull branch contents from origin
 # ------------------------------------------------------------------------------
 
 tcr_pull() {
-  tcr_info "Pulling latest changes from origin on branch ${GIT_WORKING_BRANCH}"
-  git pull --no-recurse-submodules origin "${GIT_WORKING_BRANCH}"
-  GIT_PUSH_PENDING=0
+  if [ "${GIT_WORKING_BRANCH_EXISTS_ON_ORIGIN}" = 1 ]; then
+    tcr_info "Pulling latest changes from origin/${GIT_WORKING_BRANCH}"
+    git pull --no-recurse-submodules origin "${GIT_WORKING_BRANCH}"
+  else
+    tcr_info "Working locally on branch ${GIT_WORKING_BRANCH}"
+  fi
 }
 
 # ------------------------------------------------------------------------------
@@ -135,11 +159,11 @@ tcr_pull() {
 # ------------------------------------------------------------------------------
 
 tcr_push() {
-  if [ "${GIT_PUSH_PENDING}" -eq 1 ]; then
-    tcr_info "Pushing latest changes to origin on branch ${GIT_WORKING_BRANCH}"
-    git push --no-recurse-submodules origin "${GIT_WORKING_BRANCH}"
-    GIT_PUSH_PENDING=0
-  fi
+  tcr_info "Pushing changes to origin/${GIT_WORKING_BRANCH}"
+  git push --no-recurse-submodules origin "${GIT_WORKING_BRANCH}"
+  git_rc=$?
+  [ ${git_rc} -eq 0 ] && GIT_WORKING_BRANCH_EXISTS_ON_ORIGIN=1
+  return ${git_rc}
 }
 
 # ------------------------------------------------------------------------------
@@ -148,6 +172,7 @@ tcr_push() {
 
 tcr_watch_filesystem() {
   tcr_info "Going to sleep until something interesting happens"
+  # shellcheck disable=SC2086
   ${FS_WATCH_CMD} ${SRC_DIRS} ${TEST_DIRS}
 }
 
@@ -157,20 +182,28 @@ tcr_watch_filesystem() {
 
 tcr_build() {
   tcr_info "Launching Build"
+
+  build_rc=0
   case "${TOOLCHAIN}" in
   gradle)
-    ./gradlew build -x test || true
+    ./gradlew build -x test
+    build_rc=$?
     ;;
   maven)
-    ./mvnw test-compile || true
+    ./mvnw test-compile
+    build_rc=$?
     ;;
   cmake)
-    ${CMAKE_CMD} --build . --config Debug || true
+    ${CMAKE_CMD} --build . --config Debug
+    build_rc=$?
     ;;
   *)
     tcr_error "Toolchain ${TOOLCHAIN} is not supported"
     ;;
   esac
+
+  [ $build_rc -ne 0 ] && tcr_warning "There are build errors! I can't go any further"
+  return $build_rc
 }
 
 # ------------------------------------------------------------------------------
@@ -179,20 +212,28 @@ tcr_build() {
 
 tcr_test() {
   tcr_info "Running Tests"
+
+  test_rc=0
   case ${TOOLCHAIN} in
   gradle)
     ./gradlew test
+    test_rc=$?
     ;;
   maven)
     ./mvnw test
+    test_rc=$?
     ;;
   cmake)
     ${CTEST_CMD} --output-on-failure -C Debug
+    test_rc=$?
     ;;
   *)
     tcr_error "Toolchain ${TOOLCHAIN} is not supported"
     ;;
   esac
+
+  [ $test_rc -ne 0 ] && tcr_warning "Some tests are failing! That's unfortunate"
+  return $test_rc
 }
 
 # ------------------------------------------------------------------------------
@@ -202,7 +243,9 @@ tcr_test() {
 tcr_commit() {
   tcr_info "Committing changes on branch ${GIT_WORKING_BRANCH}"
   git commit -am TCR
-  GIT_PUSH_PENDING=1
+  if [ "${AUTO_PUSH_MODE}" -eq 1 ]; then
+    tcr_push
+  fi
 }
 
 # ------------------------------------------------------------------------------
@@ -210,7 +253,8 @@ tcr_commit() {
 # ------------------------------------------------------------------------------
 
 tcr_revert() {
-  tcr_info "Reverting changes"
+  tcr_warning "Reverting changes"
+  # shellcheck disable=SC2086
   git checkout HEAD -- ${SRC_DIRS}
 }
 
@@ -259,18 +303,17 @@ tcr_update_toolchain() {
 
 tcr_what_shall_we_do() {
 
-  GIT_PUSH_PENDING=0
-
   trap tcr_catch_ctrl_c INT TERM
 
-  tcr_info "-------------------------------------------------------------------------"
+  tcr_horizontal_line
   tcr_info "Language=${LANGUAGE}, Toolchain=${TOOLCHAIN}"
-  tcr_info "Running on git branch \"${GIT_WORKING_BRANCH}\""
+  [ "${AUTO_PUSH_MODE}" -eq 1 ] && auto_push_state="enabled" || auto_push_state="disabled"
+  tcr_info "Running on git branch \"${GIT_WORKING_BRANCH}\" with auto-push ${auto_push_state}"
 
   old_stty_cfg=$(stty -g)
 
   while true; do
-    tcr_info "-------------------------------------------------------------------------"
+    tcr_horizontal_line
     tcr_info "What shall we do?"
     tcr_info "\tD -> Driver mode"
     tcr_info "\tN -> Navigator mode"
@@ -340,6 +383,8 @@ tcr_show_help() {
   tcr_info "Run TCR (Test && Commit || Revert)"
   tcr_info ""
   tcr_info "  -h, --help                 show help information"
+  tcr_info "  -p, --auto-push            enable git push after every commit"
+  tcr_info "                             auto-push is disabled by default"
   tcr_info "  -t, --toolchain TOOLCHAIN  indicate the toolchain to be used by TCR"
   tcr_info "                             supported toolchains:"
   tcr_info "                             - gradle (java, default)"
@@ -356,12 +401,18 @@ tcr_detect_kata_language
 
 # Loop through arguments and process them
 
+AUTO_PUSH_MODE=0
+
 set +u
 for arg in "$@"; do
   case $arg in
   -h | --help)
     tcr_show_help
     exit 1
+    ;;
+  -p | --auto-push)
+    AUTO_PUSH_MODE=1
+    shift
     ;;
   -t | --toolchain)
     tcr_update_toolchain "$2"
@@ -379,6 +430,7 @@ set -u
 
 mkdir -p "${WORK_DIR}"
 cd "${WORK_DIR}" || exit 1
-GIT_WORKING_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+tcr_detect_git_working_branch
 
 tcr_what_shall_we_do
