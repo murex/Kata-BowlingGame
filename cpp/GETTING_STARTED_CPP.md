@@ -117,4 +117,5 @@ Running main() from ...\Kata-BowlingGame\cpp\build\_deps\googletest-src\googlete
   YOU HAVE 1 DISABLED TEST
 ```
 1. You can also use the 'Test Explorer' window to run and view all the executed tests 
+
 ![Bowling Game_CPP_Tests](../images/BowlingGame-CPP-Tests.png)
