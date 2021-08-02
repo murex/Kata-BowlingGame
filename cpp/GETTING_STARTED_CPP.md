@@ -108,14 +108,14 @@ which in turn runs the test class [BowlingGameTest.cpp](./test/BowlingGameTest.c
 After loading the project into your IDE: 
 1. Make sure the 'Kata-BowlingGame-test' project is set as the StartUp Project then run the project. 
 1. Run the project (in VS use '**F5**' or click on '**Local Window Debugger**' in the tool bar). The following output should be generated: 
-```shell
-Running main() from ...\Kata-BowlingGame\cpp\build\_deps\googletest-src\googletest\src\gtest_main.cc
-[==========] Running 0 tests from 0 test suites.
-[==========] 0 tests from 0 test suites ran. (2 ms total)
-[  PASSED  ] 0 tests.
+	```shell
+	Running main() from ...\Kata-BowlingGame\cpp\build\_deps\googletest-src\googletest\src\gtest_main.cc
+	[==========] Running 0 tests from 0 test suites.
+	[==========] 0 tests from 0 test suites ran. (2 ms total)
+	[  PASSED  ] 0 tests.
 
-  YOU HAVE 1 DISABLED TEST
-```
+	  YOU HAVE 1 DISABLED TEST
+	```
 1. You can also use the 'Test Explorer' window to run and view all the executed tests 
 
-![Bowling Game_CPP_Tests](../images/BowlingGame-CPP-Tests.png)
+	![Bowling Game_CPP_Tests](../images/BowlingGame-CPP-Tests.png)
