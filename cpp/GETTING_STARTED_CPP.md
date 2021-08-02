@@ -48,9 +48,12 @@ We have successfully tested loading, compiling and running this kata on the belo
 
 ## Running the Kata 
 
+Before running the kata in your IDE, you need to the CMake files in order to generate the Solution Files
+
 > ***Reminder***:  You need to run the commands below from the [cpp](.) folder!
 
-### Manual Build  
+### Build Steps
+#### Manual Build  
 
 If you already have CMake installed on your machine, you can simply run one of the below commands to build the project. 
 
@@ -65,7 +68,7 @@ If you already have CMake installed on your machine, you can simply run one of t
 > cmake -G "Unix Makefiles" -S . -B build
 ```
 
-### Setup Script 
+#### Setup Script 
 
 As mentioned earlier, we prepared a setup script to assist you in compiling and building the project. 
 
@@ -95,9 +98,9 @@ After running any of the above steps, the following folders and files should be 
 1. For *Windows*: The **'Visual Studio 2017'** solution file [Mikado-TestBuilders-Workshop.sln](./build/Kata-BowlingGame.sln)
 1. For *Mac*: The **'Xcode'** project file [Mikado-TestBuilders-Workshop.xcodeproj](./build/Kata-BowlingGame.xcodeproj)
 
-### Run The Kata
+### Visual Studio 2017
 
-To run the kata from your IDE:
+To run the kata from your Visual Studio:
 
 The CMake file we provided generates the target 'Kata-BowlingGame-test' 
 which in turn runs the test class [BowlingGameTest.cpp](./test/BowlingGameTest.cpp). 
