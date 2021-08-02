@@ -21,9 +21,13 @@ You can fill it from [here](./QuickRetrospective.md)
 
 ### General
 
-
 - [TCR (Test && Commit || Revert) wrapper](tcr/TCR.md) utility
 - Handy for any type of turn-based session: [Online Timer](https://agility.jahed.dev/)
+
+### Getting Started
+The below guides will help get started with the Kata: 
+- [Java Version](./java/GETTING_STARTED_JAVA.md)  
+- [C++ Version](./cpp/GETTING_STARTED_CPP.md)  
 
 ## Session Information
 
