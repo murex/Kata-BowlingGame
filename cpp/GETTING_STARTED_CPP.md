@@ -36,19 +36,21 @@ On other platforms, the script will be using the default C++ compiler set on the
 For that, we have tested the with GCC and Clang
 
 ### IDEs 
-We have successfully tested loading, compiling and running this kata on the below 3 IDEs: 
+We have successfully tested loading, compiling and running this kata on the below 4 IDEs: 
 1. [Microsoft Visual Studio](https://visualstudio.microsoft.com/)
 1. [Xcode](https://developer.apple.com/xcode/)
 1. [Visual Studio Code](https://code.visualstudio.com/)
+1. [CLion](https://www.jetbrains.com/clion/)
 
 ***Note:*** 
 
 1. When executed on Windows and Mac, our script will, by default, generate the solution files ***Kata-BowlingGame.sln*** for **'Visual Studio 2017'** & ***Kata-BowlingGame.xxcodeproj*** for **'Xcode'** respectively. 
-1. The script doesn't generate the VSCode Workspace files. However, loading and running the project into VSCode is straight forward. You can check the tutorial '[Getting started with CMake Tools on Linux](https://code.visualstudio.com/docs/cpp/cmake-linux#:~:text=ready%20to%20build.-,Open%20the%20Command%20Palette%20(Ctrl%2BShift%2BP)%20and,CMake%20Tools%20builds%20all%20targets.)' for reference. 
+1. The script doesn't generate the VSCode or CLion Workspace files. However, loading and running the project into VSCode or CLion is straight forward. 
+   1. For VSCode, you can check the tutorial '[Getting started with CMake Tools on Linux](https://code.visualstudio.com/docs/cpp/cmake-linux#:~:text=ready%20to%20build.-,Open%20the%20Command%20Palette%20(Ctrl%2BShift%2BP)%20and,CMake%20Tools%20builds%20all%20targets.)' for reference. 
 
 ## Running the Kata 
 
-Before running the kata in your IDE, you need to the build the CMake file in order to generate the Solution Files
+Before running the kata in your IDE, you need to run CMake in order to generate the Solution Files
 
 > ***Reminder***:  You need to run the commands below from the [cpp](.) folder!
 
