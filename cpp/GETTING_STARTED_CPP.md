@@ -24,9 +24,9 @@ set(CMAKE_CXX_STANDARD 17)
 ```
 
 #### CMake
-The minimum required version of CMake is "***3.10.0***". 
+The minimum required version of CMake is "***3.19.3***". 
 
-However, in our setup script, we are using the version "***3.19.3***"
+However, in our setup script, we are using the version "***3.21.0***"
 
 #### Compilers 
 
@@ -48,7 +48,7 @@ We have successfully tested loading, compiling and running this kata on the belo
 
 ## Running the Kata 
 
-Before running the kata in your IDE, you need to the CMake files in order to generate the Solution Files
+Before running the kata in your IDE, you need to the build the CMake file in order to generate the Solution Files
 
 > ***Reminder***:  You need to run the commands below from the [cpp](.) folder!
 
@@ -94,16 +94,17 @@ If executed successfully, the last 3 lines of the output should be the following
 ### Expected Folder Structure
 
 After running any of the above steps, the following folders and files should be generated:
-1. A [build](./build) folder that includes the files outputted from running CMake.
+1. A [build](./build) folder that includes the files generated from running CMake.
 1. For *Windows*: The **'Visual Studio 2017'** solution file [Mikado-TestBuilders-Workshop.sln](./build/Kata-BowlingGame.sln)
 1. For *Mac*: The **'Xcode'** project file [Mikado-TestBuilders-Workshop.xcodeproj](./build/Kata-BowlingGame.xcodeproj)
 
-### Visual Studio 2017
+### Using IDEs 
 
-To run the kata from your Visual Studio:
+The CMake file we provided generates the target 'Kata-BowlingGame-test' that defines the tests location(i.e. [BowlingGameTest.cpp](./test/BowlingGameTest.cpp)). 
 
-The CMake file we provided generates the target 'Kata-BowlingGame-test' 
-which in turn runs the test class [BowlingGameTest.cpp](./test/BowlingGameTest.cpp). 
+#### Visual Studio 2017
+
+You can open the project in VS 2017, by simply running the solution file [Mikado-TestBuilders-Workshop.sln](./build/Kata-BowlingGame.sln)
 
 After loading the project into your IDE: 
 1. Make sure the 'Kata-BowlingGame-test' project is set as the StartUp Project then run the project. 
@@ -119,3 +120,15 @@ After loading the project into your IDE:
 1. You can also use the 'Test Explorer' window to run and view all the executed tests 
 
 	![Bowling Game_CPP_Tests](../images/BowlingGame-CPP-Tests.png)
+
+#### CLion
+
+CLion is an alternative to using Visual Studio 2017.
+
+Here are the steps you need to follow: 
+1. Start CLion and open the project from the 'cpp' folder. 
+1. CLion should automatically build the CMake file. 
+1. Run the test file [BowlingGameTest.cpp](./test/BowlingGameTest.cpp).
+1. Below is a snapshot of the expected Test Explorer 
+   
+   ![Bowling Game_CPP_Tests](../images/BowlingGame-CPP-CLion-Tests.png)

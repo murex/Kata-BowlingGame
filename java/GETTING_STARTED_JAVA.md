@@ -41,7 +41,7 @@ Below is a snapshot of what you should expect from the first execution:
 ### Maven
 To build and run the test using maven, use the following: 
 ```shell
-> mvn clean install 
+> ./mvnw clean install 
 ```
 
 If executed successfully, the above command should generate the following test report in the command line:
@@ -63,10 +63,6 @@ If executed successfully, the above command should generate the following test r
 ### Gradle
 To build and run the test using gradle, use the following:
 ```shell
-# Option 1: Gradle is already installed on your machine 
-> gradle clean build 
-
-# Option 2: Gradle is NOT installed on your machine
 # Windows  
 > .\gradlew.bat clean build
 
