@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+TCR_BUILD_CMD="./mvnw test-compile"
+TCR_TEST_CMD="./mvnw test"

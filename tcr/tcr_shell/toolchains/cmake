@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+TCR_BUILD_CMD="${CMAKE_CMD} --build build --config Debug"
+TCR_TEST_CMD="${CTEST_CMD} --output-on-failure --test-dir build --build-config Debug"

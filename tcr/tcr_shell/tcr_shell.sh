@@ -98,24 +98,21 @@ tcr_check_inotifywait_availability() {
 
 tcr_detect_kata_language() {
   LANGUAGE=${BASE_DIR##*/}
+  LANGUAGE_VARIABLES_FILE="${SCRIPT_DIR}/languages/${LANGUAGE}"
 
-  case "${LANGUAGE}" in
-  java)
-    TOOLCHAIN="gradle"
-    WORK_DIR="${BASE_DIR}"
-    SRC_DIRS="$(list "${BASE_DIR}/src/main")"
-    TEST_DIRS="$(list "${BASE_DIR}/src/test")"
-    ;;
-  cpp)
-    TOOLCHAIN="cmake"
-    WORK_DIR="${BASE_DIR}"
-    SRC_DIRS="$(list "${BASE_DIR}/src" "${BASE_DIR}/include")"
-    TEST_DIRS="$(list "${BASE_DIR}/test")"
-    ;;
-  *)
+  if [ -f "${LANGUAGE_VARIABLES_FILE}" ]; then
+    # shellcheck source=languages/java
+    # shellcheck source=languages/cpp
+    . "${LANGUAGE_VARIABLES_FILE}"
+    # defines:
+    #  TOOLCHAIN
+    #  SUPPORTED_TOOLCHAINS
+    #  WORK_DIR
+    #  SRC_DIRS
+    #  TEST_DIRS
+  else
     tcr_error "Unable to detect language"
-    ;;
-  esac
+  fi
 }
 
 # ------------------------------------------------------------------------------
@@ -204,23 +201,8 @@ tcr_build() {
   tcr_info "Launching Build"
 
   build_rc=0
-  case "${TOOLCHAIN}" in
-  gradle)
-    ./gradlew build -x test
-    build_rc=$?
-    ;;
-  maven)
-    ./mvnw test-compile
-    build_rc=$?
-    ;;
-  cmake)
-    ${CMAKE_CMD} --build build --config Debug
-    build_rc=$?
-    ;;
-  *)
-    tcr_error "Toolchain ${TOOLCHAIN} is not supported"
-    ;;
-  esac
+  ${TCR_BUILD_CMD}
+  build_rc=$?
 
   [ $build_rc -ne 0 ] && tcr_warning "There are build errors! I can't go any further"
   return $build_rc
@@ -234,23 +216,8 @@ tcr_test() {
   tcr_info "Running Tests"
 
   test_rc=0
-  case ${TOOLCHAIN} in
-  gradle)
-    ./gradlew test
-    test_rc=$?
-    ;;
-  maven)
-    ./mvnw test
-    test_rc=$?
-    ;;
-  cmake)
-    ${CTEST_CMD} --output-on-failure --test-dir build --build-config Debug
-    test_rc=$?
-    ;;
-  *)
-    tcr_error "Toolchain ${TOOLCHAIN} is not supported"
-    ;;
-  esac
+  ${TCR_TEST_CMD}
+  test_rc=$?
 
   [ $test_rc -ne 0 ] && tcr_warning "Some tests are failing! That's unfortunate"
   return $test_rc
@@ -296,25 +263,27 @@ tcr_update_toolchain() {
     tcr_error "Toolchain is not specified"
   fi
 
-  case $required_toolchain in
-  gradle | maven)
-    if [ "${LANGUAGE}" = "java" ]; then
-      TOOLCHAIN="${required_toolchain}"
-    else
-      tcr_error "Toolchain ${required_toolchain} is not supported for language ${LANGUAGE}"
-    fi
-    ;;
-  cmake)
-    if [ "${LANGUAGE}" = "cpp" ]; then
-      TOOLCHAIN="${required_toolchain}"
-    else
-      tcr_error "Toolchain ${required_toolchain} is not supported for language ${LANGUAGE}"
-    fi
-    ;;
-  *)
-    tcr_error "Toolchain ${required_toolchain} is not supported"
-    ;;
-  esac
+  if [[ " ${SUPPORTED_TOOLCHAINS} " =~ " ${required_toolchain} " ]]; then
+    TOOLCHAIN="${required_toolchain}"
+  else
+    tcr_error "Toolchain ${required_toolchain} is not supported for language ${LANGUAGE}"
+  fi
+}
+
+tcr_define_toolchain_commands() {
+  TOOLCHAIN_COMMANDS_FILE="${SCRIPT_DIR}/toolchains/${TOOLCHAIN}"
+
+  if [ -f "${TOOLCHAIN_COMMANDS_FILE}" ]; then
+    # shellcheck source=toolchains/gradle
+    # shellcheck source=toolchains/maven
+    # shellcheck source=toolchains/cmake
+    . "${TOOLCHAIN_COMMANDS_FILE}"
+    # defines:
+    #  TCR_BUILD_CMD
+    #  TCR_TEST_CMD
+  else
+    tcr_error "Could not load toolchain commands file"
+  fi
 }
 
 # ------------------------------------------------------------------------------
@@ -407,9 +376,7 @@ tcr_show_help() {
   tcr_info "                             auto-push is disabled by default"
   tcr_info "  -t, --toolchain TOOLCHAIN  indicate the toolchain to be used by TCR"
   tcr_info "                             supported toolchains:"
-  tcr_info "                             - gradle (java, default)"
-  tcr_info "                             - maven (java)"
-  tcr_info "                             - cmake (C++, default)"
+  tcr_info "`ls ${SCRIPT_DIR}/toolchains | sed 's/^/                              - /'`"
 }
 
 # ------------------------------------------------------------------------------
@@ -450,6 +417,7 @@ set -u
 
 cd "${WORK_DIR}" || exit 1
 
+tcr_define_toolchain_commands
 tcr_detect_git_working_branch
 
 tcr_what_shall_we_do
