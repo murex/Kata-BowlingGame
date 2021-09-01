@@ -20,21 +20,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#include <kata/bowling_game/BowlingGame.hpp>
+package com.murex;
 
-#include <vector>
-
-namespace com {
-namespace murex {
-namespace kata {
-namespace bowling_game {
-
-int bowlingScore(const std::vector<int> & rolls)
-{
-   return 0;
+class BowlingGame {
+    static int score(int... rolls) {
+        return 0;
+    }
 }
-
-} // namespace bowling_game
-} // namespace kata
-} // namespace murex
-} // namespace com
