@@ -20,21 +20,17 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#include <kata/bowling_game/BowlingGame.hpp>
+package com.murex;
 
-#include <vector>
+import org.junit.Ignore;
+import org.junit.Test;
 
-namespace com {
-namespace murex {
-namespace kata {
-namespace bowling_game {
+import static org.junit.Assert.assertEquals;
 
-int bowlingScore(const std::vector<int> & rolls)
-{
-   return 0;
+public class BowlingGameTest {
+    @Ignore
+    @Test
+    public void acceptance_test() {
+        assertEquals(133, BowlingGame.score(1, 4, 4, 5, 6, 4, 5, 5, 10, 0, 1, 7, 3, 6, 4, 10, 2, 8, 6));
+    }
 }
-
-} // namespace bowling_game
-} // namespace kata
-} // namespace murex
-} // namespace com
