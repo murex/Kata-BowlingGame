@@ -263,7 +263,10 @@ tcr_update_toolchain() {
     tcr_error "Toolchain is not specified"
   fi
 
-  if [[ " ${SUPPORTED_TOOLCHAINS} " =~ " ${required_toolchain} " ]]; then
+  list_contains "${required_toolchain}" "${SUPPORTED_TOOLCHAINS}"
+  TOOLCHAIN_NOT_SUPPORTED=$?
+
+  if test ${TOOLCHAIN_NOT_SUPPORTED} -eq 0; then
     TOOLCHAIN="${required_toolchain}"
   else
     tcr_error "Toolchain ${required_toolchain} is not supported for language ${LANGUAGE}"
