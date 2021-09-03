@@ -22,7 +22,7 @@
 
 TOOLCHAIN="gradle"
 SUPPORTED_TOOLCHAINS="$(list "gradle" "maven")"
-WORK_DIR="${BASE_DIR}"
-SRC_DIRS="$(list "${BASE_DIR}/src/main")"
-TEST_DIRS="$(list "${BASE_DIR}/src/test")"
+WORK_DIR="${LANGUAGE_BASE_DIR}"
+SRC_DIRS="$(list "${LANGUAGE_BASE_DIR}/src/main")"
+TEST_DIRS="$(list "${LANGUAGE_BASE_DIR}/src/test")"
 
