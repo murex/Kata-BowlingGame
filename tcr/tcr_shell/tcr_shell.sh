@@ -126,22 +126,13 @@ tcr_detect_running_os() {
   Darwin)
     tcr_check_fswatch_availability
     FS_WATCH_CMD="fswatch -1 -r"
-    CMAKE_BIN_PATH="./cmake/cmake-macos-universal/CMake.app/Contents/bin"
-    CMAKE_CMD="${CMAKE_BIN_PATH}/cmake"
-    CTEST_CMD="${CMAKE_BIN_PATH}/ctest"
     ;;
   Linux)
     tcr_check_inotifywait_availability
     FS_WATCH_CMD="inotifywait -r -e modify"
-    CMAKE_BIN_PATH="./cmake/cmake-linux-x86_64/bin"
-    CMAKE_CMD="${CMAKE_BIN_PATH}/cmake"
-    CTEST_CMD="${CMAKE_BIN_PATH}/ctest"
     ;;
   MINGW64_NT-*)
     FS_WATCH_CMD="${SCRIPT_DIR}/bin/inotify-win.exe -r -e modify"
-    CMAKE_BIN_PATH="./build/cmake/cmake-windows-x86_64/bin"
-    CMAKE_CMD="${CMAKE_BIN_PATH}/cmake.exe"
-    CTEST_CMD="${CMAKE_BIN_PATH}/ctest.exe"
     ;;
   *)
     tcr_error "OS $(OS) is currently not supported"
