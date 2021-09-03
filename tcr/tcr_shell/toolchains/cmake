@@ -1,4 +1,27 @@
 #!/usr/bin/env sh
 
+OS=$(uname -s)
+
+case ${OS} in
+Darwin)
+  CMAKE_BIN_PATH="./cmake/cmake-macos-universal/CMake.app/Contents/bin"
+  CMAKE_CMD="${CMAKE_BIN_PATH}/cmake"
+  CTEST_CMD="${CMAKE_BIN_PATH}/ctest"
+  ;;
+Linux)
+  CMAKE_BIN_PATH="./cmake/cmake-linux-x86_64/bin"
+  CMAKE_CMD="${CMAKE_BIN_PATH}/cmake"
+  CTEST_CMD="${CMAKE_BIN_PATH}/ctest"
+  ;;
+MINGW64_NT-*)
+  CMAKE_BIN_PATH="./build/cmake/cmake-windows-x86_64/bin"
+  CMAKE_CMD="${CMAKE_BIN_PATH}/cmake.exe"
+  CTEST_CMD="${CMAKE_BIN_PATH}/ctest.exe"
+  ;;
+*)
+  tcr_error "OS $(OS) is currently not supported"
+  ;;
+esac
+
 TCR_BUILD_CMD="${CMAKE_CMD} --build build --config Debug"
 TCR_TEST_CMD="${CTEST_CMD} --output-on-failure --test-dir build --build-config Debug"
