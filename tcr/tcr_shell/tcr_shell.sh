@@ -55,7 +55,7 @@ tcr_info() {
 
 tcr_horizontal_line() {
   term_columns=$(tput cols)
-  repeated=$(("${term_columns}" - 7))
+  repeated=$((term_columns - 7))
   line=$(head -c "${repeated}" </dev/zero | tr '\0' '-')
   tcr_info "$line"
 }
