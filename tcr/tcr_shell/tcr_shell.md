@@ -170,3 +170,22 @@ For example, to use Maven instead of Gradle when running the TCR script for a ka
 ```shell
 > ./tcrw -t maven
 ```
+
+## Supporting new languages
+
+Initially, the TCR shell implementation only supported Java and C++. Don't worry, it should be easy to add your favorite language.
+
+The shell TCR features a plugin system for languages and toolchains.
+
+TCR shell detects the language you want to use with the name of the directory where you are running `tcrw`.
+
+Suppose you want to add TCR support for the Javascript language. Here is what you would do:
+
+1. `mkdir js` from the root of the repo
+2. `cp java/tcrw js/`
+3. `cp tcr/tcr_shell/languages/java tcr/tcr_shell/languages/js`
+4. Update the variables defined in `tcr/tcr_shell/languages/js` according to Javascript. Let's assume you want to build your js with `yarn`, you'll use it both in `TOOLCHAIN` and `SUPPORTED_TOOLCHAINS` variables. `yarn` is not yet defined as a build toolchain though! You'll need to do the following to define it:
+5. `cp tcr/tcr_shell/toolchains/gradle tcr/tcr_shell/toolchains/yarn`
+6. Update the variables defined in `tcr/tcr_shell/toolchains/yarn` according to yarn.
+
+That's it! Don't forget to contribute back when it works!
