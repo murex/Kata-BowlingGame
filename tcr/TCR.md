@@ -103,7 +103,7 @@ Suppose you want to add TCR support for the Javascript language. Here is what yo
 2. `cp java/tcrw js/`
 3. `cp tcr/tcr_shell/languages/java tcr/tcr_shell/languages/js`
 4. Update the variables defined in `tcr/tcr_shell/languages/js` according to Javascript. Let's assume you want to build your js with `yarn`, you'll use it both in `TOOLCHAIN` and `SUPPORTED_TOOLCHAINS` variables. `yarn` is not yet defined as a build toolchain though! You'll need to do the following to define it:
-5. `cp tcr/tcr_shell/toolchains/java tcr/tcr_shell/toolchains/yarn`
+5. `cp tcr/tcr_shell/toolchains/gradle tcr/tcr_shell/toolchains/yarn`
 6. Update the variables defined in `tcr/tcr_shell/toolchains/yarn` according to yarn.
 
 That's it! Don't forget to contribute back when it works!
