@@ -39,7 +39,7 @@ MINGW64_NT-*)
   CTEST_CMD="${CMAKE_BIN_PATH}/ctest.exe"
   ;;
 *)
-  tcr_error "OS $(OS) is currently not supported"
+  tcr_error "OS ${OS} is currently not supported"
   ;;
 esac
 

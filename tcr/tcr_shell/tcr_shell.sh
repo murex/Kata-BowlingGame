@@ -135,7 +135,7 @@ tcr_detect_running_os() {
     FS_WATCH_CMD="${SCRIPT_DIR}/bin/inotify-win.exe -r -e modify"
     ;;
   *)
-    tcr_error "OS $(OS) is currently not supported"
+    tcr_error "OS ${OS} is currently not supported"
     ;;
   esac
 }
