@@ -47,8 +47,8 @@ The below guides will help get started with the Kata:
 
 ### Source Files
 
-[Java](./java)
-[C++](./cpp)
+- [Java](./java)
+- [C++](./cpp)
 
 ## License
 
