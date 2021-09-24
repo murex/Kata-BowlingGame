@@ -4,10 +4,6 @@
 
 This is a POSIX Shell implementation of TCR.
 
-Our katas currently use it by default when running TCR.
-
-We plan to replace it in the future with [TCR Go](../tcr_go/tcr_go.md).
-
 ## Usage
 
 ### Prerequisites
@@ -32,13 +28,14 @@ We plan to replace it in the future with [TCR Go](../tcr_go/tcr_go.md).
 
 ```shell
 > cd cpp
-> ./tcrw -p
+> env TCR_ENGINE=shell ./tcrw
 ```
+
 #### Java version of the kata
 
 ```shell
 > cd java
-> ./tcrw -p
+> env TCR_ENGINE=shell ./tcrw
 ```
 
 ### Main menu
@@ -121,7 +118,7 @@ The `tcrw` script utility provides the following options:
 In order to display available options:
 
 ```shell
-> ./tcrw -h
+> env TCR_ENGINE=shell ./tcrw -h
 ```
 
 ### Git Auto-Push Switch
@@ -147,7 +144,7 @@ This allows all participants running the script in Navigator mode to get the cha
 are committed by the Driver.
 
 ```shell
-> ./tcrw -p
+> env TCR_ENGINE=shell ./tcrw -p
 ```
 
 ### Toolchain Selection
@@ -168,7 +165,7 @@ We provide the wrappers allowing to download and run them in the context of the 
 For example, to use Maven instead of Gradle when running the TCR script for a kata in Java:
 
 ```shell
-> ./tcrw -t maven
+> env TCR_ENGINE=shell ./tcrw -t maven
 ```
 
 ## Supporting new languages

@@ -25,7 +25,7 @@ We currently provide TCR in 2 flavors:
 
 These 2 flavors are functionally equivalent.
 
-TCR-Shell was written first, and is currently the most robust.
+TCR-Shell was written first.
 This was for us a way to quickly have a usable solution for TCR.
 However, shell scripts are not the best in class when it comes to
 maintainability and changeability.
@@ -33,16 +33,14 @@ maintainability and changeability.
 For these reasons we decided to develop a new implementation of TCR,
 written in [Go](https://golang.org/) this time.
 
-We have now reached the stage where the Go version is at the same functional
-level as the Shell version. We still need to play with it to stress its robustness.
+We have now reached a stage where we believe the Go flavor to robust enough,
+while providing the same level of features as the Shell flavor<sup id="a1">[1](#f1)</sup>.
 
-The TCR-Shell implementation is still the one used by default in our katas,
-but you can already try the TCR-Go implementation if you feel like it.
+Thus, the Go flavor of TCR is now the one used by default in our katas.
 
-Future developments will come in the Go implementation, while we expect
-to freeze the shell implementation.
-Later on we will switch the 2 implementations and have the Go implementation
-become the default one in our katas.
+The Shell flavor is still available, and you can still use it if you feel like it.
+
+The Shell flavor is now frozen, and new features will arrive primarily in the Go implementation.
 
 ## Usage
 
@@ -70,7 +68,7 @@ with the appropriate value.
 You can name `<my-branch>` as you wish, as long as all contributors in a pair or mob work on the same branch!
 
 TCR script applies a great number of commits to your git repository (every time it detects changes and tests are green).
-For this reason we strongly advise you to avoid running it directly on your repository's `master` branch,
+For this reason we strongly advise you to avoid running it directly on your repository's `master` or `main` branch,
 or even on your features/commit/dev branches!
 
 #### Other participants
@@ -84,8 +82,17 @@ or even on your features/commit/dev branches!
 
 ### Launching the script
 
-Refer to [TCR Shell](./tcr_shell/tcr_shell.md) usage-specifics is you're using
-the default TCR implementation.
+```shell
+> ./tcrw
+```
 
-Refer to [TCR Go](./tcr_go/tcr_go.md) if you're willing to give it a try.
+Refer to [TCR Go](./tcr_go/tcr_go.md) usage-specifics is you're using the default TCR implementation.
+
+Refer to [TCR Shell](./tcr_shell/tcr_shell.md) if you're willing to use it instead.
+
+## Notes
+
+<b id="f1">1</b> There is currently one exception related to the possibility to add custom programming
+languages/toolchains (in addition to Java/Gradle, Java/Maven and C++/CMake provided with both flavors),
+which was recently added to TCR-Shell flavor but is not yet available in TCR-Go flavor.[↩](#a1)
 
