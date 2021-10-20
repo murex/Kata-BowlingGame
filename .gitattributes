@@ -5,10 +5,13 @@ maven-wrapper.properties    text eol=lf
 *.jar filter=lfs diff=lfs merge=lfs -text
 *.zip filter=lfs diff=lfs merge=lfs -text
 *.gz filter=lfs diff=lfs merge=lfs -text
-*.jpg filter=lfs diff=lfs merge=lfs -text
-*.jpeg filter=lfs diff=lfs merge=lfs -text
-*.png filter=lfs diff=lfs merge=lfs -text
-*.gif filter=lfs diff=lfs merge=lfs -text
+# Exclude pictures from Git LFS due to BitBucket Server bug
+# on images rendering from markdown files
+# Cf. https://jira.atlassian.com/browse/BSERV-11155
+# *.jpg filter=lfs diff=lfs merge=lfs -text
+# *.jpeg filter=lfs diff=lfs merge=lfs -text
+# *.png filter=lfs diff=lfs merge=lfs -text
+# *.gif filter=lfs diff=lfs merge=lfs -text
 *.exe filter=lfs diff=lfs merge=lfs -text
 # The line below is required to handle linux and macos exe files (w/o extension) as large files
 **/tcr/*/bin/* filter=lfs diff=lfs merge=lfs -text
