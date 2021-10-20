@@ -4,7 +4,12 @@
 # ---------------------------------------------------------
 
 # Intellij - ignore entirely .idea folder
-**/.idea/**
+**/.idea/
+
+# VSCode - ignore entirely .vscode folder and output bin folders
+**/.vscode/
+**/java/bin/
+**/cpp/bin/
 
 # ApprovalTests - generated golden master files
 GoldenMasterTest.*.txt
