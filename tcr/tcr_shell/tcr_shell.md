@@ -1,4 +1,4 @@
-# TCR - Shell Version
+# TCR - Shell Flavor
 
 # About
 
@@ -80,7 +80,7 @@ __Important__
 - __Make sure to turn off your IDE's auto-save mode while using TCR!!!__
   TCR constantly watches the file system, triggering builds,
   tests, commits and reverts as soon as it detects changes.
-  For this reason, it does not get along well with your IDE's auto-save mode. 
+  For this reason, it does not get along well with your IDE's auto-save mode.
 - __There should not be more than one driver per branch at a time!__
   You will likely face occasional merge conflicts otherwise.
 
@@ -130,7 +130,7 @@ it does not push any change to the `origin` git repository.
 
 This is the preferred way of using it when you're running TCR on your own.
 
-When you're done with it, it's up to you to decide what you want to do with it (squash, push, revert, etc.) 
+When you're done with it, it's up to you to decide what you want to do with it (squash, push, revert, etc.)
 
 #### When using TCR in pair or in mob
 

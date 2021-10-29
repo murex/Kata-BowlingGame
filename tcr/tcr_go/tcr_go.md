@@ -1,4 +1,4 @@
-# TCR - Go Version
+# TCR - Go Flavor
 
 # About
 
@@ -11,7 +11,7 @@ This is a [Go](https://golang.org/) implementation of TCR.
 - Have a [git client](https://git-scm.com/downloads) installed
 - Have a fully operational Java or C++ development environment
 
-### Launching TCR Go Version
+### Launching TCR Go
 
 #### C++ version of the kata
 
@@ -26,6 +26,11 @@ This is a [Go](https://golang.org/) implementation of TCR.
 > ./tcrw
 ```
 
-### Command Line Options
+### Additional Options
 
-Refer to [TCR Go CLI Documentation](./doc/tcr.md)
+TCR Go comes with various command line options.
+Details related to these options can be accessed through command line help:
+
+```shell
+> ./tcrw help
+```

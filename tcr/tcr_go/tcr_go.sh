@@ -20,55 +20,200 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-set -eu
+set -u
 
 command_args=$*
 
-base_dir="$(cd "$(dirname -- "$0")" && pwd)"
-tcr_dir="$(dirname "${base_dir}")/tcr"
+BASE_DIR="$(cd "$(dirname -- "$0")" && pwd)"
+
+BASE_URL="https://github.com/murex/TCR"
 
 # ------------------------------------------------------------------------------
-# Retrieves the TCR Go executable to be launched depending on local machine's
+# TCR-Go directory structure and information
+# ------------------------------------------------------------------------------
+
+TCR_GO_DIR="$(dirname "${BASE_DIR}")/tcr/tcr_go"
+TCR_DOWNLOAD_DIR="${TCR_GO_DIR}/download"
+TCR_BIN_DIR="${TCR_GO_DIR}/bin"
+TCR_DOC_DIR="${TCR_GO_DIR}/doc"
+TCR_VERSION_FILE="${TCR_GO_DIR}/version.txt"
+
+# ------------------------------------------------------------------------------
+# Trace messages
+# ------------------------------------------------------------------------------
+
+trace_info() {
+  message="$1"
+  >&2 echo "[TCR] ${message}"
+}
+
+trace_error() {
+  message="$1"
+  >&2 echo "[TCR] ERROR: ${message}"
+}
+
+# ------------------------------------------------------------------------------
+# Download TCR Go from TCR GitHub repository
+# ------------------------------------------------------------------------------
+
+download_tcr_go() {
+  version="$1"
+  os_family="$2"
+  os_arch="$3"
+  exe_path="$4"
+
+  archive_ext="tar.gz"
+
+  # Cleanup download directory
+  rm -rf "${TCR_DOWNLOAD_DIR}" && mkdir -p "${TCR_DOWNLOAD_DIR}"
+
+  # ----------------------------------------------------------------------------
+  # 1) TCR Go Binary File
+  # ----------------------------------------------------------------------------
+
+  bin_archive_file="tcr_${version}_${os_family}_${os_arch}.${archive_ext}"
+  bin_archive_url="${BASE_URL}/releases/download/v${version}/${bin_archive_file}"
+  download_and_expand_archive "${bin_archive_file}" "${bin_archive_url}" "${TCR_DOWNLOAD_DIR}"
+  [ $? -ne 0 ] && return 1
+
+  # Move extracted files to bin directory
+  bin_ext=$(get_bin_ext "${os_family}")
+  extracted_bin="${TCR_DOWNLOAD_DIR}/tcr${bin_ext}"
+  mkdir -p "${TCR_BIN_DIR}"
+  mv -f "${extracted_bin}" "${exe_path}"
+  mv -f "${TCR_DOWNLOAD_DIR}/README.md" "${TCR_BIN_DIR}"
+  mv -f "${TCR_DOWNLOAD_DIR}/LICENSE.md" "${TCR_BIN_DIR}"
+
+  # ----------------------------------------------------------------------------
+  # 2) TCR Go Documentation files
+  # ----------------------------------------------------------------------------
+
+  src_archive_file="v${version}.${archive_ext}"
+  src_archive_url="${BASE_URL}/archive/refs/tags/${src_archive_file}"
+  download_and_expand_archive "${src_archive_file}" "${src_archive_url}" "${TCR_DOWNLOAD_DIR}"
+  [ $? -ne 0 ] && return 1
+
+  # Move extracted files to doc directory
+  rm -rf "${TCR_DOC_DIR}"
+  src_extracted_path="${TCR_DOWNLOAD_DIR}/tcr-${version}"
+  mv -f "${src_extracted_path}/doc" "${TCR_DOC_DIR}"
+
+  # Clean up after download
+  rm -rf "${TCR_DOWNLOAD_DIR}"
+}
+
+# ------------------------------------------------------------------------------
+# Download an expand an archive from GitHub Release
+# ------------------------------------------------------------------------------
+
+download_and_expand_archive() {
+  archive_file="$1"
+  archive_url="$2"
+  output_dir="$3"
+
+  trace_info "Downloading ${archive_file}"
+  
+  curl --silent \
+       --fail \
+       --dump-header "${output_dir}/${archive_file}".response \
+       --location "${archive_url}" \
+       --output "${output_dir}/${archive_file}"
+  if [ $? -ne 0 ]; then
+    trace_error "Failed to download ${archive_url}"
+    return 1
+  fi
+
+  tar -zxf "${output_dir}/${archive_file}" --directory "${output_dir}"
+  if [ $? -ne 0 ]; then
+    trace_error "Failed to extract ${archive_file}"
+    return 1
+  fi
+}
+
+# ------------------------------------------------------------------------------
+# Return family of running operating system (Linux / Darwin / Windows)
+# ------------------------------------------------------------------------------
+
+get_os_family() {
+  os_name=$(uname -s)
+  case ${os_name} in
+  Darwin | Linux)
+    echo "${os_name}"
+    return 0
+    ;;
+  MINGW64_NT-*)
+    echo "Windows"
+    return 0
+    ;;
+  *)
+    trace_error "OS $(os_name) is currently not supported"
+    return 1
+    ;;
+  esac
+}
+
+# ------------------------------------------------------------------------------
+# Return binary file extension for OS family
+# ------------------------------------------------------------------------------
+
+get_bin_ext() {
+  os_family="$1"
+  if [ "${os_family}" = Windows ]; then
+    echo ".exe"
+  else
+    echo ""
+  fi
+}
+
+# ------------------------------------------------------------------------------
+# Return expected TCR version
+# ------------------------------------------------------------------------------
+
+retrieve_expected_tcr_version() {
+  if [ -f "${TCR_VERSION_FILE}" ]; then
+    tcr_version=$(awk '{ print $2 }' < "${TCR_VERSION_FILE}")
+    echo "${tcr_version}"
+    return 0
+  else
+    trace_error "Version file not found: ${TCR_VERSION_FILE}"
+    return 1
+  fi
+}
+
+# ------------------------------------------------------------------------------
+# Retrieve the TCR Go executable to be launched depending on local machine's
 # OS and architecture
 # ------------------------------------------------------------------------------
 
 retrieve_tcr_go_exe() {
-  os_name=$(uname -s)
-  arch=$(uname -m)
+  os_family=$(get_os_family)
+  [ $? -ne 0 ] && return 1
+  os_arch=$(uname -m)
+  bin_ext=$(get_bin_ext ${os_family})
 
-  case ${os_name} in
-  Darwin | Linux)
-    os=${os_name}
-    ext=""
-    ;;
-  MINGW64_NT-*)
-    os=Windows
-    ext=".exe"
-    ;;
-  *)
-    echo "OS $(os_name) is currently not supported"
-    exit 1
-    ;;
-  esac
+  # Expected TCR Go version
+  tcr_version=$(retrieve_expected_tcr_version)
+  [ $? -ne 0 ] && return 1
 
-  exe_path="${tcr_dir}/tcr_go/bin/tcr_${os}_${arch}${ext}"
+  # Path to TCR Go binary file for local machine
+  tcr_bin_path="${TCR_BIN_DIR}/tcr_${os_family}_${os_arch}${bin_ext}"
 
-  # If the file does not exist, this means we don't support this platform
-  if ! type "${exe_path}" >/dev/null 2>/dev/null; then
-    echo "Platform $(os_name)/${arch} is currently not supported"
-    exit 1
+  # If the file does not exist, download it from TCR GitHub repository
+  if ! type "${tcr_bin_path}" >/dev/null 2>/dev/null; then
+    download_tcr_go "${tcr_version}" "${os_family}" "${os_arch}" "${tcr_bin_path}"
+    [ $? -ne 0 ] && return 1
   fi
 
-  echo "${exe_path}"
+  echo "${tcr_bin_path}"
 }
 
 # ------------------------------------------------------------------------------
-# Main function
+# Main
 # ------------------------------------------------------------------------------
 
 tcr_go_exe=$(retrieve_tcr_go_exe)
+[ $? -ne 0 ] && trace_info "Aborting" && exit 1
 
 # shellcheck disable=SC2086
-"${tcr_go_exe}" $command_args --base-dir "${base_dir}"
-
+"${tcr_go_exe}" $command_args --base-dir "${BASE_DIR}"
 exit $?
