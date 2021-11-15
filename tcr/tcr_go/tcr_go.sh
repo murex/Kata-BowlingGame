@@ -171,13 +171,24 @@ get_bin_ext() {
 
 retrieve_expected_tcr_version() {
   if [ -f "${TCR_VERSION_FILE}" ]; then
-    tcr_version=$(awk '{ print $2 }' < "${TCR_VERSION_FILE}")
-    echo "${tcr_version}"
+    expected_version=$(awk '{ print $2 }' < "${TCR_VERSION_FILE}")
+    echo "${expected_version}"
     return 0
   else
     trace_error "Version file not found: ${TCR_VERSION_FILE}"
     return 1
   fi
+}
+
+# ------------------------------------------------------------------------------
+# Return current TCR version
+# ------------------------------------------------------------------------------
+
+retrieve_current_tcr_version() {
+  exe_path="$1"
+  current_version=$("${exe_path}" --version | awk '{ print $3 }')
+  echo "${current_version}"
+  return 0
 }
 
 # ------------------------------------------------------------------------------
@@ -192,15 +203,23 @@ retrieve_tcr_go_exe() {
   bin_ext=$(get_bin_ext ${os_family})
 
   # Expected TCR Go version
-  tcr_version=$(retrieve_expected_tcr_version)
+  expected_version=$(retrieve_expected_tcr_version)
   [ $? -ne 0 ] && return 1
 
   # Path to TCR Go binary file for local machine
   tcr_bin_path="${TCR_BIN_DIR}/tcr_${os_family}_${os_arch}${bin_ext}"
 
-  # If the file does not exist, download it from TCR GitHub repository
-  if ! type "${tcr_bin_path}" >/dev/null 2>/dev/null; then
-    download_tcr_go "${tcr_version}" "${os_family}" "${os_arch}" "${tcr_bin_path}"
+  file_missing=$(type "${tcr_bin_path}" >/dev/null 2>/dev/null; echo $?)
+  # If the file already exists, check its current version
+  version_mismatch=0
+  if [ ${file_missing} -eq 0 ]; then
+    current_version=$(retrieve_current_tcr_version "${tcr_bin_path}")
+    version_mismatch="$( [ "${current_version}" == "${expected_version}" ]; echo $? )"
+  fi
+
+  # If the file does not exist or if versions do not match, download it from TCR GitHub repository
+  if [ ${file_missing} -ne 0 -o ${version_mismatch} -ne 0 ]; then
+    download_tcr_go "${expected_version}" "${os_family}" "${os_arch}" "${tcr_bin_path}"
     [ $? -ne 0 ] && return 1
   fi
 
@@ -215,5 +234,5 @@ tcr_go_exe=$(retrieve_tcr_go_exe)
 [ $? -ne 0 ] && trace_info "Aborting" && exit 1
 
 # shellcheck disable=SC2086
-"${tcr_go_exe}" $command_args --base-dir "${BASE_DIR}"
+"${tcr_go_exe}" $command_args --base-dir="${BASE_DIR}"
 exit $?
