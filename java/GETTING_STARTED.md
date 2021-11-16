@@ -1,4 +1,4 @@
-# Getting Started - Java
+# Getting Started with Bowling Game kata in Java
 
 ## Prerequisites
 
@@ -30,7 +30,7 @@ or the Maven & Gradle build command lines (as shown below):
 After loading the project into IntelliJ, you should be able to build the project
 using either the Maven or Gradle built-in build tools.
 
-To run the application from IntelliJ, run all the tests in the [BowlingGameTest](src/test/java/BowlingGameTest.java) 
+To run the application from IntelliJ, run all the tests in the [BowlingGameTest](./src/test/java/com/murex/BowlingGameTest.java) 
 class. 
 
 The "**Run**" tool window should display all the executed tests.

@@ -7,6 +7,18 @@ Image by [MasterTux](https://pixabay.com/fr/users/mastertux-470906/) on [Pixabay
 
 Available [here](http://codingdojo.org/kata/Bowling/)
 
+## Getting Started
+
+### Running the kata using TCR
+
+- [Java](./java/GETTING_STARTED_TCR.md)
+- [C++](./cpp/GETTING_STARTED_TCR.md)
+
+### Running the kata using a standard approach
+
+- [Java](./java/GETTING_STARTED.md)
+- [C++](./cpp/GETTING_STARTED.md)
+
 ## Session Quick Retrospective
 
 You can fill it from [here](./QuickRetrospective.md)
@@ -23,11 +35,6 @@ You can fill it from [here](./QuickRetrospective.md)
 
 - [TCR (Test && Commit || Revert) wrapper](tcr/TCR.md) utility
 - Handy for any type of turn-based session: [Online Timer](https://agility.jahed.dev/)
-
-### Getting Started
-The below guides will help get started with the Kata: 
-- [Java Version](./java/GETTING_STARTED_JAVA.md)  
-- [C++ Version](./cpp/GETTING_STARTED_CPP.md)  
 
 ## Session Information
 
