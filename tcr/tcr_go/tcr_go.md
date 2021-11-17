@@ -230,7 +230,13 @@ You can change this value when starting TCR as follows:
 > ./tcrw -d 10m
 # or
 > ./tcrw --duration 10m
-#
+```
+
+### Disabling the timer
+
+If you do not want to use the timer, you can turn it off by setting its duration to 0  when starting TCR.
+
+```shell
 # To disable the timer:
 > ./tcrw -d 0m
 ```
@@ -241,9 +247,10 @@ You can check the timer status at any time after you started running in driver m
 
 Simply type `t` in the terminal to display time already spent and time remaining.
 
-**Notes**
-- This shortcut is only active when in mob mode with the driver role running
-- There is no timer in solo mode (`./tcrw solo`)
+> ***Notes***
+>
+> - This shortcut is only active when in mob mode with the driver role running
+> - There is no timer in solo mode (`./tcrw solo`)
 
 </details>
 
