@@ -86,14 +86,13 @@ a build, then runs all tests.
 - If one or more tests fail, TCR reverts all changes on source files, but leaves
   test files unchanged.
 
-__Important__
-
-- __Make sure to turn off your IDE's auto-save mode while using TCR!!!__
-  TCR constantly watches the file system, triggering builds,
-  tests, commits and reverts as soon as it detects changes.
-  For this reason, it does not get along well with your IDE's auto-save mode.
-- __There should not be more than one driver per branch at a time!__
-  You will likely face occasional merge conflicts otherwise.
+> ***Important***
+> - __Make sure to turn off your IDE's auto-save mode while using TCR!!!__
+>   TCR constantly watches the file system, triggering builds,
+>     tests, commits and reverts as soon as it detects changes.
+>     For this reason, it does not get along well with your IDE's auto-save mode.
+> - __There should not be more than one driver per branch at a time!__
+>     You will likely face occasional merge conflicts otherwise.
 
 ### Navigator role
 
@@ -248,4 +247,3 @@ Simply type `t` in the terminal to display time already spent and time remaining
 
 </details>
 
-That's it! Don't forget to contribute back when it works!

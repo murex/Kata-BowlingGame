@@ -17,16 +17,19 @@
 > ./tcrw
 ```
 
-**Note for Windows user:** use git bash terminal for running the above commands.
-_Windows CMD and PowerShell are not supported_
+> ***Note for Windows users***
+> 
+> Use git bash terminal for running the above commands.
+> _Windows CMD and PowerShell are not supported_
 
 ### From within your IDE
 
 TCR is provided as a command line utility running in a terminal.
 You can run it from your IDE directly, through leveraging on the IDE's built-in terminal.
 
-**Note:** Instructions are provided for [Intellij IDEA](https://www.jetbrains.com/idea/). This should also work with any
-other IDE assuming it provides a built-in terminal that can run a shell interpreter.
+> ***Notes***
+> - Instructions below are provided for [Intellij IDEA](https://www.jetbrains.com/idea/).
+> - This should also work with any other IDE assuming it provides a built-in terminal that can run a shell interpreter.
 
 <details><summary>1 - Clone the kata repository</summary>
 
@@ -57,7 +60,11 @@ Under `Autosave` section, uncheck the 2 following options:
 - Save files when switching to a different application or a built-in terminal
 
 </details>
-<details><summary>4 - Configure the IDE's built-in terminal to run git bash (Windows only)</summary>
+<details><summary>4 - Configure the IDE's built-in terminal to run git bash</summary>
+
+> ***Windows Only***
+>
+> Skip this step if you're on macOS or Linux
 
 Intellij IDEA for Windows is usually set up to run PowerShell by default in its built-in terminal.
 TCR does not run in PowerShell. 
