@@ -44,7 +44,7 @@ We have successfully tested loading, compiling and running this kata on the belo
 
 ***Note:*** 
 
-1. When executed on Windows and Mac, our script will, by default, generate the solution files ***Kata-BowlingGame.sln*** for **'Visual Studio 2017'** & ***Kata-BowlingGame.xxcodeproj*** for **'Xcode'** respectively. 
+1. When executed on Windows and macOS, our script will, by default, generate the solution files ***Kata-BowlingGame.sln*** for **'Visual Studio 2017'** & ***Kata-BowlingGame.xcodeproj*** for **'Xcode'** respectively. 
 1. The script doesn't generate the VSCode or CLion Workspace files. However, loading and running the project into VSCode or CLion is straight forward. 
    1. For VSCode, you can check the tutorial '[Getting started with CMake Tools on Linux](https://code.visualstudio.com/docs/cpp/cmake-linux#:~:text=ready%20to%20build.-,Open%20the%20Command%20Palette%20(Ctrl%2BShift%2BP)%20and,CMake%20Tools%20builds%20all%20targets.)' for reference. 
 
@@ -77,11 +77,11 @@ As mentioned earlier, we prepared a setup script to assist you in compiling and 
 You can run the script using the below commands: 
 
 ```shell
-# Windows
-> ./cpp_easy_setup.bat
-
-# Mac & Linux 
+# macOS, Linux & Windows (Git Bash)
 > ./cpp_easy_setup.sh
+
+# Windows (PowerShell or CMD)
+> ./cpp_easy_setup.bat
 ```
 
 If executed successfully, the last 3 lines of the output should be the following: 
@@ -97,12 +97,12 @@ If executed successfully, the last 3 lines of the output should be the following
 
 After running any of the above steps, the following folders and files should be generated:
 1. A [build](./build) folder that includes the files generated from running CMake.
-1. For *Windows*: The **'Visual Studio 2017'** solution file [Mikado-TestBuilders-Workshop.sln](./build/Kata-BowlingGame.sln)
-1. For *Mac*: The **'Xcode'** project file [Mikado-TestBuilders-Workshop.xcodeproj](./build/Kata-BowlingGame.xcodeproj)
+1. For *Windows*: The **'Visual Studio 2017'** solution file [Kata-BowlingGame.sln](./build/Kata-BowlingGame.sln)
+1. For *macOS*: The **'Xcode'** project file [Kata-BowlingGame.xcodeproj](./build/Kata-BowlingGame.xcodeproj)
 
 ### Using IDEs 
 
-The CMake file we provided generates the target 'Kata-BowlingGame-test' that defines the tests location(i.e. [BowlingGameTest.cpp](./test/BowlingGameTest.cpp)). 
+The CMake file we provided generates the target 'Kata-BowlingGame-test' that defines the test location(i.e. [BowlingGameTest.cpp](./test/BowlingGameTest.cpp)). 
 
 #### Visual Studio 2017
 
@@ -110,7 +110,7 @@ You can open the project in VS 2017, by simply running the solution file [Mikado
 
 After loading the project into your IDE: 
 1. Make sure the 'Kata-BowlingGame-test' project is set as the StartUp Project then run the project. 
-1. Run the project (in VS use '**F5**' or click on '**Local Window Debugger**' in the tool bar). The following output should be generated: 
+1. Run the project (in VS use '**F5**' or click on '**Local Window Debugger**' in the toolbar). The following output should be generated: 
 	```shell
 	Running main() from ...\Kata-BowlingGame\cpp\build\_deps\googletest-src\googletest\src\gtest_main.cc
 	[==========] Running 0 tests from 0 test suites.
