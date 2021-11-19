@@ -1,4 +1,4 @@
-# Getting Started - C++
+# Getting Started with Bowling Game kata in C++
 
 ## Prerequisites 
 
@@ -106,13 +106,13 @@ The CMake file we provided generates the target 'Kata-BowlingGame-test' that def
 
 #### Visual Studio 2017
 
-You can open the project in VS 2017, by simply running the solution file [Mikado-TestBuilders-Workshop.sln](./build/Kata-BowlingGame.sln)
+You can open the project in VS 2017, by simply running the solution file [Kata-BowlingGame.sln](./build/Kata-BowlingGame.sln)
 
 After loading the project into your IDE: 
 1. Make sure the 'Kata-BowlingGame-test' project is set as the StartUp Project then run the project. 
 1. Run the project (in VS use '**F5**' or click on '**Local Window Debugger**' in the toolbar). The following output should be generated: 
 	```shell
-	Running main() from ...\Kata-BowlingGame\cpp\build\_deps\googletest-src\googletest\src\gtest_main.cc
+	Running main() from .../Kata-BowlingGame/cpp/build/_deps/googletest-src/googletest/src/gtest_main.cc
 	[==========] Running 0 tests from 0 test suites.
 	[==========] 0 tests from 0 test suites ran. (2 ms total)
 	[  PASSED  ] 0 tests.

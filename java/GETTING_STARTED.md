@@ -39,7 +39,7 @@ Below is a snapshot of what you should expect from the first execution:
 ![Bowling Game_Java_Tests](../images/BowlingGame-Java-Tests.png)
 
 ### Maven
-To build and run the test using maven, use the following: 
+To build and run the tests using maven, use the following: 
 ```shell
 > ./mvnw clean install 
 ```
@@ -61,10 +61,10 @@ If executed successfully, the above command should generate the following test r
 ```
 
 ### Gradle
-To build and run the test using gradle, use the following:
+To build and run the tests using gradle, use the following:
 ```shell
 # Windows  
-> .\gradlew.bat clean build
+> ./gradlew.bat clean build
 
 # Mac & Linux
 > ./gradlew clean build
@@ -72,7 +72,7 @@ To build and run the test using gradle, use the following:
 
 If executed successfully, the above command should generate the following:
 ```shell
-> .\gradlew.bat clean build
+> ./gradlew clean build
 
 BUILD SUCCESSFUL in 3s
 7 actionable tasks: 7 executed

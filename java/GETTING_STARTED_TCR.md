@@ -42,7 +42,7 @@ You can run it from your IDE directly, through leveraging on the IDE's built-in 
 
 Open Intellij IDEA and select:
 
-`File` > `Open` > `Kata-Bowling-Game` > `java`
+`File` > `Open` > `Kata-BowlingGame` > `java`
 
 </details>
 <details><summary>3 - Disable auto-save in your IDE</summary>
@@ -91,7 +91,7 @@ From your IDE's built-in terminal:
 ```shell
 > # Make sure to run tcrw from the kata's java directory
 > pwd
-(...)/Kata-Bowling-Game/java
+(...)/Kata-BowlingGame/java
 > ./tcrw
 ```
 

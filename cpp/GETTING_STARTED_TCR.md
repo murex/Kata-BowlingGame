@@ -46,7 +46,7 @@ You can run it from your IDE directly, through leveraging on the IDE's built-in 
 Open Visual Studio 2019, choose `Open a project or solution`, navigate to
 the location containing the cloned kata repository, and open the solution file:
 
-`Kata-Bowling-Game` / `cpp` / `build` / `Kata-Bowling-Game.sln`
+`Kata-BowlingGame` / `cpp` / `build` / `Kata-BowlingGame.sln`
 
 </details>
 <details><summary>3 - Disable auto-save in your IDE</summary>
@@ -103,10 +103,10 @@ From your IDE's built-in terminal:
 ```shell
 # Make sure to run tcrw from the kata's cpp directory
 > pwd
-(...)/Kata-Bowling-Game/cpp/build
+(...)/Kata-BowlingGame/cpp/build
 > cd ..
 > pwd
-(...)/Kata-Bowling-Game/cpp
+(...)/Kata-BowlingGame/cpp
 > ./tcrw
 ```
 
