@@ -1,6 +1,6 @@
 # Bowling Game Kata
 
-![Bowling Game](./images/BowlingGame.png)
+![Bowling Game](./images/BowlingGame.png) <br>
 Image by [MasterTux](https://pixabay.com/fr/users/mastertux-470906/) on [Pixabay](https://pixabay.com/fr/illustrations/bowling-gr%C3%A8ve-boule-isol%C3%A9-3d-3427969/)
 
 ## Description
@@ -59,9 +59,9 @@ You can fill it from [here](./QuickRetrospective.md)
 
 ## License
 
-The `Kata-BowlingGame` and the accompanying materials are made available
-under the terms of the MIT License ([here](LICENSE.md)) which accompanies this
-distribution, and is available at the Open Source site [here](https://opensource.org/licenses/MIT)
+`Kata-BowlingGame` and the accompanying materials are made available
+under the terms of the [MIT License](./LICENSE.md) which accompanies this
+distribution, and is available at the [Open Source site](https://opensource.org/licenses/MIT)
 
 ## Acknowledgements
 

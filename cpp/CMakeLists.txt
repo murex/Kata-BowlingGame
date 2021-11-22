@@ -71,9 +71,9 @@ add_test(NAME ctest-Kata-BowlingGame COMMAND Kata-BowlingGame-test)
 add_custom_target(Docs
     SOURCES
         ../README.md
-        ../QuickRetrospective.md
-		./GETTING_STARTED.md
-		./GETTING_STARTED_TCR.md)
+        ./GETTING_STARTED.md
+        ./GETTING_STARTED_TCR.md
+        ../QuickRetrospective.md)
 
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT Kata-BowlingGame-test)
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY XCODE_STARTUP_PROJECT Kata-BowlingGame-test)

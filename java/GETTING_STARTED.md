@@ -20,6 +20,15 @@ supports loading Maven or Gradle projects!
 
 ## Running the Kata
 
+### Clone the kata repository
+
+```shell
+> git clone https://github.com/murex/Kata-BowlingGame.git
+> cd Kata-BowlingGame/java
+```
+
+### Build Steps
+
 > ***Reminder***:  You need to run the commands below from the [java](.) folder!
 
 To build and run the project, you can either use the build features in IntelliJ

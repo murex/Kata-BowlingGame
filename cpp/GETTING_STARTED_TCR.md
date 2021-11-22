@@ -37,6 +37,7 @@ You can run it from your IDE directly, through leveraging on the IDE's built-in 
 
 ```shell
 > git clone https://github.com/murex/Kata-BowlingGame.git
+> cd Kata-BowlingGame/cpp
 > ./cpp_easy_setup.sh
 ```
 

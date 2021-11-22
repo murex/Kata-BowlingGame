@@ -45,16 +45,24 @@ We have successfully tested loading, compiling and running this kata on the belo
 ***Note:*** 
 
 1. When executed on Windows and macOS, our script will, by default, generate the solution files ***Kata-BowlingGame.sln*** for **'Visual Studio 2017'** & ***Kata-BowlingGame.xcodeproj*** for **'Xcode'** respectively. 
-1. The script doesn't generate the VSCode or CLion Workspace files. However, loading and running the project into VSCode or CLion is straight forward. 
-   1. For VSCode, you can check the tutorial '[Getting started with CMake Tools on Linux](https://code.visualstudio.com/docs/cpp/cmake-linux#:~:text=ready%20to%20build.-,Open%20the%20Command%20Palette%20(Ctrl%2BShift%2BP)%20and,CMake%20Tools%20builds%20all%20targets.)' for reference. 
+2. The script doesn't generate the VSCode or CLion Workspace files. However, loading and running the project into VSCode or CLion is straight forward. 
+3. For VSCode, you can check the tutorial '[Getting started with CMake Tools on Linux](https://code.visualstudio.com/docs/cpp/cmake-linux#:~:text=ready%20to%20build.-,Open%20the%20Command%20Palette%20(Ctrl%2BShift%2BP)%20and,CMake%20Tools%20builds%20all%20targets.)' for reference. 
 
-## Running the Kata 
+## Running the Kata
+
+### Clone the kata repository
+
+```shell
+> git clone https://github.com/murex/Kata-BowlingGame.git
+> cd Kata-BowlingGame/cpp
+```
+
+### Build Steps
 
 Before running the kata in your IDE, you need to run CMake in order to generate the Solution Files
 
 > ***Reminder***:  You need to run the commands below from the [cpp](.) folder!
 
-### Build Steps
 #### Manual Build  
 
 If you already have CMake installed on your machine, you can simply run one of the below commands to build the project. 
@@ -96,39 +104,38 @@ If executed successfully, the last 3 lines of the output should be the following
 ### Expected Folder Structure
 
 After running any of the above steps, the following folders and files should be generated:
-1. A [build](./build) folder that includes the files generated from running CMake.
-1. For *Windows*: The **'Visual Studio 2017'** solution file [Kata-BowlingGame.sln](./build/Kata-BowlingGame.sln)
-1. For *macOS*: The **'Xcode'** project file [Kata-BowlingGame.xcodeproj](./build/Kata-BowlingGame.xcodeproj)
+1. A `build` folder that includes the files generated from running CMake.
+1. For *Windows*: The **'Visual Studio 2017'** solution file `build` / `Kata-BowlingGame.sln`
+1. For *macOS*: The **'Xcode'** project file `build` / `Kata-BowlingGame.xcodeproj`
 
 ### Using IDEs 
 
-The CMake file we provided generates the target 'Kata-BowlingGame-test' that defines the test location(i.e. [BowlingGameTest.cpp](./test/BowlingGameTest.cpp)). 
+The CMake file we provided generates the target 'Kata-BowlingGame-test' that defines the test location (i.e. [BowlingGameTest.cpp](./test/BowlingGameTest.cpp)). 
 
 #### Visual Studio 2017
 
-You can open the project in VS 2017, by simply running the solution file [Kata-BowlingGame.sln](./build/Kata-BowlingGame.sln)
+You can open the project in VS 2017, by simply running the solution file `Kata-BowlingGame` / `cpp` / `build` / `Kata-BowlingGame.sln`
 
-After loading the project into your IDE: 
-1. Make sure the 'Kata-BowlingGame-test' project is set as the StartUp Project then run the project. 
-1. Run the project (in VS use '**F5**' or click on '**Local Window Debugger**' in the toolbar). The following output should be generated: 
-	```shell
-	Running main() from .../Kata-BowlingGame/cpp/build/_deps/googletest-src/googletest/src/gtest_main.cc
-	[==========] Running 0 tests from 0 test suites.
-	[==========] 0 tests from 0 test suites ran. (2 ms total)
-	[  PASSED  ] 0 tests.
+After loading the project into your IDE:
 
-	  YOU HAVE 1 DISABLED TEST
-	```
-1. You can also use the 'Test Explorer' window to run and view all the executed tests 
+1. Make sure the 'Kata-BowlingGame-test' project is set as the StartUp Project then run the project.
+2. Run the project (in VS use '**F5**' or click on '**Local Window Debugger**' in the toolbar). The following output should be generated: 
+    ```shell
+    Running main() from .../Kata-BowlingGame/cpp/build/_deps/googletest-src/googletest/src/gtest_main.cc
+    [==========] Running 0 tests from 0 test suites.
+    [==========] 0 tests from 0 test suites ran. (2 ms total)
+    [  PASSED  ] 0 tests.
 
-	![Bowling Game_CPP_Tests](../images/BowlingGame-CPP-Tests.png)
+      YOU HAVE 1 DISABLED TEST
+    ```
+3. You can also use the 'Test Explorer' window to run and view all the executed tests.
 
 #### CLion
 
 CLion is an alternative to using Visual Studio 2017.
 
 Here are the steps you need to follow: 
-1. Start CLion and open the project from the 'cpp' folder. 
+1. Start CLion and open the project from `Kata-BowlingGame` / `cpp` folder. 
 1. CLion should automatically build the CMake file. 
 1. Run the test file [BowlingGameTest.cpp](./test/BowlingGameTest.cpp).
 1. Below is a snapshot of the expected Test Explorer 
