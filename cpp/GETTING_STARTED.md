@@ -66,7 +66,7 @@ You may also run it using [TCR](../tcr/TCR.md) if you want to add a bit of spice
 ### Running the kata from a terminal with CMake
 <details><summary>Instructions</summary>
 
-If you already have CMake 3.21.0 or higher already installed on your machine,
+If you already have CMake 3.21.0 or higher installed on your machine,
 you can run one of the below commands to build the project.
 
 > ***Reminder***: the commands below should be run from [Kata-BowlingGame/cpp]() directory
