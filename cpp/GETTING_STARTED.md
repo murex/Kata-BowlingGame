@@ -1,143 +1,345 @@
 # Getting Started with Bowling Game kata in C++
 
-## Prerequisites 
+## Prerequisites
 
-### Build Tools 
+- macOS, Linux or Windows
+- [git](https://git-scm.com/) client
+- [curl](https://curl.se/download.html) command line utility
+- a working build environment (Visual Studio, GCC or Clang) for C++ 17
+  <details><summary>Details</summary>
 
-[CMake](https://cmake.org/) is our main build tool for the C++ version of this Kata.
+  - **C++ Version**
+  
+    By default, the kata's CMake file is referencing C++ version 17. We also tested and
+    compiled the code with versions 11 and 14.
 
-Don't worry if you don't have CMake installed! 
-We provided you with a setup script that handles compiling and building the project. 
- 
-### Required Versions 
+    To use a version other than 17, simply modify the line below in the [CMake](CMakeLists.txt)
+    configuration file to reference 11 or 14.
 
-#### C++ 
-
-By default, our CMake file is referencing C++ version 17. But, we also tested and 
-compiled the code with versions 11 and 14. 
-
-To use a version other than 17, simply modify the below line in the [CMake](./CMakeLists.txt)
-file to reference 11 or 14.  
-
-```shell
-set(CMAKE_CXX_STANDARD 17)
-```
-
-#### CMake
-The minimum required version of CMake is "***3.19.3***". 
-
-However, in our setup script, we are using the version "***3.21.0***"
-
-#### Compilers 
-
-When running on Windows, the code is compiled with [MSVC](https://docs.microsoft.com/en-us/cpp/build/reference/compiling-a-c-cpp-program?view=msvc-160). 
-
-On other platforms, the script will be using the default C++ compiler set on the machine. 
-For that, we have tested the with GCC and Clang
-
-### IDEs 
-We have successfully tested loading, compiling and running this kata on the below 4 IDEs: 
-1. [Microsoft Visual Studio](https://visualstudio.microsoft.com/)
-1. [Xcode](https://developer.apple.com/xcode/)
-1. [Visual Studio Code](https://code.visualstudio.com/)
-1. [CLion](https://www.jetbrains.com/clion/)
-
-***Note:*** 
-
-1. When executed on Windows and macOS, our script will, by default, generate the solution files ***Kata-BowlingGame.sln*** for **'Visual Studio 2017'** & ***Kata-BowlingGame.xcodeproj*** for **'Xcode'** respectively. 
-2. The script doesn't generate the VSCode or CLion Workspace files. However, loading and running the project into VSCode or CLion is straight forward. 
-3. For VSCode, you can check the tutorial '[Getting started with CMake Tools on Linux](https://code.visualstudio.com/docs/cpp/cmake-linux#:~:text=ready%20to%20build.-,Open%20the%20Command%20Palette%20(Ctrl%2BShift%2BP)%20and,CMake%20Tools%20builds%20all%20targets.)' for reference. 
-
-## Running the Kata
-
-### Clone the kata repository
-
-```shell
-> git clone https://github.com/murex/Kata-BowlingGame.git
-> cd Kata-BowlingGame/cpp
-```
-
-### Build Steps
-
-Before running the kata in your IDE, you need to run CMake in order to generate the Solution Files
-
-> ***Reminder***:  You need to run the commands below from the [cpp](.) folder!
-
-#### Manual Build  
-
-If you already have CMake installed on your machine, you can simply run one of the below commands to build the project. 
-
-```shell
-# For Visual Studio 2017 
-> cmake -G "Visual Studio 15 2017 Win64" -S . -B build
-
-# For XCode  
-> cmake -G "XCode" -S . -B build
-
-# For Linux (Visual Studio Code)
-> cmake -G "Unix Makefiles" -S . -B build
-```
-
-#### Setup Script 
-
-As mentioned earlier, we prepared a setup script to assist you in compiling and building the project. 
-
-You can run the script using the below commands: 
-
-```shell
-# macOS, Linux & Windows (Git Bash)
-> ./cpp_easy_setup.sh
-
-# Windows (PowerShell or CMD)
-> ./cpp_easy_setup.bat
-```
-
-If executed successfully, the last 3 lines of the output should be the following: 
-
-```shell
-    Start 1: ctest-Kata-BowlingGame
-1/1 Test #1: ctest-Kata-BowlingGame ...........   Passed    1.21 sec
-
-100% tests passed, 0 tests failed out of 1
-```
-
-### Expected Folder Structure
-
-After running any of the above steps, the following folders and files should be generated:
-1. A `build` folder that includes the files generated from running CMake.
-1. For *Windows*: The **'Visual Studio 2017'** solution file `build` / `Kata-BowlingGame.sln`
-1. For *macOS*: The **'Xcode'** project file `build` / `Kata-BowlingGame.xcodeproj`
-
-### Using IDEs 
-
-The CMake file we provided generates the target 'Kata-BowlingGame-test' that defines the test location (i.e. [BowlingGameTest.cpp](./test/BowlingGameTest.cpp)). 
-
-#### Visual Studio 2017
-
-You can open the project in VS 2017, by simply running the solution file `Kata-BowlingGame` / `cpp` / `build` / `Kata-BowlingGame.sln`
-
-After loading the project into your IDE:
-
-1. Make sure the 'Kata-BowlingGame-test' project is set as the StartUp Project then run the project.
-2. Run the project (in VS use '**F5**' or click on '**Local Window Debugger**' in the toolbar). The following output should be generated: 
-    ```shell
-    Running main() from .../Kata-BowlingGame/cpp/build/_deps/googletest-src/googletest/src/gtest_main.cc
-    [==========] Running 0 tests from 0 test suites.
-    [==========] 0 tests from 0 test suites ran. (2 ms total)
-    [  PASSED  ] 0 tests.
-
-      YOU HAVE 1 DISABLED TEST
+    ```text
+    set(CMAKE_CXX_STANDARD 17)
     ```
-3. You can also use the 'Test Explorer' window to run and view all the executed tests.
 
-#### CLion
+  - **Compiler**
+  
+    When running on Windows, the code is compiled with [MSVC](https://docs.microsoft.com/en-us/cpp/build/reference/compiling-a-c-cpp-program?view=msvc-160).
 
-CLion is an alternative to using Visual Studio 2017.
+    On other platforms, the script uses the default C++ compiler set on the machine.
+    Both GCC and Clang are supported.
+  
+  </details>
 
-Here are the steps you need to follow: 
-1. Start CLion and open the project from `Kata-BowlingGame` / `cpp` folder. 
-1. CLion should automatically build the CMake file. 
-1. Run the test file [BowlingGameTest.cpp](./test/BowlingGameTest.cpp).
-1. Below is a snapshot of the expected Test Explorer 
-   
-   ![Bowling Game_CPP_Tests](../images/BowlingGame-CPP-CLion-Tests.png)
+## Getting ready
+
+### 1 - Clone the kata repository
+```shell
+git clone https://github.com/murex/Kata-BowlingGame.git
+```
+### 2 - Go to the kata's `cpp` directory
+```shell
+cd Kata-BowlingGame/cpp
+```
+
+### 3 - Run the build setup script
+
+The kata comes with a setup script to simplify initializing the project.
+
+This setup script does the following:
+
+- Create a build directory: Kata-BowlingGame/cpp/build. All build-related files are generated in this directory.
+- Download a copy of cmake compatible with your platform.
+- Download the dependencies required to build and test the kata (such as GoogleTest).
+- Generate the solution file ***Kata-BowlingGame.sln*** for **Visual Studio 2017** on Windows,
+ or the project file ***Kata-BowlingGame.xcodeproj*** for **Xcode** on macOS.
+- Run an initial build and test of the kata to ensure that everything is set up properly.
+
+```shell
+./cpp_easy_setup.sh
+```
+
+## Running the kata
+
+You can run the kata from the command line or from your IDE of choice.
+
+You may also run it using [TCR](../tcr/TCR.md) if you want to add a bit of spice.
+
+### Running the kata from a terminal with CMake
+<details><summary>Instructions</summary>
+
+If you already have CMake 3.21.0 or higher already installed on your machine,
+you can run one of the below commands to build the project.
+
+> ***Reminder***: the commands below should be run from [Kata-BowlingGame/cpp]() directory
+
+To build the project:
+```shell
+cmake --build . --config Debug
+```
+
+To run the tests:
+```shell
+ctest --output-on-failure -C Debug
+```
+
+</details>
+
+### Running the kata from a terminal with TCR
+<details><summary>Instructions</summary>
+
+> ***Note to Windows users***
+>
+> Use a **git bash** terminal for running the command below.
+> _Windows CMD and PowerShell are not supported_
+
+
+> ***Reminder***: the command below should be run from [Kata-BowlingGame/cpp]() directory
+
+Type the following to start TCR:
+```shell
+./tcrw
+```
+Refer to `Using TCR` section at the end of this document for additional
+details about TCR and available options.
+
+</details>
+
+### Running the kata from Visual Studio
+<details><summary>Instructions</summary>
+
+> ***Supported Versions***: Visual Studio 2017 or later
+
+Open Visual Studio, choose `Open a project or solution`, navigate to
+the location containing the cloned kata repository, and open the solution file:
+
+`Kata-BowlingGame` / `cpp` / `build` / `Kata-BowlingGame.sln`
+
+After loading the solution:
+
+1. Make sure the 'Kata-BowlingGame-test' project is set as the Start-up Project.
+2. Run the project (press `F5` or click on `Local Window Debugger` in the toolbar).
+3. You can also use the `Test Explorer` window to run and browse all the executed tests.
+
+</details>
+
+### Running the kata from Visual Studio with TCR
+<details><summary>Instructions</summary>
+
+TCR is provided as a command line utility running in a terminal.
+You can run it from Visual Studio directly, through leveraging on its built-in terminal.
+
+> ***Notes***
+> - Supported Versions: Visual Studio 2019 or later
+> - Visual Studio 2017 and earlier versions are not supported as they do not have a built-in terminal.
+
+#### 1. Open the kata
+
+Open Visual Studio, choose `Open a project or solution`, navigate to
+the location containing the cloned kata repository, and open the solution file:
+
+`Kata-BowlingGame` / `cpp` / `build` / `Kata-BowlingGame.sln`
+
+#### 2. Configure the built-in terminal to run git bash
+
+> ***Windows Only***
+>
+> Skip this step if you're on macOS or Linux
+
+Visual Studio for Windows is usually set up to run PowerShell by default in its built-in terminal.
+TCR does not run in PowerShell.
+
+`Tools` > `Options` > `Environment` > `Terminal` > `Add`
+
+| Parameter | Set value to |
+| --- | --- |
+| `Name:` | Git Bash
+|`Shell location:` | C:\Program Files\Git\bin\bash.exe
+|`Arguments:` |
+
+The above `Shell location` value is for a default git installation location.
+You may need to adjust it in case you have installed git at a different location.
+
+Don't forget to click the `Apply` button when done.
+
+#### 3. Open a built-in terminal
+
+`View` > `Terminal`
+
+If Git Bash is not set as the default environment for Visual Studio built-in terminal,
+click in the terminal title bar on the dropdown arrow button to the right of title,
+and select `Git Bash` from the dropdown list.
+
+#### 4. Launch TCR
+
+> ***Reminder***: the command below should be run from [Kata-BowlingGame/cpp]() directory
+
+From the built-in terminal:
+
+```shell
+./tcrw
+```
+Refer to `Using TCR` section at the end of this document for additional
+details about TCR and available options.
+
+</details>
+
+### Running the kata from CLion
+<details><summary>Instructions</summary>
+
+Open CLion and select:
+
+`File` > `Open` > `Kata-BowlingGame` > `cpp`
+
+CLion should automatically build the CMake file.
+
+Run the test file [BowlingGameTest.cpp](./test/BowlingGameTest.cpp)
+
+The "**Run**" tool window should display all the executed tests.
+
+</details>
+
+### Running the kata from CLion with TCR
+<details><summary>Instructions</summary>
+
+TCR is provided as a command line utility running in a terminal.
+You can run it from CLion directly, through leveraging on its built-in terminal.
+
+#### 1. Open the kata
+
+Open CLion and select:
+
+`File` > `Open` > `Kata-BowlingGame` > `cpp`
+
+#### 2. Turn off auto-save
+
+TCR is constantly watching the filesystem for changes.
+For this reason you need to turn off CLion's auto-save in order for it to behave as expected.
+
+`File` > `Settings` > `Appearance & Behavior` > `System Settings`
+
+Under `Autosave` section, uncheck the 2 following options:
+
+- Save files if the IDE is idle for ___ seconds
+- Save files when switching to a different application or a built-in terminal
+
+#### 3. Configure the built-in terminal to run git bash
+
+> ***Windows Only***
+>
+> Skip this step if you're on macOS or Linux
+
+CLion for Windows is usually set up to run PowerShell by default in its built-in terminal.
+TCR does not run in PowerShell.
+
+`File` > `Settings` > `Tools` > `Terminal`
+
+Under `Application Settings` section, set the `Shell path` to `C:\Program Files\Git\bin\bash.exe`
+
+The above path is for a default git installation location. You may need to adjust it in case you have installed git at a
+different location.
+
+#### 4. Open a built-in terminal
+
+`View` > `Tool Windows` > `Terminal`
+
+#### 5. Launch TCR
+
+> ***Reminder***: the command below should be run from [Kata-BowlingGame/cpp]() directory
+
+From the built-in terminal:
+
+```shell
+./tcrw
+```
+Refer to `Using TCR` section at the end of this document for additional
+details about TCR and available options.
+
+</details>
+
+### Running the kata from Visual Studio Code
+<details><summary>Instructions</summary>
+
+Open Visual Studio Code, choose `Open Folder`, navigate to `Kata-BowlingGame` / `cpp`
+then click `Select Folder`.
+
+Once the project is opened in Visual Studio Code, click on `Build`
+in the bottom toolbar to build the project.
+
+In order to run the tests, select `View` > `Testing`, then click on the `Play` button.
+
+</details>
+
+### Running the kata from Visual Studio Code with TCR
+<details><summary>Instructions</summary>
+
+TCR is provided as a command line utility running in a terminal.
+You can run it from Visual Studio Code directly, through leveraging on its built-in terminal.
+
+#### 1. Open the kata
+
+Open Visual Studio Code, choose `Open Folder`, navigate to `Kata-BowlingGame` / `cpp`
+then click `Select Folder`.
+
+#### 2. Turn off auto-save
+
+TCR is constantly watching the filesystem for changes.
+For this reason you need to make sure that Visual Studio Code's auto-save is turned off
+in order for TCR to behave as expected.
+
+`File` > `Preferences` > `Settings`
+
+In `Text Editor` > `Files` section, make sure that `Auto Save` setting is set to `off`
+
+#### 3. Configure the built-in terminal to run git bash
+
+> ***Windows Only***
+>
+> Skip this step if you're on macOS or Linux
+
+Visual Studio Code for Windows is usually set up to run PowerShell by default in its built-in terminal.
+TCR does not run in PowerShell.
+
+`File` > `Preferences` > `Settings`
+
+In `Features` > `Terminal` section, set `External: Windows Exec`
+to `C:\Program Files\Git\bin\bash.exe`
+
+The above path is for a default git installation location. You may need to adjust it in case you have installed git at a
+different location.
+
+#### 4. Open a built-in terminal
+
+`Terminal` > `New Terminal`
+
+#### 5. Launch TCR
+
+> ***Reminder***: the command below should be run from [Kata-BowlingGame/java]() directory
+
+From the built-in terminal:
+
+```shell
+./tcrw
+```
+Refer to `Using TCR` section at the end of this document for additional
+details about TCR and available options.
+
+</details>
+
+## Using TCR
+
+### Cheat Sheet
+
+Here are the main shortcuts available once TCR utility is running:
+
+| Shortcut | Description |
+| --- | --- |
+| `?` | List available options
+| `d` / `D` | Enter driver role (from main menu) |
+| `n` / `N` | Enter navigator role (from main menu) |
+| `q` / `Q` | Quit current role - Quit TCR (from main menu) |
+| `t` / `T` | Query timer status (from driver role only) |
+| `p` / `P` | Toggle on/off git auto-push (from main menu) |
+
+### Additional Details
+
+Refer to [TCR - Test && Commit || Revert](../tcr/TCR.md) page
+for additional details and explanations about TCR utility.

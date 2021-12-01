@@ -12,6 +12,12 @@ This is a [Go](https://golang.org/) implementation of TCR.
 - Have a [git client](https://git-scm.com/downloads) installed
 - Have [curl](https://curl.se/download.html) command line utility installed
 - Have a fully operational Java or C++ development environment
+- **Linux only** - have [kdialog](https://apps.kde.org/kdialog/) installed
+  <details><summary>Details</summary>
+  TCR leverages on the OS desktop notification framework to send timer reminders.
+  On Linux, it relies on kdialog for that purpose. Make sure to have it installed
+  in order to be able to see TCR's timer notifications.
+  </details>
 
 ### Launching TCR Go
 

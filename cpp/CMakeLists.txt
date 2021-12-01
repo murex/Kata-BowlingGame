@@ -72,7 +72,6 @@ add_custom_target(Docs
     SOURCES
         ../README.md
         ./GETTING_STARTED.md
-        ./GETTING_STARTED_TCR.md
         ../QuickRetrospective.md)
 
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT Kata-BowlingGame-test)

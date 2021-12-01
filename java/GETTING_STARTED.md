@@ -2,87 +2,171 @@
 
 ## Prerequisites
 
-### Build Tools
+- macOS, Linux or Windows
+- [git](https://git-scm.com/) client
+- [curl](https://curl.se/download.html) command line utility
+- [Java JDK-11](https://www.oracle.com/java/technologies/javase-downloads.html#JDK11)
+  <details><summary>Details</summary>
 
-We provided the necessary to build the project with either [Maven](https://maven.apache.org/)
-or [Gradle](https://gradle.org/)!
+  The source code of this project is compatible with Java-11 and above.
+  Remember to update the java version in the kata's [pom.xml](pom.xml)
+  and/or [build.gradle](build.gradle) if you're planning to use a different version.
 
-Please ensure that you have at-least one of them installed on your machine.
+  </details>
 
-### Java Version
-The source code of this project is compatible with [Java-11](https://www.oracle.com/java/technologies/javase-downloads.html#JDK11) and above.
-In the [pom.xml](pom.xml) and [build.gradle](build.gradle), you can notice that the source version
-has been set to 11. Remember to change that configuration to your preferred version if needed.
+## Getting ready
 
-### IDEs
-We are using [IntelliJ](https://www.jetbrains.com/idea/), but you can choose any IDE that
-supports loading Maven or Gradle projects!
-
-## Running the Kata
-
-### Clone the kata repository
-
+### 1 - Clone the kata repository
 ```shell
-> git clone https://github.com/murex/Kata-BowlingGame.git
-> cd Kata-BowlingGame/java
+git clone https://github.com/murex/Kata-BowlingGame.git
+```
+### 2 - Go to the kata's `java` directory
+```shell
+cd Kata-BowlingGame/java
 ```
 
-### Build Steps
+## Running the kata
 
-> ***Reminder***:  You need to run the commands below from the [java](.) folder!
+You can run the kata from the command line or from your IDE of choice.
 
-To build and run the project, you can either use the build features in IntelliJ
-or the Maven & Gradle build command lines (as shown below):
+You may also run it using [TCR](../tcr/TCR.md) if you want to add a bit of spice.
 
-### IntelliJ
+### Running the kata from a terminal with Gradle
+<details><summary>Instructions</summary>
 
-After loading the project into IntelliJ, you should be able to build the project
+> ***Reminder***: the command below should be run from [Kata-BowlingGame/java]() directory
+
+The kata comes with Gradle wrapper pre-installed. Just type the following to run it.
+```shell
+./gradlew clean test
+```
+</details>
+
+### Running the kata from a terminal with Maven
+<details><summary>Instructions</summary>
+
+> ***Reminder***: the command below should be run from [Kata-BowlingGame/java]() directory
+
+The kata comes with Maven wrapper pre-installed. Just type the following to run it.
+```shell
+./mvnw clean test
+```
+</details>
+
+### Running the kata from a terminal with TCR
+<details><summary>Instructions</summary>
+
+> ***Note to Windows users***
+> 
+> Use a **git bash** terminal for running the command below.
+> _Windows CMD and PowerShell are not supported_
+
+Type the following to start TCR:
+```shell
+./tcrw
+```
+Refer to `Using TCR` section at the end of this document for additional
+details about TCR and available options.
+</details>
+
+### Running the kata from IntelliJ IDEA
+<details><summary>Instructions</summary>
+
+Open Intellij IDEA and select:
+
+`File` > `Open` > `Kata-BowlingGame` > `java`
+
+After loading the project into IntelliJ, you can build the project
 using either the Maven or Gradle built-in build tools.
 
-To run the application from IntelliJ, run all the tests in the [BowlingGameTest](./src/test/java/com/murex/BowlingGameTest.java) 
-class. 
+Run all the tests in the [BowlingGameTest](./src/test/java/com/murex/BowlingGameTest.java)
+class.
 
 The "**Run**" tool window should display all the executed tests.
-Below is a snapshot of what you should expect from the first execution:
 
-![Bowling Game_Java_Tests](../images/BowlingGame-Java-Tests.png)
+</details>
 
-### Maven
-To build and run the tests using maven, use the following: 
+### Running the kata from IntelliJ IDEA with TCR
+<details><summary>Instructions</summary>
+
+TCR is provided as a command line utility running in a terminal.
+You can run it from IntelliJ IDEA directly, through leveraging on its built-in terminal.
+
+#### 1. Open the kata
+
+Open Intellij IDEA and select:
+
+`File` > `Open` > `Kata-BowlingGame` > `java`
+
+#### 2. Turn off auto-save
+
+TCR is constantly watching the filesystem for changes.
+For this reason you need to turn off Intellij IDEA's auto-save in order for it to behave as expected.
+
+`File` > `Settings` > `Appearance & Behavior` > `System Settings`
+
+Under `Autosave` section, uncheck the 2 following options:
+
+- Save files if the IDE is idle for ___ seconds
+- Save files when switching to a different application or a built-in terminal
+
+#### 3. Configure the built-in terminal to run git bash
+
+> ***Windows Only***
+>
+> Skip this step if you're on macOS or Linux
+
+Intellij IDEA for Windows is usually set up to run PowerShell by default in its built-in terminal.
+TCR does not run in PowerShell.
+
+`File` > `Settings` > `Tools` > `Terminal`
+
+Under `Application Settings` section, set the `Shell path` to `C:\Program Files\Git\bin\bash.exe`
+
+The above path is for a default git installation location. You may need to adjust it in case you have installed git at a
+different location.
+
+#### 4. Open a built-in terminal
+
+`View` > `Tool Windows` > `Terminal`
+
+#### 5. Launch TCR
+
+> ***Reminder***: the command below should be run from [Kata-BowlingGame/java]() directory
+
+From the built-in terminal:
+
 ```shell
-> ./mvnw clean install 
+./tcrw
 ```
+Refer to `Using TCR` section at the end of this document for additional
+details about TCR and available options.
 
-If executed successfully, the above command should generate the following test report in the command line:
-```shell
-[INFO] -------------------------------------------------------
-[INFO]  T E S T S
-[INFO] -------------------------------------------------------
-[INFO] Running BowlingGameTest
-[WARNING] Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.045 s - in BowlingGameTest
-[INFO]
-[INFO] Results:
-[INFO]
-[WARNING] Tests run: 1, Failures: 0, Errors: 0, Skipped: 1
-[INFO]
-[INFO]
-[INFO] --- maven-jar-plugin:3.2.0:jar (default-jar) @ Kata-BowlingGame ---
-```
+</details>
 
-### Gradle
-To build and run the tests using gradle, use the following:
-```shell
-# Windows  
-> ./gradlew.bat clean build
+## Using TCR
 
-# Mac & Linux
-> ./gradlew clean build
-```
+### Cheat Sheet
 
-If executed successfully, the above command should generate the following:
-```shell
-> ./gradlew clean build
+Here are the main shortcuts available once TCR utility is running:
 
-BUILD SUCCESSFUL in 3s
-7 actionable tasks: 7 executed
-```
+| Shortcut | Description |
+| --- | --- |
+| `?` | List available options
+| `d` / `D` | Enter driver role (from main menu) |
+| `n` / `N` | Enter navigator role (from main menu) |
+| `q` / `Q` | Quit current role - Quit TCR (from main menu) |
+| `t` / `T` | Query timer status (from driver role only) |
+| `p` / `P` | Toggle on/off git auto-push (from main menu) |
+
+### Additional Details
+
+Refer to [TCR - Test && Commit || Revert](../tcr/TCR.md) page
+for additional details and explanations about TCR utility.
+
+
+
+
+
+
+
