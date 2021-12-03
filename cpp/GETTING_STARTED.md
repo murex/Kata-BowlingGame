@@ -46,7 +46,7 @@ The kata comes with a setup script to simplify initializing the project.
 
 This setup script does the following:
 
-- Create a build directory: Kata-BowlingGame/cpp/build. All build-related files are generated in this directory.
+- Create a build directory: ***Kata-BowlingGame/cpp/build***. All build-related files are generated under this directory.
 - Download a copy of cmake compatible with your platform.
 - Download the dependencies required to build and test the kata (such as GoogleTest).
 - Generate the solution file ***Kata-BowlingGame.sln*** for **Visual Studio 2017** on Windows,
@@ -63,8 +63,17 @@ You can run the kata from the command line or from your IDE of choice.
 
 You may also run it using [TCR](../tcr/TCR.md) if you want to add a bit of spice.
 
+- [From a terminal with CMake](#running-the-kata-from-a-terminal-with-cmake)
+- [From a terminal with TCR](#running-the-kata-from-a-terminal-with-tcr)
+- [From Visual Studio](#running-the-kata-from-visual-studio)
+- [From Visual Studio with TCR](#running-the-kata-from-visual-studio-with-tcr)
+- [From CLion](#running-the-kata-from-clion)
+- [From CLion with TCR](#running-the-kata-from-clion-with-tcr)
+- [From Visual Studio Code](#running-the-kata-from-visual-studio-code)
+- [From Visual Studio Code with TCR](#running-the-kata-from-visual-studio-code-with-tcr)
+
+<a name="running-the-kata-from-a-terminal-with-cmake"/></a>
 ### Running the kata from a terminal with CMake
-<details><summary>Instructions</summary>
 
 If you already have CMake 3.21.0 or higher installed on your machine,
 you can run one of the below commands to build the project.
@@ -81,10 +90,8 @@ To run the tests:
 ctest --output-on-failure -C Debug
 ```
 
-</details>
-
+<a name="running-the-kata-from-a-terminal-with-tcr"/></a>
 ### Running the kata from a terminal with TCR
-<details><summary>Instructions</summary>
 
 > ***Note to Windows users***
 >
@@ -98,13 +105,11 @@ Type the following to start TCR:
 ```shell
 ./tcrw
 ```
-Refer to `Using TCR` section at the end of this document for additional
-details about TCR and available options.
 
-</details>
+Refer to [Using TCR](#using-tcr) section for additional details about TCR and available options.
 
+<a name="running-the-kata-from-visual-studio"/></a>
 ### Running the kata from Visual Studio
-<details><summary>Instructions</summary>
 
 > ***Supported Versions***: Visual Studio 2017 or later
 
@@ -119,10 +124,8 @@ After loading the solution:
 2. Run the project (press `F5` or click on `Local Window Debugger` in the toolbar).
 3. You can also use the `Test Explorer` window to run and browse all the executed tests.
 
-</details>
-
+<a name="running-the-kata-from-visual-studio-with-tcr"/></a>
 ### Running the kata from Visual Studio with TCR
-<details><summary>Instructions</summary>
 
 TCR is provided as a command line utility running in a terminal.
 You can run it from Visual Studio directly, through leveraging on its built-in terminal.
@@ -149,11 +152,11 @@ TCR does not run in PowerShell.
 
 `Tools` > `Options` > `Environment` > `Terminal` > `Add`
 
-| Parameter | Set value to |
-| --- | --- |
-| `Name:` | Git Bash
-|`Shell location:` | C:\Program Files\Git\bin\bash.exe
-|`Arguments:` |
+| Parameter         | Set value to                          |
+|-------------------|---------------------------------------|
+| `Name:`           | Git Bash                              |
+| `Shell location:` | C:\Program Files\Git\bin\bash.exe |
+| `Arguments:`      |                                       |
 
 The above `Shell location` value is for a default git installation location.
 You may need to adjust it in case you have installed git at a different location.
@@ -177,13 +180,11 @@ From the built-in terminal:
 ```shell
 ./tcrw
 ```
-Refer to `Using TCR` section at the end of this document for additional
-details about TCR and available options.
 
-</details>
+Refer to [Using TCR](#using-tcr) section for additional details about TCR and available options.
 
+<a name="running-the-kata-from-clion"/></a>
 ### Running the kata from CLion
-<details><summary>Instructions</summary>
 
 Open CLion and select:
 
@@ -195,10 +196,8 @@ Run the test file [BowlingGameTest.cpp](./test/BowlingGameTest.cpp)
 
 The "**Run**" tool window should display all the executed tests.
 
-</details>
-
+<a name="running-the-kata-from-clion-with-tcr"/></a>
 ### Running the kata from CLion with TCR
-<details><summary>Instructions</summary>
 
 TCR is provided as a command line utility running in a terminal.
 You can run it from CLion directly, through leveraging on its built-in terminal.
@@ -250,13 +249,11 @@ From the built-in terminal:
 ```shell
 ./tcrw
 ```
-Refer to `Using TCR` section at the end of this document for additional
-details about TCR and available options.
 
-</details>
+Refer to [Using TCR](#using-tcr) section for additional details about TCR and available options.
 
+<a name="running-the-kata-from-visual-studio-code"/></a>
 ### Running the kata from Visual Studio Code
-<details><summary>Instructions</summary>
 
 Open Visual Studio Code, choose `Open Folder`, navigate to `Kata-BowlingGame` / `cpp`
 then click `Select Folder`.
@@ -266,10 +263,8 @@ in the bottom toolbar to build the project.
 
 In order to run the tests, select `View` > `Testing`, then click on the `Play` button.
 
-</details>
-
+<a name="running-the-kata-from-visual-studio-code-with-tcr"/></a>
 ### Running the kata from Visual Studio Code with TCR
-<details><summary>Instructions</summary>
 
 TCR is provided as a command line utility running in a terminal.
 You can run it from Visual Studio Code directly, through leveraging on its built-in terminal.
@@ -319,25 +314,24 @@ From the built-in terminal:
 ```shell
 ./tcrw
 ```
-Refer to `Using TCR` section at the end of this document for additional
-details about TCR and available options.
 
-</details>
+Refer to [Using TCR](#using-tcr) section for additional details about TCR and available options.
 
+<a name="using-tcr"/></a>
 ## Using TCR
 
 ### Cheat Sheet
 
 Here are the main shortcuts available once TCR utility is running:
 
-| Shortcut | Description |
-| --- | --- |
-| `?` | List available options
-| `d` / `D` | Enter driver role (from main menu) |
-| `n` / `N` | Enter navigator role (from main menu) |
+| Shortcut  | Description                                   |
+|-----------|-----------------------------------------------|
+| `?`       | List available options                        |
+| `d` / `D` | Enter driver role (from main menu)            |
+| `n` / `N` | Enter navigator role (from main menu)         |
 | `q` / `Q` | Quit current role - Quit TCR (from main menu) |
-| `t` / `T` | Query timer status (from driver role only) |
-| `p` / `P` | Toggle on/off git auto-push (from main menu) |
+| `t` / `T` | Query timer status (from driver role only)    |
+| `p` / `P` | Toggle on/off git auto-push (from main menu)  |
 
 ### Additional Details
 

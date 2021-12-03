@@ -31,8 +31,14 @@ You can run the kata from the command line or from your IDE of choice.
 
 You may also run it using [TCR](../tcr/TCR.md) if you want to add a bit of spice.
 
+- [From a terminal with Gradle](#running-the-kata-from-a-terminal-with-gradle)
+- [From a terminal with Maven](#running-the-kata-from-a-terminal-with-maven)
+- [From a terminal with TCR](#running-the-kata-from-a-terminal-with-tcr)
+- [From IntelliJ IDEA](#running-the-kata-from-intellij-idea)
+- [From IntelliJ IDEA with TCR](#running-the-kata-from-intellij-idea-with-tcr)
+
+<a name="running-the-kata-from-a-terminal-with-gradle"/></a>
 ### Running the kata from a terminal with Gradle
-<details><summary>Instructions</summary>
 
 > ***Reminder***: the command below should be run from [Kata-BowlingGame/java]() directory
 
@@ -40,10 +46,9 @@ The kata comes with Gradle wrapper pre-installed. Just type the following to run
 ```shell
 ./gradlew clean test
 ```
-</details>
 
+<a name="running-the-kata-from-a-terminal-with-maven"/></a>
 ### Running the kata from a terminal with Maven
-<details><summary>Instructions</summary>
 
 > ***Reminder***: the command below should be run from [Kata-BowlingGame/java]() directory
 
@@ -51,10 +56,9 @@ The kata comes with Maven wrapper pre-installed. Just type the following to run 
 ```shell
 ./mvnw clean test
 ```
-</details>
 
+<a name="running-the-kata-from-a-terminal-with-tcr"/></a>
 ### Running the kata from a terminal with TCR
-<details><summary>Instructions</summary>
 
 > ***Note to Windows users***
 > 
@@ -65,12 +69,11 @@ Type the following to start TCR:
 ```shell
 ./tcrw
 ```
-Refer to `Using TCR` section at the end of this document for additional
-details about TCR and available options.
-</details>
 
+Refer to [Using TCR](#using-tcr) section for additional details about TCR and available options.
+
+<a name="running-the-kata-from-intellij-idea"/></a>
 ### Running the kata from IntelliJ IDEA
-<details><summary>Instructions</summary>
 
 Open Intellij IDEA and select:
 
@@ -84,10 +87,8 @@ class.
 
 The "**Run**" tool window should display all the executed tests.
 
-</details>
-
+<a name="running-the-kata-from-intellij-idea-with-tcr"/></a>
 ### Running the kata from IntelliJ IDEA with TCR
-<details><summary>Instructions</summary>
 
 TCR is provided as a command line utility running in a terminal.
 You can run it from IntelliJ IDEA directly, through leveraging on its built-in terminal.
@@ -139,25 +140,24 @@ From the built-in terminal:
 ```shell
 ./tcrw
 ```
-Refer to `Using TCR` section at the end of this document for additional
-details about TCR and available options.
 
-</details>
+Refer to [Using TCR](#using-tcr) section for additional details about TCR and available options.
 
+<a name="using-tcr"/></a>
 ## Using TCR
 
 ### Cheat Sheet
 
 Here are the main shortcuts available once TCR utility is running:
 
-| Shortcut | Description |
-| --- | --- |
-| `?` | List available options
-| `d` / `D` | Enter driver role (from main menu) |
-| `n` / `N` | Enter navigator role (from main menu) |
+| Shortcut  | Description                                   |
+|-----------|-----------------------------------------------|
+| `?`       | List available options                        |
+| `d` / `D` | Enter driver role (from main menu)            |
+| `n` / `N` | Enter navigator role (from main menu)         |
 | `q` / `Q` | Quit current role - Quit TCR (from main menu) |
-| `t` / `T` | Query timer status (from driver role only) |
-| `p` / `P` | Toggle on/off git auto-push (from main menu) |
+| `t` / `T` | Query timer status (from driver role only)    |
+| `p` / `P` | Toggle on/off git auto-push (from main menu)  |
 
 ### Additional Details
 
