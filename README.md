@@ -1,4 +1,10 @@
-# Bowling Game
+[![Gradle](https://github.com/murex/Kata-BowlingGame/actions/workflows/gradle.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/gradle.yml)
+[![Maven](https://github.com/murex/Kata-BowlingGame/actions/workflows/maven.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/maven.yml)
+[![CMake](https://github.com/murex/Kata-BowlingGame/actions/workflows/cmake.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/cmake.yml)
+[![Check Markdown links](https://github.com/murex/Kata-BowlingGame/actions/workflows/markdown-link-check.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/markdown-link-check.yml)
+[![Add contributors](https://github.com/murex/Kata-BowlingGame/actions/workflows/contributors.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/contributors.yml)
+
+# Bowling Game Kata
 
 ![Bowling Game](./images/BowlingGame.png) <br>
 Image by [MasterTux](https://pixabay.com/fr/users/mastertux-470906/) on [Pixabay](https://pixabay.com/fr/illustrations/bowling-gr%C3%A8ve-boule-isol%C3%A9-3d-3427969/)
