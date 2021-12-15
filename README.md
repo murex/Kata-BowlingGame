@@ -7,7 +7,7 @@
 # Bowling Game Kata
 
 ![Bowling Game](./images/BowlingGame.png) <br>
-Image by [MasterTux](https://pixabay.com/fr/users/mastertux-470906/) on [Pixabay](https://pixabay.com/fr/illustrations/bowling-gr%C3%A8ve-boule-isol%C3%A9-3d-3427969/)
+"[Bowling Strike Bullet Isolated](https://pixabay.com/illustrations/bowling-strike-bullet-isolated-3d-3427969/)" by [MasterTux](https://pixabay.com/fr/users/mastertux-470906/) is licenced under [Pixabay License](https://pixabay.com/fr/service/license/)
 
 ## Description
 

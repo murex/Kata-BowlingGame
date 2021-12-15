@@ -30,5 +30,5 @@ _`How can we apply this in the future?`_
 -
 -
 
-![Retrospective](./images/Retrospective.jpg)
-_By [Alan O'Rourke](https://www.flickr.com/people/33524159@N00), under [Creative Commons Attribution 2.0 Generic](https://creativecommons.org/licenses/by/2.0/deed.en) license, for [www.workcompass.com](http://www.workcompass.com). More details on [Wikipedia Commons](https://commons.wikimedia.org/wiki/File:Too_Busy_To_Improve_-_Performance_Management_-_Square_Wheels.png)_
+![Retrospective](./images/Retrospective.jpg)<br>
+"[Too Busy to Improve](https://commons.wikimedia.org/wiki/File:Too_Busy_To_Improve_-_Performance_Management_-_Square_Wheels.png)" by [Alan O'Rourke](https://www.flickr.com/people/33524159@N00) is licensed under [Creative Commons Attribution 2.0 Generic](https://creativecommons.org/licenses/by/2.0/deed.en).
