@@ -152,12 +152,12 @@ Open Visual Studio Code and select:
 
 `File` > `Open Folder` > `Kata-BowlingGame` > `java`
 
-After loading the project into IntelliJ, you can build the project
+After loading the project into Visual Studio Code, you can build the project
 using either the Maven or Gradle built-in build tools.
 
 Run all the tests in the [BowlingGameTest](./src/test/java/com/murex/BowlingGameTest.java) class. 
 
-Open the "Testing" tab to view all the executed tests.
+Open the `Testing` tab to view all the executed tests.
 
 <a name="running-the-kata-from-visual-studio-code-with-tcr"></a>
 ### Running the kata from Visual Studio Code with TCR
@@ -179,9 +179,10 @@ Ensure that `Auto Save` is set to `off`
 
 #### 3. Open a Git Bash terminal
 
-Go to `View` > `Terminal` or `Terminal` > `New Terminal`
+Select `View` > `Terminal` or `Terminal` > `New Terminal`
 
-If the opened terminal is not a "Git Bash" terminal, use the drop-down list next to the "+" button to add a open a new "Git Bash" terminal. 
+If the opened terminal is not a "Git Bash" terminal, use the drop-down list next to the "+" 
+button to add a open a new "Git Bash" terminal. 
 
 #### 4. Launch TCR
 
