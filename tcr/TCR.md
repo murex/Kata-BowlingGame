@@ -20,8 +20,8 @@ of our katas so that people can use it if they like.
 
 We currently provide TCR in 2 flavors:
 
-- [TCR Shell](./tcr_shell/tcr_shell.md)
-- [TCR Go](./tcr_go/tcr_go.md)
+- [TCR Shell](tcr_shell/tcr_shell.md)
+- [TCR Go](tcr_go/tcr_go.md)
 
 These 2 flavors are functionally equivalent.
 
@@ -86,9 +86,9 @@ or even on your features/commit/dev branches!
 > ./tcrw
 ```
 
-Refer to [TCR Go](./tcr_go/tcr_go.md) usage-specifics is you're using the default TCR implementation.
+Refer to [TCR Go](tcr_go/tcr_go.md) usage-specifics is you're using the default TCR implementation.
 
-Refer to [TCR Shell](./tcr_shell/tcr_shell.md) if you're willing to use it instead.
+Refer to [TCR Shell](tcr_shell/tcr_shell.md) if you're willing to use it instead.
 
 ## Notes
 
