@@ -22,6 +22,6 @@ SOFTWARE.
 
 package bowling_game
 
-func doSomething() int {
-	return 42
+func bowlingScore(rolls ...int) int {
+	return 0
 }

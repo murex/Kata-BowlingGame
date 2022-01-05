@@ -28,5 +28,6 @@ import (
 )
 
 func Test_acceptance_test(t *testing.T) {
-	assert.Equal(t, 42, doSomething())
+	t.Skip("test currently disabled") // Comment or remove this line to enable this test case
+	assert.Equal(t, 133, bowlingScore(1, 4, 4, 5, 6, 4, 5, 5, 10, 0, 1, 7, 3, 6, 4, 10, 2, 8, 6))
 }
