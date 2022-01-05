@@ -38,6 +38,8 @@ You may also run it using [TCR](../tcr/TCR.md) if you want to add a bit of spice
 - [From IntelliJ IDEA with TCR](#running-the-kata-from-intellij-idea-with-tcr)
 - [From Visual Studio Code](#running-the-kata-from-visual-studio-code)
 - [From Visual Studio Code with TCR](#running-the-kata-from-visual-studio-code-with-tcr)
+- [From Eclipse](#running-the-kata-from-eclipse)
+- [From Eclipse with TCR](#running-the-kata-from-eclipse-with-tcr)
 
 <a name="running-the-kata-from-a-terminal-with-gradle"/></a>
 ### Running the kata from a terminal with Gradle
@@ -186,6 +188,56 @@ If the opened terminal is not a "Git Bash" terminal, use the drop-down list next
 button to open a new "Git Bash" terminal.
 
 #### 4. Launch TCR
+
+> ***Reminder***: the command below should be run from [Kata-BowlingGame/java]() directory
+
+From the built-in terminal:
+
+```shell
+./tcrw
+```
+
+Refer to [Using TCR](#using-tcr) section for additional details about TCR and available options.
+
+<a name="running-the-kata-from-eclipse"></a>
+### Running the kata from Eclipse 
+
+Open the kata in Eclipse:
+
+`File` > `Open Projects from File System...` > `Kata-BowlingGame` 
+
+After loading the project into Eclipse, you can build the project
+using either the Maven or Gradle built-in build tools.
+
+Run all the tests in the [BowlingGameTest](./src/test/java/com/murex/BowlingGameTest.java)
+class.
+
+Navigate to the test class then: 
+
+`Right click` > `Run As` > `JUnit Test` or `Alt+Shift+X,T`
+
+A `JUnit` tab should be opened that displays all the executed tests. 
+
+<a name="running-the-kata-from-eclipse-with-tcr"></a>
+### Running the kata from Eclipse with TCR
+
+#### 1. Open the kata
+Open the kata in Eclipse:
+
+`File` > `Open Projects from File System...` > `Kata-BowlingGame`
+
+#### 2. Open a Git Bash terminal
+
+Select `Window` > `Show View` > `Terminal` 
+
+A new `Terminal` window should be opened.
+
+To start a `git bash` terminal:
+1. Click on the `Open Terminal` button or use the shortcut `(Ctrl+Alt+Shift+T)`.
+2. From the opened pop-up window select `Git Bash` then `OK`
+3. From the terminal navigate to [Kata-BowlingGame/java]() directory
+
+#### 3. Launch TCR
 
 > ***Reminder***: the command below should be run from [Kata-BowlingGame/java]() directory
 
