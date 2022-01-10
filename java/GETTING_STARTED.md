@@ -112,8 +112,8 @@ For this reason you need to turn off Intellij IDEA's auto-save in order for it t
 
 Under `Autosave` section, uncheck the 2 following options:
 
-- Save files if the IDE is idle for ___ seconds
-- Save files when switching to a different application or a built-in terminal
+- [ ] Save files if the IDE is idle for ___ seconds
+- [ ] Save files when switching to a different application or a built-in terminal
 
 #### 3. Configure the built-in terminal to run git bash
 

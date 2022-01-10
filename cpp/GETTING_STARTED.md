@@ -71,6 +71,8 @@ You may also run it using [TCR](../tcr/TCR.md) if you want to add a bit of spice
 - [From CLion with TCR](#running-the-kata-from-clion-with-tcr)
 - [From Visual Studio Code](#running-the-kata-from-visual-studio-code)
 - [From Visual Studio Code with TCR](#running-the-kata-from-visual-studio-code-with-tcr)
+- [From Xcode](#running-the-kata-from-xcode)
+- [From Xcode with TCR](#running-the-kata-from-xcode-with-tcr)
 
 <a name="running-the-kata-from-a-terminal-with-cmake"/></a>
 ### Running the kata from a terminal with CMake
@@ -217,8 +219,8 @@ For this reason you need to turn off CLion's auto-save in order for it to behave
 
 Under `Autosave` section, uncheck the 2 following options:
 
-- Save files if the IDE is idle for ___ seconds
-- Save files when switching to a different application or a built-in terminal
+- [ ] Save files if the IDE is idle for ___ seconds
+- [ ] Save files when switching to a different application or a built-in terminal
 
 #### 3. Configure the built-in terminal to run git bash
 
@@ -307,9 +309,60 @@ different location.
 
 #### 5. Launch TCR
 
-> ***Reminder***: the command below should be run from [Kata-BowlingGame/java]() directory
+> ***Reminder***: the command below should be run from [Kata-BowlingGame/cpp]() directory
 
 From the built-in terminal:
+
+```shell
+./tcrw
+```
+
+Refer to [Using TCR](#using-tcr) section for additional details about TCR and available options.
+
+<a name="running-the-kata-from-xcode"/></a>
+### Running the kata from Xcode
+
+Open Xcode, choose `Open a project or file`, navigate to `Kata-BowlingGame` / `cpp` / `build` / `Kata-BowlingGame.xcodeproj`
+then click `Open`.
+
+Once the project is opened in Xcode, select `Product` / `Scheme` / `Kata-BowlingGame-test` to set it as the current active scheme.
+
+Select `Product` / `Run` to build the project and run the tests.
+
+<a name="running-the-kata-from-xcode-with-tcr"/></a>
+### Running the kata from Xcode with TCR
+
+TCR is provided as a command line utility running in a terminal.
+
+Xcode does not provide a built-in terminal.
+You can still use Xcode as an editor while running TCR in a separate terminal window.
+
+#### 1. Open the kata
+
+Open Xcode, choose `Open a project or file`, navigate to `Kata-BowlingGame` / `cpp` / `build` / `Kata-BowlingGame.xcodeproj`
+then click `Open`.
+
+Once the project is opened in Xcode, select `Product` / `Scheme` / `Kata-BowlingGame-test` to set it as the current active scheme.
+
+> ***No need to build and test from Xcode***
+>
+> TCR takes care of building the project and running the tests.
+> For this reason you should not build and test the project from Xcode when TCR is running.
+> The only thing you should pay attention to is when saving your changes, which will trigger TCR's build and test.
+> 
+
+#### 2. Open a terminal
+
+You can use any terminal application available on macOS.
+
+If you're not familiar with terminals, macOS comes with a built-in terminal application available under 
+`Applications` > `Utilities` > `Terminal.app`.
+
+#### 3. Launch TCR
+
+> ***Reminder***: the command below should be run from [Kata-BowlingGame/cpp]() directory
+
+From the terminal window:
 
 ```shell
 ./tcrw
