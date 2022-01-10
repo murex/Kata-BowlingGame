@@ -1,6 +1,7 @@
 [![Gradle](https://github.com/murex/Kata-BowlingGame/actions/workflows/gradle.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/gradle.yml)
 [![Maven](https://github.com/murex/Kata-BowlingGame/actions/workflows/maven.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/maven.yml)
 [![CMake](https://github.com/murex/Kata-BowlingGame/actions/workflows/cmake.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/cmake.yml)
+[![Go](https://github.com/murex/Kata-BowlingGame/actions/workflows/go.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/go.yml)
 [![Check Markdown links](https://github.com/murex/Kata-BowlingGame/actions/workflows/markdown-link-check.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/markdown-link-check.yml)
 [![Add contributors](https://github.com/murex/Kata-BowlingGame/actions/workflows/contributors.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/contributors.yml)
 
