@@ -19,20 +19,20 @@ This is a [Go](https://golang.org/) implementation of TCR.
   in order to be able to see TCR's timer notifications.
   </details>
 
-### Launching TCR Go
+### Running TCR Go
 
 <details><summary>C++ version of the kata</summary> 
 
 ```shell
-> cd cpp
-> ./tcrw
+cd cpp
+./tcrw
 ```
 </details>
 <details><summary>Java version of the kata</summary> 
 
 ```shell
-> cd java
-> ./tcrw
+cd java
+./tcrw
 ```
 
 </details>
@@ -43,7 +43,7 @@ TCR Go comes with various command line options.
 Details related to these options can be accessed through command line help:
 
 ```shell
-> ./tcrw help
+./tcrw help
 ```
 
 ### Main menu
@@ -134,9 +134,7 @@ The `tcrw` utility provides the following options:
 In order to display available options when launching TCR:
 
 ```shell
-> ./tcrw -h
-# or
-> ./tcrw --help
+./tcrw --help
 ```
 
 Once TCR is running, you can hit `?` to list the available options and their shortcuts
@@ -147,9 +145,7 @@ Once TCR is running, you can hit `?` to list the available options and their sho
 To display the version of TCR utility running locally:
 
 ```shell
-> ./tcrw -v
-# or
-> ./tcrw --version
+./tcrw --version
 ```
 
 </details>
@@ -158,9 +154,7 @@ To display the version of TCR utility running locally:
 To display build information related to the TCR binary running locally:
 
 ```shell
-> ./tcrw -i
-# or
-> ./tcrw --info
+./tcrw --info
 ```
 
 </details>
@@ -187,9 +181,7 @@ This allows all participants running the script in Navigator mode to get the cha
 are committed by the Driver.
 
 ```shell
-> ./tcrw -p
-# or
-> ./tcrw --auto-push
+./tcrw --auto-push
 ```
 
 Once TCR is running, you can toggle on and off git auto-push option by typing `p`
@@ -199,23 +191,21 @@ Once TCR is running, you can toggle on and off git auto-push option by typing `p
 
 TCR can use different toolchains when running build and test.
 
-Here are the toolchains currently supported:
+Here are the toolchains currently supported for each language.
 
-| Toolchain | Language | Default for this language |
-| --- | --- | --- |
-| gradle | Java | &check; |
-| maven | Java | |
-| cmake | C++ | &check; |
+| Language | Toolchains                                         | Default        |
+|----------|----------------------------------------------------|----------------|
+| Java     | gradle, gradle-wrapper, maven, maven-wrapper, make | gradle-wrapper |
+| C++      | cmake, cmake-kata, make                            | cmake-kata     |
+| Go       | go-tools, make                                     | go-tools       |
 
 Please note that you do not need to install any of these toolchains on your machine in order to use them.
 We provide the wrappers allowing to download and run them in the context of the kata.
 
-For example, to use Maven instead of Gradle when running the TCR script for a kata in Java:
+For example, if you prefer using Maven instead of Gradle wrapper when running the TCR script for a kata in Java:
 
 ```shell
-> ./tcrw -t maven
-# or
-> ./tcrw --toolchain maven
+./tcrw --toolchain maven
 ```
 
 </details>
@@ -231,20 +221,17 @@ The default timer duration is 5 minutes.
 
 You can change this value when starting TCR as follows:
 
+For a 10-minute timer:
 ```shell
-# For a 10-minute timer:
-> ./tcrw -d 10m
-# or
-> ./tcrw --duration 10m
+./tcrw --duration 10m
 ```
 
 ### Disabling the timer
 
-If you do not want to use the timer, you can turn it off by setting its duration to 0  when starting TCR.
+If you do not want to use the timer, you can turn it off by setting its duration to 0m when starting TCR.
 
 ```shell
-# To disable the timer:
-> ./tcrw -d 0m
+./tcrw --duration 0m
 ```
 
 ### Querying the timer status
