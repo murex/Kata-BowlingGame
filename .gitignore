@@ -11,6 +11,10 @@
 **/java/bin/
 **/cpp/bin/
 
+# C# folders containing generated stuff
+**/csharp/**/bin/
+**/csharp/**/obj/
+
 # ApprovalTests - generated golden master files
 GoldenMasterTest.*.txt
 *.txt.bak
