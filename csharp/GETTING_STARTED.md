@@ -145,10 +145,7 @@ Refer to [Using TCR](#using-tcr) section for additional details about TCR and av
 Open Visual Studio Code, choose `Open Folder`, navigate to `Kata-BowlingGame` / `csharp`
 then click `Select Folder`.
 
-Once the project is opened in Visual Studio Code, click on `Build`
-in the bottom toolbar to build the project.
-
-In order to run the tests, select `View` > `Testing`, then click on the `Play` button.
+Once the project is opened in Visual Studio Code, select `Run` > `Run Without Debugging` ro run the tests.
 
 <a name="running-the-kata-from-visual-studio-code-with-tcr"/></a>
 ### Running the kata from Visual Studio Code with TCR
