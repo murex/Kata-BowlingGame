@@ -3,7 +3,7 @@ toolchains:
   compatible-with: [dotnet]
 source-files:
   directories: [src]
-  patterns: ['(?i)^.*\.cs?$']
+  patterns: ['(?i)^.*\.cs(x)?$']
 test-files:
   directories: [tests]
-  patterns: ['(?i)^.*\.cs?$']
+  patterns: ['(?i)^.*\.cs(x)?$']
