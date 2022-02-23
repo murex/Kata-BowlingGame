@@ -26,3 +26,9 @@ updates:
     directory: "/go"
     schedule:
       interval: weekly
+
+  # Maintain dependencies for Nuget
+  - package-ecosystem: nuget
+    directory: "/csharp"
+    schedule:
+      interval: weekly
