@@ -2,6 +2,7 @@
 [![Maven](https://github.com/murex/Kata-BowlingGame/actions/workflows/maven.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/maven.yml)
 [![CMake](https://github.com/murex/Kata-BowlingGame/actions/workflows/cmake.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/cmake.yml)
 [![Go](https://github.com/murex/Kata-BowlingGame/actions/workflows/go.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/go.yml)
+[![Dotnet](https://github.com/murex/Kata-BowlingGame/actions/workflows/dotnet.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/dotnet.yml)
 [![Check Markdown links](https://github.com/murex/Kata-BowlingGame/actions/workflows/markdown-link-check.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/markdown-link-check.yml)
 [![Add contributors](https://github.com/murex/Kata-BowlingGame/actions/workflows/contributors.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/contributors.yml)
 
@@ -101,6 +102,22 @@ See [ACKNOWLEDGEMENTS.md](ACKNOWLEDGEMENTS.md) for more information.
             <img src=https://avatars.githubusercontent.com/u/77109701?v=4 width="100;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=AntoineMx/>
             <br />
             <sub style="font-size:14px"><b>AntoineMx</b></sub>
+        </a>
+    </td>
+</tr>
+</table>
+
+## Additional Contributors
+
+### For providing initial setup for C#
+
+<table>
+<tr>
+    <td align="center" style="word-wrap: break-word; width: 150.0; height: 150.0">
+        <a href=https://github.com/Tr00d>
+            <img src=https://avatars.githubusercontent.com/u/59444272?v=4 width="100;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=Guillaume Faas/>
+            <br />
+            <sub style="font-size:14px"><b>Guillaume Faas</b></sub>
         </a>
     </td>
 </tr>
