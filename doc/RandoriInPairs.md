@@ -1,6 +1,6 @@
 # Randori in Pairs
 
-This format is the same as the [Randori Kata](./RandoriKata.md) but done in Pairs.
+This format is the same as the [Randori Kata](RandoriKata.md) but done in Pairs.
 
 The goal is to increase learning and practice time.
 
