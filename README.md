@@ -120,5 +120,3 @@ See [ACKNOWLEDGEMENTS.md](ACKNOWLEDGEMENTS.md) for more information.
             <sub style="font-size:14px"><b>Guillaume Faas</b></sub>
         </a>
     </td>
-</tr>
-</table>
