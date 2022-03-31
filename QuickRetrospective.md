@@ -3,26 +3,26 @@
 ## Bowling Game
 
 | Team | Date |
-| ---- | ---- |
-| XXX | MM/DD/YYYY |
+| -- | ---- |
+| Coaches| 03/31/2022 |
 
 ## DO
 _`What did we do?`_
 
-- 
--
+- We did the FizzBuzz kata
+- We used a stateful approach for testing (the classicist approach), we didn't use a terminal
 
 ## LEARN
 _`What did we learn?`_
 
--
--
+- 
+- 
 
 ## PUZZLE
 _`What still puzzles us?`_
 
--
--
+- Don't feel mocks are adapted to this kata, don't see who would use them, we should use a terminal or printer to try mocks
+- 
 
 ## DECIDE
 _`How can we apply this in the future?`_
