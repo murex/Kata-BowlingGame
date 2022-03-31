@@ -71,7 +71,7 @@ public class FizzBuzzTest {
     @Test
     public void full_fizzBuzz_of_2() {
         FakeTerminal terminal = new FakeTerminal();
-        String actual = FizzBuzz.upTo(2, terminal);
+        FizzBuzz.upTo(2, terminal);
         assertEquals("1\n2\n", terminal.getPrintedText());
     }
 
