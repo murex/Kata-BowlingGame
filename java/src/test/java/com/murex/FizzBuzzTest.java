@@ -84,13 +84,13 @@ public class FizzBuzzTest {
         assertTrue(fakeTerminal.getPrintedText().endsWith("buzz\n"));
     }
 
-//    @Test
-//    public void full_fizzBuzz_should_print_results() {
-//        mock(Terminal.class);
-//
-//        FakeTerminal terminal = new FakeTerminal();
-//        FizzBuzz.upTo(2, terminal);
-//        assertEquals("1\n2\n", terminal.getPrintedText());
-//    }
+    @Test
+    public void full_fizzBuzz_should_print_results() {
+        mock(Terminal.class);
+
+        FakeTerminal terminal = new FakeTerminal();
+        FizzBuzz.upTo(2, terminal);
+        assertEquals("1\n2\n", terminal.getPrintedText());
+    }
 
 }
