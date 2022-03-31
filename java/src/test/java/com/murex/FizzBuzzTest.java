@@ -89,6 +89,8 @@ public class FizzBuzzTest {
         Terminal mockTerminal = mock(Terminal.class);
 
         FizzBuzz.upTo(2, mockTerminal);
+
+        verify(mockTerminal).print("2\n");
     }
 
 }
