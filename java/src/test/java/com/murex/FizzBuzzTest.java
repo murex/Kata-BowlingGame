@@ -22,7 +22,6 @@ SOFTWARE.
 
 package com.murex;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -78,8 +77,8 @@ public class FizzBuzzTest {
     public void end_to_end_fizzbuzz() {
         FakeTerminal fakeTerminal = new FakeTerminal();
         FizzBuzz.run(fakeTerminal);
-        assertTrue(fakeTerminal.getPrintedOutput().startsWith("1\n2\nfizz\n"));
-        assertTrue(fakeTerminal.getPrintedOutput().endsWith("buzz\n"));
+        assertTrue(fakeTerminal.getPrintedText().startsWith("1\n2\nfizz\n"));
+        assertTrue(fakeTerminal.getPrintedText().endsWith("buzz\n"));
     }
 
 }

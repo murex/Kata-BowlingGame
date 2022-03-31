@@ -8,7 +8,7 @@ public class FakeTerminal implements Terminal {
         this.text = text;
     }
 
-    String getPrintedOutput() {
+    String getPrintedText() {
         return this.text;
     }
 }
