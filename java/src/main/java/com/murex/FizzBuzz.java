@@ -42,7 +42,9 @@ public class FizzBuzz {
     public static String upTo(int i, Terminal terminal) {
         StringBuilder result = new StringBuilder();
         for (int j = 1; j <= i; j++) {
-            result.append(of(j));
+            String fizzBuzz = of(j);
+            result.append(fizzBuzz);
+            terminal.print(fizzBuzz);
         }
         return result.toString();
     }
@@ -53,7 +55,7 @@ public class FizzBuzz {
     }
 
     static void run(Terminal terminal, int number) {
-        terminal.print(upTo(number, terminal));
+        upTo(number, terminal);
     }
 
 }
