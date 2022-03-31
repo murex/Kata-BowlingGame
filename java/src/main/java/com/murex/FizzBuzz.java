@@ -41,8 +41,8 @@ public class FizzBuzz {
 
     public static void upTo(int i, Terminal terminal) {
         for (int j = 1; j <= i; j++) {
-            String fizzBuzz = of(j, "") + "\n";
-            terminal.print(fizzBuzz);
+            String fizzBuzz = of(j, "");
+            terminal.printLine(fizzBuzz);
         }
     }
 
