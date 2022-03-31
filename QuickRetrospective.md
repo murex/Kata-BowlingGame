@@ -21,6 +21,9 @@ _`What did we do?`_
 - We made the calls more granular
 - We used Mockito for mocks, mockito is already kind of a spy library
 
+- We introduced a proxy terminal making use of our system and mock terminals
+- Mirna played with intellij shortcuts
+
 ## LEARN
 _`What did we learn?`_
 
@@ -45,11 +48,14 @@ _`What still puzzles us?`_
   - How could we find a kata to highlight that?
   - People have strong opinions pros and against mocks
 
+ - the benefit is not yet obvious but we feel the last iteration may help us see the big picture
 ## DECIDE
 _`How can we apply this in the future?`_
 
 - We should find some katas to experience in depth what test doubles feel
 -
+
+- Never ever let Damien and Patrice leave on their own
 
 ![Retrospective](./images/Retrospective.jpg)<br>
 "[Too Busy to Improve](https://commons.wikimedia.org/wiki/File:Too_Busy_To_Improve_-_Performance_Management_-_Square_Wheels.png)" by [Alan O'Rourke](https://www.flickr.com/people/33524159@N00) is licensed under [Creative Commons Attribution 2.0 Generic](https://creativecommons.org/licenses/by/2.0/deed.en).
