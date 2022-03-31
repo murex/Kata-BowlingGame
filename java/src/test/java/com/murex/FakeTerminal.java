@@ -7,4 +7,8 @@ public class FakeTerminal implements Terminal {
     public void print(String input) {
 
     }
+
+    String getPrintedOutput() {
+        return "";
+    }
 }
