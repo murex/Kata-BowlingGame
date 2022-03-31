@@ -23,10 +23,10 @@ SOFTWARE.
 package com.murex;
 
 class FizzBuzz {
-    public static String of(int i) {
-        if (i == 3)
+    public static String of(int number) {
+        if (number == 3)
             return "fizz\n";
-        return "" + i + "\n";
+        return "" + number + "\n";
     }
 
     public static String upTo(int i) {
