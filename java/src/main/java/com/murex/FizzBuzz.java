@@ -30,10 +30,10 @@ class FizzBuzz {
         {
             return "fizzbuzz\n";
         }
-        if (number%3 == 0) {
+        else if (number%3 == 0) {
             middle = "fizz";
         }
-        if (number%5 == 0) {
+        else if (number%5 == 0) {
             middle = "buzz";
         }
         return middle + "\n";
