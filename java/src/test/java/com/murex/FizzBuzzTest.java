@@ -32,42 +32,42 @@ import static org.mockito.Mockito.*;
 public class FizzBuzzTest {
     @Test
     public void fizzBuzz_of_1_is_1() {
-        assertEquals("1\n", FizzBuzz.of(1));
+        assertEquals("1\n", FizzBuzz.of(1, "\n"));
     }
 
     @Test
     public void fizzBuzz_of_2_is_2() {
-        assertEquals("2\n", FizzBuzz.of(2));
+        assertEquals("2\n", FizzBuzz.of(2, "\n"));
     }
 
     @Test
     public void fizzBuzz_of_3_is_fizz() {
-        assertEquals("fizz\n", FizzBuzz.of(3));
+        assertEquals("fizz\n", FizzBuzz.of(3, "\n"));
     }
 
     @Test
     public void fizzBuzz_of_5_is_buzz() {
-        assertEquals("buzz\n", FizzBuzz.of(5));
+        assertEquals("buzz\n", FizzBuzz.of(5, "\n"));
     }
 
     @Test
     public void fizzBuzz_of_10_is_buzz() {
-        assertEquals("buzz\n", FizzBuzz.of(10));
+        assertEquals("buzz\n", FizzBuzz.of(10, "\n"));
     }
 
     @Test
     public void fizzBuzz_of_15_is_fizzbuzz() {
-        assertEquals("fizzbuzz\n", FizzBuzz.of(15));
+        assertEquals("fizzbuzz\n", FizzBuzz.of(15, "\n"));
     }
 
     @Test
     public void fizzBuzz_of_30_is_fizzbuzz() {
-        assertEquals("fizzbuzz\n", FizzBuzz.of(30));
+        assertEquals("fizzbuzz\n", FizzBuzz.of(30, "\n"));
     }
 
     @Test
     public void fizzBuzz_of_6_is_fizz() {
-        assertEquals("fizz\n", FizzBuzz.of(6));
+        assertEquals("fizz\n", FizzBuzz.of(6, "\n"));
     }
 
     @Test

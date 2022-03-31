@@ -23,7 +23,7 @@ SOFTWARE.
 package com.murex;
 
 public class FizzBuzz {
-    public static String of(int number) {
+    public static String of(int number, String newline) {
         String middle = "" + number;
 
         if (number % 15 == 0)
@@ -36,12 +36,12 @@ public class FizzBuzz {
         else if (number%5 == 0) {
             middle = "buzz";
         }
-        return middle + "\n";
+        return middle + newline;
     }
 
     public static void upTo(int i, Terminal terminal) {
         for (int j = 1; j <= i; j++) {
-            String fizzBuzz = of(j);
+            String fizzBuzz = of(j, "\n");
             terminal.print(fizzBuzz);
         }
     }
