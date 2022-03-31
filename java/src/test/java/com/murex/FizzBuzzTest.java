@@ -93,7 +93,7 @@ public class FizzBuzzTest {
 
         InOrder inOrder = inOrder(mockTerminal);
 
-        inOrder.verify(mockTerminal).printLine("1");
+        inOrder.verify(mockTerminal).print("1\n");
         inOrder.verify(mockTerminal).printLine("2");
 
         verify(mockTerminal, times(2));
