@@ -25,7 +25,7 @@ package com.murex;
 class FizzBuzz {
     public static String of(int number) {
         String output = "";
-        String middle = "";
+        String middle = "" + number;
 
         if (number%3 == 0) {
             middle = "fizz";
