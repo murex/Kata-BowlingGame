@@ -28,11 +28,9 @@ class FizzBuzz {
 
         if (number%3 == 0) {
             middle = "fizz";
-            return "fizz\n";
         }
         if (number%5 == 0) {
             middle = "buzz";
-            return "buzz\n";
         }
         return middle + "\n";
     }
