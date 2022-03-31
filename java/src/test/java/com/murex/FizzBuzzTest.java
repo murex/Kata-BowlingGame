@@ -31,9 +31,15 @@ public class FizzBuzzTest {
     public void fizzBuzz_of_1_is_1() {
         assertEquals("1\n", FizzBuzz.of(1));
     }
+
     @Test
     public void fizzBuzz_of_2_is_2() {
         assertEquals("2\n", FizzBuzz.of(2));
+    }
+
+    @Test
+    public void fizzBuzz_of_3_is_fizz() {
+        assertEquals("fizz\n", FizzBuzz.of(3));
     }
 
     @Test
