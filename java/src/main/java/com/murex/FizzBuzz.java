@@ -26,6 +26,8 @@ class FizzBuzz {
     public static String of(int number) {
         if (number%3 == 0)
             return "fizz\n";
+        if (number == 5)
+            return "buzz\n";
         return "" + number + "\n";
     }
 
