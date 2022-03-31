@@ -30,7 +30,7 @@ class FizzBuzz {
             return "fizz\n";
         if (number%5 == 0)
             return "buzz\n";
-        return output + "" + number + "\n";
+        return output + number + "\n";
     }
 
     public static String upTo(int i) {
