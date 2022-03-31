@@ -32,7 +32,7 @@ class FizzBuzz {
             return "fizz\n";
         }
         if (number%5 == 0) {
-            middle = "fizz";
+            middle = "buzz";
             return "buzz\n";
         }
         return output + number + "\n";
