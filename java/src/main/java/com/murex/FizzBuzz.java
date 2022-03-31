@@ -24,7 +24,7 @@ package com.murex;
 
 class FizzBuzz {
     public static String of(int number) {
-        if (number == 3)
+        if (number == 3 || number == 6)
             return "fizz\n";
         return "" + number + "\n";
     }
