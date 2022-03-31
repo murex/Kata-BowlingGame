@@ -28,6 +28,10 @@ class FizzBuzz {
     }
 
     public static String upTo(int i) {
-        return "1\n2\n";
+        String result = "";
+        for (int j = 1; j <= i; j++) {
+            result += j+"\n";
+        }
+        return result;
     }
 }
