@@ -48,11 +48,13 @@ public class FizzBuzz {
     }
 
     public static void main(String[] args) {
-        run(new SystemTerminal());
+        int number = Integer.parseInt(args[0]);
+
+        run(new SystemTerminal(), number);
     }
 
-    static void run(Terminal terminal) {
-        terminal.print(upTo(100));
+    static void run(Terminal terminal, int number) {
+        terminal.print(upTo(number));
     }
 
 }

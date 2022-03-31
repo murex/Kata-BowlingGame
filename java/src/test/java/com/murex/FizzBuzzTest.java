@@ -76,7 +76,7 @@ public class FizzBuzzTest {
     @Test
     public void end_to_end_fizzbuzz() {
         FakeTerminal fakeTerminal = new FakeTerminal();
-        FizzBuzz.run(fakeTerminal);
+        FizzBuzz.run(fakeTerminal, 100);
         assertTrue(fakeTerminal.getPrintedText().startsWith("1\n2\nfizz\n"));
         assertTrue(fakeTerminal.getPrintedText().endsWith("buzz\n"));
     }
