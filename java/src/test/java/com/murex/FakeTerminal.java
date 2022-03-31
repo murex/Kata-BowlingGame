@@ -1,6 +1,6 @@
 package com.murex;
 
-public class FakeTerminal implements Terminal {
+public class FakeTerminal extends Terminal {
     private String text = "";
 
     @Override

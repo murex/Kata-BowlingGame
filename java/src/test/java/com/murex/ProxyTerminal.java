@@ -2,7 +2,7 @@ package com.murex;
 
 import static org.mockito.Mockito.mock;
 
-public class ProxyTerminal implements Terminal {
+public class ProxyTerminal extends Terminal {
 
     public final Terminal mockTerminal = mock(Terminal.class);
     private final SystemTerminal systemTerminal = new SystemTerminal();
