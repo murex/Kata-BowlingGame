@@ -51,7 +51,7 @@ public class FizzBuzz {
         run(new SystemTerminal());
     }
 
-    static void run(SystemTerminal systemTerminal) {
+    static void run(Terminal systemTerminal) {
         systemTerminal.print(upTo(100));
     }
 
