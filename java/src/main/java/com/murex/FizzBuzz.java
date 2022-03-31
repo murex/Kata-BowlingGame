@@ -28,10 +28,10 @@ class FizzBuzz {
     }
 
     public static String upTo(int i) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (int j = 1; j <= i; j++) {
-            result += j+"\n";
+            result.append(j).append("\n");
         }
-        return result;
+        return result.toString();
     }
 }
