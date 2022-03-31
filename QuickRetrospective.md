@@ -17,12 +17,19 @@ _`What did we do?`_
 - We injected the fake terminal as a method parameter
 - We followed a bottom-up approach
 
+- We moved the dependency further inside the code
+- We made the calls more granular
+- We used Mockito for mocks, mockito is already kind of a spy library
+
 ## LEARN
 _`What did we learn?`_
 
 - String.startWith method
 - Java doesn't initialize the strings, we need to add = ""
 - It made us think of ApprovalTests
+
+- how to create mocks with Mockito
+- .var shortcut in IntelliJ
 
 ## PUZZLE
 _`What still puzzles us?`_
@@ -31,10 +38,17 @@ _`What still puzzles us?`_
 - Fake behavior wasn't obvious
 - Fake behavior can become complicated so we thought we needed to test it, one can add the same contract tests (integration) that run on both the fake and the real object to keep them aligned, these tests are run once in a while
 
+- Is mock testing better than the Fake? for this example not really
+  - Is it more flexible? since we did not have to parse the outputs with the mock
+  - Fakes are more refactoring friendly and reusable
+  - Fakes can become monsters
+  - How could we find a kata to highlight that?
+  - People have strong opinions pros and against mocks
+
 ## DECIDE
 _`How can we apply this in the future?`_
 
--
+- We should find some katas to experience in depth what test doubles feel
 -
 
 ![Retrospective](./images/Retrospective.jpg)<br>

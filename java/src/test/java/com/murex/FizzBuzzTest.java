@@ -98,6 +98,19 @@ public class FizzBuzzTest {
 
         verify(mockTerminal, times(2));
     }
+    @Test
+    public void full_fizzBuzz_should_print_results_manual_mock() {
+        // Then
+        Terminal terminal = new Terminal() {
+            @Override
+            public void print(String input) {
+                assertTrue(input.equals("1\n") || input.equals("\n"));
+            }
+        };
+
+        // When
+        FizzBuzz.upTo(2, terminal);
+    }
 
     @Test
     public void full_fizzBuzz_should_print_results_proxy() {
