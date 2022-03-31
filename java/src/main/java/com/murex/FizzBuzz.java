@@ -23,4 +23,7 @@ SOFTWARE.
 package com.murex;
 
 class FizzBuzz {
+    public static String of(int i) {
+        return "1\n";
+    }
 }
