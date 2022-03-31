@@ -22,7 +22,7 @@ SOFTWARE.
 
 package com.murex;
 
-class FizzBuzz {
+public class FizzBuzz {
     public static String of(int number) {
         String middle = "" + number;
 
