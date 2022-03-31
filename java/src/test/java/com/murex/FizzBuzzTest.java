@@ -36,4 +36,9 @@ public class FizzBuzzTest {
     public void fizzBuzz_of_2_is_2() {
         assertEquals("2\n", FizzBuzz.of(2));
     }
+
+    @Test
+    public void full_fizzBuzz_of_2() {
+        assertEquals("1\n2\n", FizzBuzz.upTo(2));
+    }
 }
