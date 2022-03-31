@@ -35,7 +35,7 @@ class FizzBuzz {
             middle = "buzz";
             return "buzz\n";
         }
-        return output + number + "\n";
+        return middle + "\n";
     }
 
     public static String upTo(int i) {
