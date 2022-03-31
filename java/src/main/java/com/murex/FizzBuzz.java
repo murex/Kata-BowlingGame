@@ -39,7 +39,7 @@ public class FizzBuzz {
         return middle + "\n";
     }
 
-    public static String upTo(int i) {
+    public static String upTo(int i, Terminal terminal) {
         StringBuilder result = new StringBuilder();
         for (int j = 1; j <= i; j++) {
             result.append(of(j));
@@ -49,12 +49,11 @@ public class FizzBuzz {
 
     public static void main(String[] args) {
         int number = Integer.parseInt(args[0]);
-
         run(new SystemTerminal(), number);
     }
 
     static void run(Terminal terminal, int number) {
-        terminal.print(upTo(number));
+        terminal.print(upTo(number, terminal));
     }
 
 }
