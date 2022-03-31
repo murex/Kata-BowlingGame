@@ -5,6 +5,6 @@ import org.junit.Test;
 public class FakeTerminal implements Terminal {
     @Override
     public void print(String input) {
-        
+
     }
 }
