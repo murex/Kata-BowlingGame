@@ -22,8 +22,5 @@ SOFTWARE.
 
 package com.murex;
 
-class BowlingGame {
-    static int score(int... rolls) {
-        return 0;
-    }
+class FizzBuzz {
 }
