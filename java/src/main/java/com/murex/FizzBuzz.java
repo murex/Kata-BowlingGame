@@ -48,7 +48,8 @@ public class FizzBuzz {
     }
 
     public static void main(String[] args) {
-        System.out.print(upTo(100));
+        SystemTerminal systemTerminal = new SystemTerminal();
+        systemTerminal.print(upTo(100));
     }
 
 }

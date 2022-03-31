@@ -71,4 +71,6 @@ public class FizzBuzzTest {
     public void full_fizzBuzz_of_2() {
         assertEquals("1\n2\n", FizzBuzz.upTo(2));
     }
+
+
 }
