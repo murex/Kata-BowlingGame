@@ -25,11 +25,16 @@ package com.murex;
 class FizzBuzz {
     public static String of(int number) {
         String output = "";
+        String middle = "";
 
-        if (number%3 == 0)
+        if (number%3 == 0) {
+            middle = "fizz";
             return "fizz\n";
-        if (number%5 == 0)
+        }
+        if (number%5 == 0) {
+            middle = "fizz";
             return "buzz\n";
+        }
         return output + number + "\n";
     }
 
