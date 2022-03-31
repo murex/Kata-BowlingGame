@@ -58,6 +58,11 @@ public class FizzBuzzTest {
     }
 
     @Test
+    public void fizzBuzz_of_30_is_fizzbuzz() {
+        assertEquals("fizzbuzz\n", FizzBuzz.of(30));
+    }
+
+    @Test
     public void fizzBuzz_of_6_is_fizz() {
         assertEquals("fizz\n", FizzBuzz.of(6));
     }

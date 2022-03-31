@@ -26,7 +26,7 @@ class FizzBuzz {
     public static String of(int number) {
         String middle = "" + number;
 
-        if (number == 15)
+        if (number % 15 == 0)
         {
             return "fizzbuzz\n";
         }
