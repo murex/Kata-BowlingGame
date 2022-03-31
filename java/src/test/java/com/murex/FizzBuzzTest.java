@@ -91,6 +91,7 @@ public class FizzBuzzTest {
         FizzBuzz.upTo(2, mockTerminal);
 
         verify(mockTerminal).print("2\n");
+        verify(mockTerminal).print("1\n");
         verify(mockTerminal, times(2));
     }
 
