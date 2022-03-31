@@ -99,4 +99,16 @@ public class FizzBuzzTest {
         verify(mockTerminal, times(2));
     }
 
+    @Test
+    public void full_fizzBuzz_should_print_results_proxy() {
+        ProxyTerminal proxyTerminal = new ProxyTerminal();
+
+        FizzBuzz.upTo(2, proxyTerminal);
+
+        verify(proxyTerminal.mockTerminal).print("1\n");
+        verify(proxyTerminal.mockTerminal).print("2\n");
+
+        //verify(proxyTerminal.mockTerminal, times(2));
+    }
+
 }
