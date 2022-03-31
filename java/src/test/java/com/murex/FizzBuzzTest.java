@@ -23,6 +23,7 @@ SOFTWARE.
 package com.murex;
 
 import org.junit.Test;
+import org.mockito.InOrder;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -90,7 +91,9 @@ public class FizzBuzzTest {
 
         FizzBuzz.upTo(2, mockTerminal);
 
-        verify(mockTerminal).print("2\n");
+        InOrder inOrder = inOrder(mockTerminal);
+
+        inOrder.verify(mockTerminal).print("1\n");
         verify(mockTerminal).print("1\n");
         verify(mockTerminal, times(2));
     }
