@@ -74,7 +74,6 @@ public class FizzBuzzTest {
         assertEquals("1\n2\n", FizzBuzz.upTo(2));
     }
 
-    @Ignore
     @Test
     public void end_to_end_fizzbuzz() {
         FakeTerminal fakeTerminal = new FakeTerminal();
