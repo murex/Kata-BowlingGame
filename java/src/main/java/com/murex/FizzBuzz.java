@@ -30,7 +30,7 @@ class FizzBuzz {
     public static String upTo(int i) {
         StringBuilder result = new StringBuilder();
         for (int j = 1; j <= i; j++) {
-            result.append(j).append("\n");
+            result.append(of(j));
         }
         return result.toString();
     }
