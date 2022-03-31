@@ -22,9 +22,11 @@ SOFTWARE.
 
 package com.murex;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class FizzBuzzTest {
     @Test
@@ -72,11 +74,12 @@ public class FizzBuzzTest {
         assertEquals("1\n2\n", FizzBuzz.upTo(2));
     }
 
+    @Ignore
     @Test
     public void end_to_end_fizzbuzz() {
         FakeTerminal fakeTerminal = new FakeTerminal();
         FizzBuzz.run();
-
+        assertTrue(fakeTerminal.getPrintedOutput().startsWith("1\n2\nfizz\n"));
     }
 
 }
