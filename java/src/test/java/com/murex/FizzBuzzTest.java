@@ -79,6 +79,7 @@ public class FizzBuzzTest {
         FakeTerminal fakeTerminal = new FakeTerminal();
         FizzBuzz.run(fakeTerminal);
         assertTrue(fakeTerminal.getPrintedOutput().startsWith("1\n2\nfizz\n"));
+        assertTrue(fakeTerminal.getPrintedOutput().endsWith("buzz\n"));
     }
 
 }
