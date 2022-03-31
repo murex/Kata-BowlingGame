@@ -39,14 +39,11 @@ public class FizzBuzz {
         return middle + "\n";
     }
 
-    public static String upTo(int i, Terminal terminal) {
-        StringBuilder result = new StringBuilder();
+    public static void upTo(int i, Terminal terminal) {
         for (int j = 1; j <= i; j++) {
             String fizzBuzz = of(j);
-            result.append(fizzBuzz);
             terminal.print(fizzBuzz);
         }
-        return result.toString();
     }
 
     public static void main(String[] args) {
