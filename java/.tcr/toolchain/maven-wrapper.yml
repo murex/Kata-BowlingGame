@@ -16,3 +16,5 @@ test:
     arch: ["386", amd64, arm64]
     command: .\mvnw.cmd
     arguments: [test]
+test-result-dir: target/surefire-reports
+

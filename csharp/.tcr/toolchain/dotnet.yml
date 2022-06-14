@@ -7,4 +7,5 @@ test:
   - os: [darwin, linux, windows]
     arch: ["386", amd64, arm64]
     command: dotnet
-    arguments: [test]
+    arguments: [test, "--no-build", "--logger=junit"]
+test-result-dir: tests
