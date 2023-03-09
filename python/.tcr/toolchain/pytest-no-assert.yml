@@ -1,0 +1,13 @@
+# bypasses all assert calls, it won't revert on logical errors (ex: division by zero or out of bounds)
+build:
+  - os: [ darwin, linux, windows ]
+    arch: [ "386", amd64, arm64 ]
+    command: python
+    arguments: [ -O, -m, pytest ]
+test:
+  - os: [ darwin, linux, windows ]
+    arch: [ "386", amd64, arm64 ]
+    command: pytest
+    arguments: [ ]
+test-result-dir: pytest
+

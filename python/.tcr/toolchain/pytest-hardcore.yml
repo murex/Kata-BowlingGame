@@ -1,0 +1,13 @@
+# No check on build, any error gets reverted
+build:
+  - os: [ darwin, linux, windows ]
+    arch: [ "386", amd64, arm64 ]
+    command: true
+    arguments: [ ]
+test:
+  - os: [ darwin, linux, windows ]
+    arch: [ "386", amd64, arm64 ]
+    command: pytest
+    arguments: [ ]
+test-result-dir: pytest
+

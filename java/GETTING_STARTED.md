@@ -269,10 +269,3 @@ Here are the main shortcuts available once TCR utility is running:
 
 Refer to [TCR - Test && Commit || Revert](../tcr/TCR.md) page
 for additional details and explanations about TCR utility.
-
-
-
-
-
-
-

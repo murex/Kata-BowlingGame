@@ -1,0 +1,9 @@
+toolchains:
+  default: pytest-collect-only
+  compatible-with: [ pytest-hardcore, pytest-collect-only, pytest-no-assert ]
+source-files:
+  directories: [ src ]
+  patterns: [ '(?i)^.*\.py$' ]
+test-files:
+  directories: [ tests ]
+  patterns: [ '(?i)^.*\.py$' ]

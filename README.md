@@ -21,6 +21,7 @@ Available [here](http://codingdojo.org/kata/Bowling/)
 - [C++](cpp/GETTING_STARTED.md)
 - [Go](go/GETTING_STARTED.md)
 - [C#](csharp/GETTING_STARTED.md)
+- [Python](python/GETTING_STARTED.md)
 
 ## Session Quick Retrospective
 
@@ -63,6 +64,7 @@ You can fill it from [here](QuickRetrospective.md)
 - [C++](cpp)
 - [Go](go)
 - [C#](csharp)
+- [Python](python)
 
 ## License
 
