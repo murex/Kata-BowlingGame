@@ -20,18 +20,28 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-venv_dir="./.venv"
+venv_dir=".venv"
+base_dir="$(cd "$(dirname -- "$0")" && pwd)"
+venv_path="${base_dir}/${venv_dir}"
 
-if ! [ -d "${venv_dir}" ]; then
-  echo "Creating local python virtual environment..."
-  python3 -m venv "${venv_dir}"
+if ! [ -d "${venv_path}" ]; then
+  echo "Creating python virtual environment..."
+  python3 -m venv "${venv_path}"
 fi
 
-echo "Starting local python virtual environment..."
-source "${venv_dir}/Scripts/activate"
+echo "Starting python virtual environment..."
+# instead of relying on venv's activate with sometimes screws up the path on windows,
+# we append venv/Scripts to the path by ourselves
+# source "${venv_dir}/Scripts/activate"
+VIRTUAL_ENV="${venv_path}"
+export VIRTUAL_ENV
+PATH="$VIRTUAL_ENV/Scripts:$PATH"
+export PATH
+
 python -m pip install --upgrade pip
 pip3 install --editable .
 pip3 install -r ./requirements.txt
 
-echo "Local python virtual environment is ready (type 'exit' to leave)"
-exec bash --norc
+# Starting a new shell in order to keep the changes done on the path after the script ends
+echo "Python virtual environment is ready (type 'exit' to leave)"
+exec "${SHELL}" --norc
