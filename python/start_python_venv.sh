@@ -26,7 +26,7 @@ venv_path="${base_dir}/${venv_dir}"
 
 if ! [ -d "${venv_path}" ]; then
   echo "Creating python virtual environment..."
-  python3 -m venv "${venv_path}"
+  python -m venv "${venv_path}"
 fi
 
 echo "Starting python virtual environment..."
@@ -39,8 +39,8 @@ PATH="$VIRTUAL_ENV/Scripts:$PATH"
 export PATH
 
 python -m pip install --upgrade pip
-pip3 install --editable .
-pip3 install -r ./requirements.txt
+pip install --editable .
+pip install -r ./requirements.txt
 
 # Starting a new shell in order to keep the changes done on the path after the script ends
 echo "Python virtual environment is ready (type 'exit' to leave)"
