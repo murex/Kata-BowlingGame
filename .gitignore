@@ -21,6 +21,7 @@
 
 # Python folders containing generated stuff
 **/.venv/
+**/venv/
 **/.pytest_cache/
 **/pytest/
 **/*.egg-info/
