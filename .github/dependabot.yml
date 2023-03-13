@@ -1,5 +1,5 @@
 # Please see the documentation for all configuration options:
-# https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+# https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 
 version: 2
 updates:
@@ -30,5 +30,11 @@ updates:
   # Maintain dependencies for Nuget
   - package-ecosystem: nuget
     directory: "/csharp"
+    schedule:
+      interval: weekly
+
+  # Maintain dependencies for Python
+  - package-ecosystem: pip
+    directory: "/python"
     schedule:
       interval: weekly
