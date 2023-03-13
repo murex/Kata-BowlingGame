@@ -124,7 +124,7 @@ print_info "Starting python virtual environment..."
 # source "${venv_dir}/Scripts/activate"
 VIRTUAL_ENV="${venv_path}"
 export VIRTUAL_ENV
-PATH="$VIRTUAL_ENV/Scripts:$PATH"
+PATH="$VIRTUAL_ENV/Scripts:$VIRTUAL_ENV/bin:$PATH"
 export PATH
 
 print_info "Upgrading pip..."
@@ -138,4 +138,4 @@ pip install --use-pep517 -r ./requirements.txt
 print_horizontal_line
 print_info "Python virtual environment is ready (type 'exit' to leave)"
 print_horizontal_line
-exec "${SHELL}" --norc
+exec bash --norc
