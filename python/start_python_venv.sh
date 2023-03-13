@@ -29,13 +29,6 @@ print_info() {
   printf "%b" "${message}\n" | while IFS= read -r line; do printf "%b" "\e[1;34m>>> ${line} \e[0m\n"; done
 }
 
-print_horizontal_line() {
-  term_columns=$(tput cols)
-  repeated=$((term_columns - 5))
-  line=$(head -c "${repeated}" </dev/zero | tr '\0' '-')
-  print_info "$line"
-}
-
 print_warning() {
   message="$1"
   printf "%b" "${message}\n" | while IFS= read -r line; do printf "%b" "\e[1;33m>>> ${line} \e[0m\n"; done
@@ -44,6 +37,13 @@ print_warning() {
 print_error() {
   message="$1"
   printf "%b" "${message}\n" | while IFS= read -r line; do printf "%b" "\e[1;31m>>> ${line} \e[0m\n"; done
+}
+
+print_horizontal_line() {
+  term_columns=$(tput cols)
+  repeated=$((term_columns - 5))
+  line=$(head -c "${repeated}" </dev/zero | tr '\0' '-')
+  print_info "$line"
 }
 
 # ------------------------------------------------------------------------------
@@ -107,7 +107,7 @@ locate_python() {
 # Entry point
 # ------------------------------------------------------------------------------
 
-venv_dir=".venv"
+venv_dir="venv"
 base_dir="$(cd "$(dirname -- "$0")" && pwd)"
 venv_path="${base_dir}/${venv_dir}"
 
@@ -119,7 +119,7 @@ if ! [ -d "${venv_path}" ]; then
 fi
 
 print_info "Starting python virtual environment..."
-# instead of relying on venv's activate with sometimes screws up the path on windows,
+# instead of relying on venv's activate which sometimes screws up the path on windows,
 # we append venv/Scripts to the path by ourselves
 # source "${venv_dir}/Scripts/activate"
 VIRTUAL_ENV="${venv_path}"
