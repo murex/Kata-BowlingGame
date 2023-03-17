@@ -20,7 +20,6 @@
 **/csharp/**/TestResults/
 
 # Python folders containing generated stuff
-**/.venv/
 **/venv/
 **/dist/
 **/.pytest_cache/

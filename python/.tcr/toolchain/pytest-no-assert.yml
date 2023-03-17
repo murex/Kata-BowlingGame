@@ -1,4 +1,4 @@
-# bypasses all assert calls, it won't revert on logical errors (ex: division by zero or out of bounds)
+# bypasses all assert calls, Does not revert logical errors (ex: division by zero or out of bounds)
 build:
   - os: [ darwin, linux, windows ]
     arch: [ "386", amd64, arm64 ]
