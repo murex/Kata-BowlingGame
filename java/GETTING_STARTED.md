@@ -5,10 +5,10 @@
 - macOS, Linux or Windows
 - [git](https://git-scm.com/) client
 - [curl](https://curl.se/download.html) command line utility
-- [Java JDK-11](https://www.oracle.com/java/technologies/javase-downloads.html#JDK11)
+- [Java JDK-17](https://www.oracle.com/java/technologies/downloads/#java17)
   <details><summary>Details</summary>
 
-  The source code of this project is compatible with Java-11 and above.
+  The source code of this project is compatible with Java 17 and above.
   Remember to update the java version in the kata's [pom.xml](pom.xml)
   and/or [build.gradle](build.gradle) if you're planning to use a different version.
 
@@ -17,10 +17,13 @@
 ## Getting ready
 
 ### 1 - Clone the kata repository
+
 ```shell
 git clone https://github.com/murex/Kata-BowlingGame.git
 ```
+
 ### 2 - Go to the kata's `java` directory
+
 ```shell
 cd Kata-BowlingGame/java
 ```
@@ -42,34 +45,40 @@ You may also run it using [TCR](../tcr/TCR.md) if you want to add a bit of spice
 - [From Eclipse with TCR](#running-the-kata-from-eclipse-with-tcr)
 
 <a name="running-the-kata-from-a-terminal-with-gradle"/></a>
+
 ### Running the kata from a terminal with Gradle
 
 > ***Reminder***: the command below should be run from [Kata-BowlingGame/java]() directory
 
 The kata comes with Gradle wrapper pre-installed. Just type the following to run it.
+
 ```shell
 ./gradlew clean test
 ```
 
 <a name="running-the-kata-from-a-terminal-with-maven"/></a>
+
 ### Running the kata from a terminal with Maven
 
 > ***Reminder***: the command below should be run from [Kata-BowlingGame/java]() directory
 
 The kata comes with Maven wrapper pre-installed. Just type the following to run it.
+
 ```shell
 ./mvnw clean test
 ```
 
 <a name="running-the-kata-from-a-terminal-with-tcr"/></a>
+
 ### Running the kata from a terminal with TCR
 
 > ***Note to Windows users***
-> 
+>
 > Use a **git bash** terminal for running the command below.
 > _Windows CMD and PowerShell are not supported_
 
 Type the following to start TCR:
+
 ```shell
 ./tcrw
 ```
@@ -77,6 +86,7 @@ Type the following to start TCR:
 Refer to [Using TCR](#using-tcr) section for additional details about TCR and available options.
 
 <a name="running-the-kata-from-intellij-idea"/></a>
+
 ### Running the kata from IntelliJ IDEA
 
 Open Intellij IDEA and select:
@@ -92,6 +102,7 @@ class.
 The "**Run**" tool window should display all the executed tests.
 
 <a name="running-the-kata-from-intellij-idea-with-tcr"/></a>
+
 ### Running the kata from IntelliJ IDEA with TCR
 
 TCR is provided as a command line utility running in a terminal.
@@ -148,6 +159,7 @@ From the built-in terminal:
 Refer to [Using TCR](#using-tcr) section for additional details about TCR and available options.
 
 <a name="running-the-kata-from-visual-studio-code"></a>
+
 ### Running the kata from Visual Studio Code
 
 Open Visual Studio Code and select:
@@ -163,6 +175,7 @@ class.
 Open the `Testing` tab to view all the executed tests.
 
 <a name="running-the-kata-from-visual-studio-code-with-tcr"></a>
+
 ### Running the kata from Visual Studio Code with TCR
 
 #### 1. Open the kata
@@ -200,11 +213,12 @@ From the built-in terminal:
 Refer to [Using TCR](#using-tcr) section for additional details about TCR and available options.
 
 <a name="running-the-kata-from-eclipse"></a>
-### Running the kata from Eclipse 
+
+### Running the kata from Eclipse
 
 Open the kata in Eclipse:
 
-`File` > `Open Projects from File System...` > `Kata-BowlingGame` 
+`File` > `Open Projects from File System...` > `Kata-BowlingGame`
 
 After loading the project into Eclipse, you can build the project
 using either the Maven or Gradle built-in build tools.
@@ -212,27 +226,30 @@ using either the Maven or Gradle built-in build tools.
 Run all the tests in the [BowlingGameTest](./src/test/java/com/murex/BowlingGameTest.java)
 class.
 
-Navigate to the test class then: 
+Navigate to the test class then:
 
 `Right click` > `Run As` > `JUnit Test` or `Alt+Shift+X,T`
 
-A `JUnit` tab should be opened that displays all the executed tests. 
+A `JUnit` tab should be opened that displays all the executed tests.
 
 <a name="running-the-kata-from-eclipse-with-tcr"></a>
+
 ### Running the kata from Eclipse with TCR
 
 #### 1. Open the kata
+
 Open the kata in Eclipse:
 
 `File` > `Open Projects from File System...` > `Kata-BowlingGame`
 
 #### 2. Open a Git Bash terminal
 
-Select `Window` > `Show View` > `Terminal` 
+Select `Window` > `Show View` > `Terminal`
 
 A new `Terminal` window should be opened.
 
 To start a `git bash` terminal:
+
 1. Click on the `Open Terminal` button or use the shortcut `(Ctrl+Alt+Shift+T)`.
 2. From the opened pop-up window select `Git Bash` then `OK`
 3. From the terminal navigate to [Kata-BowlingGame/java]() directory
@@ -250,6 +267,7 @@ From the built-in terminal:
 Refer to [Using TCR](#using-tcr) section for additional details about TCR and available options.
 
 <a name="using-tcr"/></a>
+
 ## Using TCR
 
 ### Cheat Sheet
