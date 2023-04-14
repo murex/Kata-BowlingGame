@@ -15,14 +15,22 @@ repositories {
 }
 
 dependencies {
-    // JUnit 4
-    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+    // JUnit 5
+    testImplementation(platform('org.junit:junit-bom:5.9.2'))
+    testImplementation('org.junit.jupiter:junit-jupiter')
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
 
 group = 'com.murex.xpcoaching'
 version = '1.0-SNAPSHOT'
 
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 
