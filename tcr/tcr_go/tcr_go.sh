@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Copyright (c) 2022 Murex
+# Copyright (c) 2023 Murex
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -93,7 +93,7 @@ download_tcr_go() {
 
   # Move extracted files to doc directory
   rm -rf "${TCR_DOC_DIR}"
-  src_extracted_path="${TCR_DOWNLOAD_DIR}/tcr-${version}"
+  src_extracted_path="${TCR_DOWNLOAD_DIR}/TCR-${version}"
   mv -f "${src_extracted_path}/doc" "${TCR_DOC_DIR}"
 
   # Clean up after download
