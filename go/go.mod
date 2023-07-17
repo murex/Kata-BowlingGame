@@ -1,6 +1,6 @@
 module github.com/murex/kata/bowling_game
 
-go 1.18
+go 1.20
 
 require github.com/stretchr/testify v1.8.4
 
