@@ -1,0 +1,25 @@
+name: Npm
+
+on:
+  push:
+    branches:
+      - '**'
+    paths:
+      - 'typescript/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+      - name: Yarn install
+        working-directory: typescript
+        run: yarn install
+      - name: Test
+        working-directory: typescript
+        run: yarn jest

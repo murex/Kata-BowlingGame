@@ -19,6 +19,10 @@
 **/csharp/**/obj/
 **/csharp/**/TestResults/
 
+# Typescript folders containing generated stuff
+**/node_modules/
+**/test_results/
+
 # Python folders containing generated stuff
 **/venv/
 **/dist/
