@@ -1,9 +1,10 @@
-# TCR - Test && Commit || Revert
+# TCR - Test && (Commit || Revert)
 
 ## What is TCR
 
-TCR is a programming workflow, which stands for **Test && Commit || Revert**.
-Kent Beck and Oddmund Strømme came up with this concept in [this post](https://medium.com/@kentbeck_7670/test-commit-revert-870bbd756864).
+TCR is a programming workflow, which stands for **Test && (Commit || Revert)**.
+Kent Beck and Oddmund Strømme came up with this concept
+in [this post](https://medium.com/@kentbeck_7670/test-commit-revert-870bbd756864).
 
 Since then several people experimented with this idea.
 
@@ -16,37 +17,24 @@ TCR enforces developing in baby steps, with a strong focus on always keeping the
 We came up with a small script implementing this process, and decided to provide it with each
 of our katas so that people can use it if they like.
 
-## TCR Flavors
-
-We currently provide TCR in 2 flavors:
-
-- [TCR Shell](tcr_shell/tcr_shell.md)
-- [TCR Go](tcr_go/tcr_go.md)
-
-These 2 flavors are functionally equivalent.
-
-TCR-Shell was written first.
-This was for us a way to quickly have a usable solution for TCR.
-However, shell scripts are not the best in class when it comes to
-maintainability and changeability.
-
-For these reasons we decided to develop a new implementation of TCR,
-written in [Go](https://golang.org/) this time.
-
-We have now reached a stage where we believe the Go flavor to robust enough,
-while providing the same level of features as the Shell flavor<sup id="a1">[1](#f1)</sup>.
-
-Thus, the Go flavor of TCR is now the one used by default in our katas.
-
-The Shell flavor is still available, and you can still use it if you feel like it.
-
-The Shell flavor is now frozen, and new features will arrive primarily in the Go implementation.
-
 ## Usage
 
 You can use TCR either when practicing alone, in a pair or in a mob.
 
 Just make sure every participant's environment is ready.
+
+### Prerequisites
+
+- Supported Operating Systems: macOS, Linux, Windows
+- Have a [git client](https://git-scm.com/downloads) installed
+- Have [curl](https://curl.se/download.html) command line utility installed
+- Have a fully operational development environment for the language you're working with
+- **Linux only** - have [kdialog](https://apps.kde.org/kdialog/) installed
+  <details><summary>Details</summary>
+  TCR leverages on the OS desktop notification framework to send timer reminders.
+  On Linux, it relies on kdialog for that purpose. Make sure to have it installed
+  in order to be able to see TCR's timer notifications.
+  </details>
 
 ### Before starting
 
@@ -59,10 +47,10 @@ with the appropriate value.
 #### First participant (the one creating the branch)
 
 ```shell
-> git clone <kata-repository-url>
-> cd <kata-root-directory> 
-> git checkout -b <my-branch>
-> git push origin <my-branch>
+git clone <kata-repository-url>
+cd <kata-root-directory> 
+git checkout -b <my-branch>
+git push origin <my-branch>
 ```
 
 You can name `<my-branch>` as you wish, as long as all contributors in a pair or mob work on the same branch!
@@ -74,25 +62,116 @@ or even on your features/commit/dev branches!
 #### Other participants
 
 ```shell
-> git clone <kata-repository-url>
-> cd <kata-root-directory> 
-> git checkout <my-branch>
-> git pull origin <my-branch>
+git clone <kata-repository-url>
+cd <kata-root-directory> 
+git checkout <my-branch>
+git pull origin <my-branch>
 ```
 
-### Launching the script
+### Launching TCR
 
-```shell
-> ./tcrw
+- Go to the directory for the language you're willing to work with.
+  For example in Java:
+  ```shell
+  cd java
+  ```
+
+- Run TCR wrapper:
+  ```shell
+  ./tcrw
+  ```
+
+### Main menu
+
+After starting the script, you will see a menu that looks like the following:
+
+```text
+[TCR] Loading configuration: (...)
+[TCR] Loading toolchains configuration
+[TCR] Loading languages configuration
+[TCR] Starting TCR version 0.28.0...
+[TCR] Base directory is (...)
+[TCR] Found 1 source and 1 test file(s) for java language
+[TCR] Work directory is (...)
+[TCR] Git auto-push is turned on
+[TCR] Test-breaking changes will not be committed
+[TCR] Timer duration is 5m0s
+[TCR] ─────────────────────────────────────────────────────────────────────────
+[TCR] Running in mob mode
+[TCR] ─────────────────────────────────────────────────────────────────────────
+[TCR] Base Directory: (...)
+[TCR] Work Directory: (...)
+[TCR] Language=java, Toolchain=gradle-wrapper
+[TCR] Running on git branch "(...)" with auto-push enabled
+[TCR] ─────────────────────────────────────────────────────────────────────────
+[TCR] What shall we do?
+[TCR]   D ─▶ Driver role
+[TCR]   N ─▶ Navigator role
+[TCR]   P ─▶ Turn on/off git auto-push
+[TCR]   L ─▶ Pull from remote
+[TCR]   S ─▶ Push to remote
+[TCR]   Q ─▶ Quit
+[TCR]   ? ─▶ List available options
 ```
 
-Refer to [TCR Go](tcr_go/tcr_go.md) usage-specifics is you're using the default TCR implementation.
+If you're not familiar with the Driver and Navigator roles,
+you can refer to [here](https://mobprogramming.org/mob-programming-basics/).
 
-Refer to [TCR Shell](tcr_shell/tcr_shell.md) if you're willing to use it instead.
+In TCR the driver is primarily the participant actively interacting with the keyboard,
+while the navigators are all other participants.
 
-## Notes
+### Driver role
 
-<b id="f1">1</b> There is currently one exception related to the possibility to add custom programming
-languages/toolchains (in addition to Java/Gradle, Java/Maven and C++/CMake provided with both flavors),
-which was recently added to TCR-Shell flavor but is not yet available in TCR-Go flavor.[↩](#a1)
+- To take Driver role, hit `d` from the main menu.
+- You remain with Driver role until you hit `q` to go back to the main menu.
 
+When running with Driver role, TCR workflow enters into action:
+every time you save a file (either a source file or a test file), TCR triggers
+a build, then runs all tests.
+
+- If the build fails, TCR does not commit or revert anything. It goes back to an
+  idle state and waits for you to fix compilation errors.
+- If the build passes, TCR triggers tests execution.
+- If all tests pass, TCR commits all changes.
+- If one or more tests fail, TCR reverts all changes on source files, but leaves
+  test files unchanged.
+
+> ***Important***
+> - __Make sure to turn off your IDE's auto-save mode while using TCR!!!__
+>
+>   TCR constantly watches the file system, triggering builds,
+>   tests, commits and reverts as soon as it detects changes.
+>   For this reason, it does not get along well with your IDE's auto-save mode.
+> - __There should not be more than one driver at a time!__
+>
+>   You will likely face occasional merge conflicts otherwise.
+
+### Navigator role
+
+- To take Navigator role, hit `n` from the main menu.
+- You remain with Navigator role until you hit `q` to go back to the main menu.
+
+When running with Navigator role, TCR periodically pulls changes from the repository.
+It does not push any change that you may make locally.
+
+### Exiting TCR
+
+- If you're running driver or navigator role, go back to the main menu by hitting `q`.
+- Type `q` a second time to exit TCR.
+
+## Contribution Workflow
+
+TCR utility provides the basic mechanisms to run TCR and synchronize files between contributors,
+however it does not replace collaboration discipline.
+
+So make sure that at the end of each driver rotation:
+
+- The former driver switches back to Navigator role: `q` + `n`.
+- The new driver switches to Driver role: `q` + `d`.
+
+Other contributors have nothing to do as long as they remain navigators.
+
+## Additional Information
+
+Refer to [TCR repository on GitHub](https://github.com/murex/TCR) for additional information
+about available command line options, supported languages and toolchains, and more.
