@@ -33,7 +33,7 @@ Darwin)
     cmake_generator_options="-G \"Xcode\""
     ;;
 Linux)
-    os="Linux"
+    os="linux"
     arch="x86_64"
     archive_extension="tar.gz"
     cmake_bin_dir="bin"
@@ -59,7 +59,7 @@ esac
 base_dir=$(dirname -- "$0")
 cd "${base_dir}"
 
-cmake_version="3.26.2"
+cmake_version="3.27.3"
 cmake_expected_dir="cmake-${cmake_version}-${os}-${arch}"
 cmake_expected_archive_file="${cmake_expected_dir}.${archive_extension}"
 cmake_archive_url="http://github.com/Kitware/CMake/releases/download/v${cmake_version}/${cmake_expected_archive_file}"
