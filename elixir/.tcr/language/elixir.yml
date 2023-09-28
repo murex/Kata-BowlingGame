@@ -1,0 +1,9 @@
+toolchains:
+  default: mix
+  compatible-with: [mix]
+source-files:
+  directories: [lib]
+  patterns: ['(?i)^.*\.ex$']
+test-files:
+  directories: [test]
+  patterns: ['(?i)^.*\.exs$']

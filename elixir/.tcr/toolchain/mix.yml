@@ -1,0 +1,12 @@
+build:
+  - os: [darwin, linux, windows]
+    arch: ["386", amd64, arm64]
+    command: mix
+    arguments: [compile]
+test:
+  - os: [darwin, linux, windows]
+    arch: ["386", amd64, arm64]
+    command: mix
+    arguments: [test]
+test-result-dir: test_results
+
