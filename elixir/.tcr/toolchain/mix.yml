@@ -2,11 +2,10 @@ build:
   - os: [darwin, linux, windows]
     arch: ["386", amd64, arm64]
     command: mix
-    arguments: [compile]
+    arguments: [do, deps.get, +, test, --color, --exclude, test]
 test:
   - os: [darwin, linux, windows]
     arch: ["386", amd64, arm64]
     command: mix
-    arguments: [test]
-test-result-dir: test_results
-
+    arguments: [test, --color]
+test-result-dir: _build/test/lib
