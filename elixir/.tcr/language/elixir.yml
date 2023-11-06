@@ -1,9 +1,9 @@
 toolchains:
   default: mix
-  compatible-with: [mix]
+  compatible-with: [ mix ]
 source-files:
-  directories: [lib]
-  patterns: ['(?i)^.*\.ex$']
+  directories: [ lib ]
+  patterns: [ '(?i)^.*\.ex(s)?$' ]
 test-files:
-  directories: [test]
-  patterns: ['(?i)^.*\.exs$']
+  directories: [ test ]
+  patterns: [ '(?i)^.*\.ex(s)?$' ]
