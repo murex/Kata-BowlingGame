@@ -8,12 +8,12 @@
 - [Go SDK](https://go.dev/dl/)
   <details><summary>Go Version</summary>
 
-  The kata is configured to run with Go version 1.18 by default.
+  The kata is configured to run with Go version 1.20 by default.
 
   To use a different version, simply modify the line below in [go.mod](go.mod).
 
     ```text
-    go 1.18
+    go 1.20
     ```
   </details>
 
@@ -211,7 +211,7 @@ The "**Run**" tool window should display all the executed tests.
 > for instructions related to installation of IntelliJ's Go plugin.
 
 TCR is provided as a command line utility running in a terminal.
-You can run it from GoLand directly, through leveraging on its built-in terminal.
+You can run it from IntelliJ directly, through leveraging on its built-in terminal.
 
 #### 1. Open the kata
 
