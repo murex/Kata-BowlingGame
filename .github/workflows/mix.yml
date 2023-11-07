@@ -1,0 +1,28 @@
+name: Mix
+
+on:
+  push:
+    branches:
+      - '**'
+    paths:
+      - 'elixir/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Elixir
+        uses: actions/setup-elixir@v1
+        with:
+          otp-version: '26.1'
+          elixir-version: '1.15.7'
+      - name: Dependencies
+        working-directory: elixir
+        run: mix deps.get
+      - name: Build
+        working-directory: elixir
+        run: mix compile
+      - name: Test
+        working-directory: elixir
+        run: mix test
