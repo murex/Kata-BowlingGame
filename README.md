@@ -24,6 +24,7 @@ Available [here](http://codingdojo.org/kata/Bowling/)
 - [Go](go/GETTING_STARTED.md)
 - [Python](python/GETTING_STARTED.md)
 - [Typescript](typescript/GETTING_STARTED.md)
+- [Elixir](elixir/GETTING_STARTED.md)
 - [C#](csharp/GETTING_STARTED.md)
 
 ## Session Quick Retrospective
@@ -68,6 +69,7 @@ You can fill it from [here](QuickRetrospective.md)
 - [Go](go)
 - [Python](python)
 - [Typescript](typescript)
+- [Elixir](elixir)
 - [C#](csharp)
 
 ## License
