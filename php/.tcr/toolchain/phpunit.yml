@@ -1,0 +1,19 @@
+build:
+  - os: [ darwin, linux ]
+    arch: [ "386", amd64, arm64 ]
+    command: ./php-check.sh
+    arguments: [ ]
+  - os: [ windows ]
+    arch: [ "386", amd64, arm64 ]
+    command: bash
+    arguments: [ -c, ./php-check.sh ]
+test:
+  - os: [ darwin, linux ]
+    arch: [ "386", amd64, arm64 ]
+    command: ./vendor/bin/phpunit
+    arguments: [ tests, --log-junit, .phpunit.cache/test-results.xml ]
+  - os: [ windows ]
+    arch: [ "386", amd64, arm64 ]
+    command: .\vendor\bin\phpunit.bat
+    arguments: [ tests, --log-junit, .phpunit.cache/test-results.xml ]
+test-result-dir: .phpunit.cache
