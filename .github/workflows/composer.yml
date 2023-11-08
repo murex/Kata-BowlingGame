@@ -1,0 +1,26 @@
+name: Composer
+
+on:
+  push:
+    branches:
+      - '**'
+    paths:
+      - 'php/**'
+
+defaults:
+  run:
+    working-directory: php
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Composer
+        uses: php-actions/composer@v6
+      - name: PHPUnit Tests
+        uses: php-actions/phpunit@v3
+        with:
+          version: '9.6'
+          php-version: '8.2'
+          configuration: phpunit.xml.dist
