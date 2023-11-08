@@ -20,13 +20,14 @@ Available [here](http://codingdojo.org/kata/Bowling/)
 
 ## Getting Started
 
-- [Java](java/GETTING_STARTED.md)
 - [C++](cpp/GETTING_STARTED.md)
+- [C#](csharp/GETTING_STARTED.md)
+- [Elixir](elixir/GETTING_STARTED.md)
 - [Go](go/GETTING_STARTED.md)
+- [Java](java/GETTING_STARTED.md)
+- [PHP](php/GETTING_STARTED.md)
 - [Python](python/GETTING_STARTED.md)
 - [Typescript](typescript/GETTING_STARTED.md)
-- [Elixir](elixir/GETTING_STARTED.md)
-- [C#](csharp/GETTING_STARTED.md)
 
 ## Session Quick Retrospective
 
@@ -65,13 +66,14 @@ You can fill it from [here](QuickRetrospective.md)
 
 ### Source Files
 
-- [Java](java)
 - [C++](cpp)
+- [C#](csharp)
+- [Elixir](elixir)
 - [Go](go)
+- [Java](java)
+- [PHP](php)
 - [Python](python)
 - [Typescript](typescript)
-- [Elixir](elixir)
-- [C#](csharp)
 
 ## License
 
