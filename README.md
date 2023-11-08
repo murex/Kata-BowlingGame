@@ -5,6 +5,7 @@
 [![Dotnet](https://github.com/murex/Kata-BowlingGame/actions/workflows/dotnet.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/dotnet.yml)
 [![Pytest](https://github.com/murex/Kata-BowlingGame/actions/workflows/pytest.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/pytest.yml)
 [![Npm](https://github.com/murex/Kata-BowlingGame/actions/workflows/npm.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/npm.yml)
+[![Mix](https://github.com/murex/Kata-BowlingGame/actions/workflows/mix.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/mix.yml)
 [![Check Markdown links](https://github.com/murex/Kata-BowlingGame/actions/workflows/markdown-link-check.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/markdown-link-check.yml)
 [![Add contributors](https://github.com/murex/Kata-BowlingGame/actions/workflows/contributors.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/contributors.yml)
 
