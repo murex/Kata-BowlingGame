@@ -7,10 +7,6 @@ on:
     paths:
       - 'php/**'
 
-defaults:
-  run:
-    working-directory: php
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,9 +14,15 @@ jobs:
       - uses: actions/checkout@v4
       - name: Set up Composer
         uses: php-actions/composer@v6
-      - name: PHPUnit Tests
-        uses: php-actions/phpunit@v3
+        env:
+          COMPOSER: composer.json
         with:
-          version: '9.6'
-          php-version: '8.2'
-          configuration: phpunit.xml.dist
+          php_version: '8.2'
+          working_dir: .
+          container_workdir: /app/php
+      - name: Check Syntax
+        working-directory: php
+        run: vendor/bin/parallel-lint --exclude vendor .
+      - name: PHPUnit Tests
+        working-directory: php
+        run: vendor/bin/phpunit tests
