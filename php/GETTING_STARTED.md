@@ -42,6 +42,8 @@ You may also run it using [TCR](../tcr/TCR.md) if you want to add a bit of spice
 
 - [From a terminal](#running-the-kata-from-a-terminal)
 - [From a terminal with TCR](#running-the-kata-from-a-terminal-with-tcr)
+- [From WebStorm](#running-the-kata-from-webstorm)
+- [From WebStorm with TCR](#running-the-kata-from-webstorm-with-tcr)
 - [From IntelliJ](#running-the-kata-from-intellij)
 - [From IntelliJ with TCR](#running-the-kata-from-intellij-with-tcr)
 - [From Visual Studio Code](#running-the-kata-from-visual-studio-code)
@@ -52,6 +54,12 @@ You may also run it using [TCR](../tcr/TCR.md) if you want to add a bit of spice
 ### Running the kata from a terminal
 
 > ***Reminder***: the commands below should be run from [Kata-BowlingGame/php](.) directory
+
+To check the code syntax:
+
+```shell
+./vendor/bin/parallel-lint --exclude vendor .
+ ```
 
 To run the tests:
 
@@ -70,8 +78,6 @@ To run the tests:
 
 > ***Reminder***: the commands below should be run from [Kata-BowlingGame/php](.) directory
 
-To create and start the python virtual environment:
-
 Type the following to start TCR:
 
 ```shell
@@ -86,12 +92,11 @@ Refer to [Using TCR](#using-tcr) section for additional details about TCR and av
 
 Open WebStorm and select:
 
-`File` > `Open` > `Kata-Slow-Code` > `php`
+`File` > `Open` > `Kata-BowlingGame` > `php`
 
 Run all the tests in the project.
 
 The "**Run**" tool window should display all the executed tests.
-
 
 <a name="running-the-kata-from-webstorm-with-tcr"/></a>
 
@@ -104,7 +109,7 @@ You can run it from WebStorm directly, through leveraging on its built-in termin
 
 Open WebStorm and select:
 
-`File` > `Open` > `Kata-Slow-Code` > `php`
+`File` > `Open` > `Kata-BowlingGame` > `php`
 
 #### 2. Turn off auto-save
 
@@ -124,7 +129,7 @@ Under `Autosave` section, uncheck the 2 following options:
 >
 > Skip this step if you're on macOS or Linux
 
-PyCharm for Windows is usually set up to run PowerShell by default in its built-in terminal.
+WebStorm for Windows is usually set up to run PowerShell by default in its built-in terminal.
 TCR does not run in PowerShell.
 
 `File` > `Settings` > `Tools` > `Terminal`
@@ -157,8 +162,8 @@ Refer to [Using TCR](#using-tcr) section for additional details about TCR and av
 > ***Important***: This requires to have `IntelliJ IDEA Ultimate` edition.
 >
 > IntelliJ's PHP plugin is not available with the Community edition.
-> You can still use it as an editor for php files, but you will not
-> be able to use the benefits brought by the php plugin, such as syntax highlighting,
+> You can still use it as an editor for PHP files, but you will not
+> be able to use the benefits brought by the PHP plugin, such as syntax highlighting,
 > code refactoring or integration with IntelliJ's test navigator.
 
 #### 1. Install `PHP plugin`
@@ -167,26 +172,20 @@ Refer to [Using TCR](#using-tcr) section for additional details about TCR and av
 - Search for `PHP` and click `Install`
 - Restart `IntelliJ` to activate the plugin
 
-#### 2. Launch IntelliJ and open the project
+#### 2. Configure the PHP Interpreter
 
-`File` > `Open` > `Kata-Slow-Code` > `php`
+- `File` > `Settings` > `Languages & Frameworks` > `PHP` > `CLI Interpreter`
+- Enter the path to the PHP interpreter on your machine
+- Click `OK`
 
-#### 3. Configure the project's PHP SDK [untested]
+#### 3. Open the project
 
-`File` > `Project Structure` > `Project` > `SDK` > `PHP 8.x` > `OK`
+`File` > `Open` > `Kata-BowlingGame` > `php`
 
-***Note*** If no `PHP SDK` is proposed, select `Add SDK` > `PHP SDK...`
-from the SDK dropdown link to tell IntelliJ where it can find PHP on your machine.
-
-#### 4. Configure the project source root directory
-
-From the `Project` navigator window, right click on `src` directory and select
-`Mark directory as` > `Sources Root`.
-
-#### 5. Run the tests
+#### 4. Run the tests
 
 From the `Project` navigator window, right click on `tests` directory and select
-`Run PHP tests in test...`.
+`Run 'tests'`.
 
 The "**Run**" tool window should display all the executed tests.
 
@@ -206,7 +205,7 @@ You can run it from IntelliJ directly, through leveraging on its built-in termin
 
 Open IntelliJ and select:
 
-`File` > `Open` > `Kata-Slow-Code` > `php`
+`File` > `Open` > `Kata-BowlingGame` > `php`
 
 #### 2. Turn off auto-save
 
@@ -256,26 +255,20 @@ Refer to [Using TCR](#using-tcr) section for additional details about TCR and av
 
 ### Running the kata from Visual Studio Code
 
-#### 1. Prerequisite: install PHP Debug extension for Visual Studio Code
+#### 1. Prerequisite: install PHP extension for Visual Studio Code
 
 - Menu `View` > `Extensions`
 - Search for `php`
-- Select [PHP Debug](https://marketplace.visualstudio.com/items?itemName=xdebug.php-debug) and click `Install`
+- Select [PHP](https://marketplace.visualstudio.com/items?itemName=DEVSENSE.phptools-vscode) and click `Install`
 
 #### 2. Open the kata
 
 Choose `Open Folder`, navigate to `Kata-BowlingGame` / `php` then click `Select Folder`.
 
-#### 4. Select python interpreter
-
-Click on `Select Interpreter` in the bottom bar, and choose the interpreter located
-under `./venv` (should be the one tagged as `Recommended`)
-
-#### 5. Run the tests
+#### 3. Run the tests
 
 From the `Test Explorer` window (menu `View` > `Testing`):
 
-- `Configure Python Tests` > `pytest` > `tests`
 - Click on the `Play` button to run the tests.
 
 <a name="running-the-kata-from-visual-studio-code-with-tcr"/></a>
@@ -285,11 +278,11 @@ From the `Test Explorer` window (menu `View` > `Testing`):
 TCR is provided as a command line utility running in a terminal.
 You can run it from Visual Studio Code directly, through leveraging on its built-in terminal.
 
-#### 1. Prerequisite: install Python extension for Visual Studio Code
+#### 1. Prerequisite: install PHP extension for Visual Studio Code
 
 - Menu `View` > `Extensions`
-- Search for `python`
-- Select [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and click `Install`
+- Search for `php`
+- Select [PHP](https://marketplace.visualstudio.com/items?itemName=DEVSENSE.phptools-vscode) and click `Install`
 
 #### 2. Open the kata
 
@@ -326,16 +319,6 @@ different location.
 #### 5. Open a built-in terminal
 
 `Terminal` > `New Terminal`
-
-#### 6. Start python virtual environment
-
-> ***Reminder***: the command below should be run from [Kata-BowlingGame/php](.) directory
-
-From the built-in terminal:
-
-```shell
-./start_python_venv.sh
-```
 
 #### 6. Launch TCR
 
