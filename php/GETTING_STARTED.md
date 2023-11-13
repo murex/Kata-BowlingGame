@@ -42,8 +42,8 @@ You may also run it using [TCR](../tcr/TCR.md) if you want to add a bit of spice
 
 - [From a terminal](#running-the-kata-from-a-terminal)
 - [From a terminal with TCR](#running-the-kata-from-a-terminal-with-tcr)
-- [From WebStorm](#running-the-kata-from-webstorm)
-- [From WebStorm with TCR](#running-the-kata-from-webstorm-with-tcr)
+- [From PhpStorm](#running-the-kata-from-phpstorm)
+- [From PhpStorm with TCR](#running-the-kata-from-phpstorm-with-tcr)
 - [From IntelliJ](#running-the-kata-from-intellij)
 - [From IntelliJ with TCR](#running-the-kata-from-intellij-with-tcr)
 - [From Visual Studio Code](#running-the-kata-from-visual-studio-code)
@@ -86,11 +86,11 @@ Type the following to start TCR:
 
 Refer to [Using TCR](#using-tcr) section for additional details about TCR and available options.
 
-<a name="running-the-kata-from-webstorm"/></a>
+<a name="running-the-kata-from-phpstorm"/></a>
 
-### Running the kata from WebStorm
+### Running the kata from PhpStorm
 
-Open WebStorm and select:
+Open PhpStorm and select:
 
 `File` > `Open` > `Kata-BowlingGame` > `php`
 
@@ -98,23 +98,23 @@ Run all the tests in the project.
 
 The "**Run**" tool window should display all the executed tests.
 
-<a name="running-the-kata-from-webstorm-with-tcr"/></a>
+<a name="running-the-kata-from-phpstorm-with-tcr"/></a>
 
-### Running the kata from WebStorm with TCR
+### Running the kata from PhpStorm with TCR
 
 TCR is provided as a command line utility running in a terminal.
-You can run it from WebStorm directly, through leveraging on its built-in terminal.
+You can run it from PhpStorm directly, through leveraging on its built-in terminal.
 
 #### 1. Open the kata
 
-Open WebStorm and select:
+Open PhpStorm and select:
 
 `File` > `Open` > `Kata-BowlingGame` > `php`
 
 #### 2. Turn off auto-save
 
 TCR is constantly watching the filesystem for changes.
-For this reason you need to turn off WebStorm's auto-save in order for it to behave as expected.
+For this reason you need to turn off PhpStorm's auto-save in order for it to behave as expected.
 
 `File` > `Settings` > `Appearance & Behavior` > `System Settings`
 
@@ -129,7 +129,7 @@ Under `Autosave` section, uncheck the 2 following options:
 >
 > Skip this step if you're on macOS or Linux
 
-WebStorm for Windows is usually set up to run PowerShell by default in its built-in terminal.
+PhpStorm for Windows is usually set up to run PowerShell by default in its built-in terminal.
 TCR does not run in PowerShell.
 
 `File` > `Settings` > `Tools` > `Terminal`
