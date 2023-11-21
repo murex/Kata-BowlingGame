@@ -25,4 +25,6 @@ CPMFindPackage(
   GITHUB_REPOSITORY google/googletest
   GIT_TAG main
   OPTIONS "INSTALL_GTEST OFF" "gtest_force_shared_crt" "BUILD_GMOCK OFF"
+  # Replace the above line with the line below if the kata is using gmock
+  # OPTIONS "INSTALL_GTEST OFF" "gtest_force_shared_crt"
 )

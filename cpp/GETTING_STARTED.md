@@ -5,28 +5,28 @@
 - macOS, Linux or Windows
 - [git](https://git-scm.com/) client
 - [curl](https://curl.se/download.html) command line utility
-- a working build environment (Visual Studio, GCC or Clang) for C++ 17
+- a working build environment (Visual Studio, GCC or Clang) for C++ 20
   <details><summary>Details</summary>
 
   - **C++ Version**
-  
-    By default, the kata's CMake file is referencing C++ version 17. We also tested and
-    compiled the code with versions 11 and 14.
 
-    To use a version other than 17, simply modify the line below in the [CMake](CMakeLists.txt)
-    configuration file to reference 11 or 14.
+    By default, the kata's CMake file is referencing C++ version 20. We also tested and
+    compiled the code with versions 11, 14 and 17.
+
+    To use a version other than 20, simply modify the line below in the [CMake](CMakeLists.txt)
+    configuration file to reference 11, 14 or 17.
 
     ```text
-    set(CMAKE_CXX_STANDARD 17)
+    set(CMAKE_CXX_STANDARD 20)
     ```
 
   - **Compiler**
-  
+
     When running on Windows, the code is compiled with [MSVC](https://docs.microsoft.com/en-us/cpp/build/reference/compiling-a-c-cpp-program?view=msvc-160).
 
     On other platforms, the script uses the default C++ compiler set on the machine.
     Both GCC and Clang are supported.
-  
+
   </details>
 
 ## Getting ready
@@ -50,7 +50,7 @@ This setup script does the following:
 - Download a copy of cmake compatible with your platform.
 - Download the dependencies required to build and test the kata (such as GoogleTest).
 - Generate the solution file ***Kata-BowlingGame.sln*** for **Visual Studio 2017** on Windows,
- or the project file ***Kata-BowlingGame.xcodeproj*** for **Xcode** on macOS.
+  or the project file ***Kata-BowlingGame.xcodeproj*** for **Xcode** on macOS.
 - Run an initial build and test of the kata to ensure that everything is set up properly.
 
 ```shell
@@ -349,13 +349,13 @@ Once the project is opened in Xcode, select `Product` / `Scheme` / `Kata-Bowling
 > TCR takes care of building the project and running the tests.
 > For this reason you should not build and test the project from Xcode when TCR is running.
 > The only thing you should pay attention to is when saving your changes, which will trigger TCR's build and test.
-> 
+>
 
 #### 2. Open a terminal
 
 You can use any terminal application available on macOS.
 
-If you're not familiar with terminals, macOS comes with a built-in terminal application available under 
+If you're not familiar with terminals, macOS comes with a built-in terminal application available under
 `Applications` > `Utilities` > `Terminal.app`.
 
 #### 3. Launch TCR

@@ -21,7 +21,7 @@ jobs:
       with:
         submodule-update: true
         source-dir: ${{github.workspace}}/cpp
-        build-dir: ${{github.workspace}}/build
+        build-dir: ${{github.workspace}}/cpp/build
         cc: gcc
         cxx: g++
         build-type: Release
@@ -37,7 +37,7 @@ jobs:
       with:
         submodule-update: true
         source-dir: ${{github.workspace}}/cpp
-        build-dir: ${{github.workspace}}/build
+        build-dir: ${{github.workspace}}/cpp/build
         cc: clang
         cxx: clang++
         build-type: Release
