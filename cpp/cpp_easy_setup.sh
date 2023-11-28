@@ -48,7 +48,7 @@ MINGW64_NT-*)
     cmake_bin_dir="bin"
     cmake="cmake.exe"
     ctest="ctest.exe"
-    cmake_generator_options="-G \"Visual Studio 15 2017 Win64\""
+    cmake_generator_options="-G \"Visual Studio 16 2019\""
     ;;
 *)
     echo "os $(uname -s) is currently not supported."

@@ -26,7 +26,7 @@ set ARCHIVE_EXTENSION=zip
 set CMAKE_BIN_DIR=bin
 set CMAKE=cmake.exe
 set CTEST=ctest.exe
-set CMAKE_GENERATOR_OPTIONS=-G "Visual Studio 15 2017 Win64"
+set CMAKE_GENERATOR_OPTIONS=-G "Visual Studio 16 2019"
 
 set CMAKE_VERSION=3.27.8
 set CMAKE_EXPECTED_DIR=cmake-%CMAKE_VERSION%-%OS%-%ARCH%
