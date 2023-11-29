@@ -28,6 +28,7 @@ Available [here](http://codingdojo.org/kata/Bowling/)
 - [Java](java/GETTING_STARTED.md)
 - [PHP](php/GETTING_STARTED.md)
 - [Python](python/GETTING_STARTED.md)
+- [Rust](rust/GETTING_STARTED.md)
 - [Typescript](typescript/GETTING_STARTED.md)
 
 ## Session Quick Retrospective
@@ -74,6 +75,7 @@ You can fill it from [here](QuickRetrospective.md)
 - [Java](java)
 - [PHP](php)
 - [Python](python)
+- [Rust](rust)
 - [Typescript](typescript)
 
 ## License
