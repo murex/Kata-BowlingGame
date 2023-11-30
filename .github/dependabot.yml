@@ -56,3 +56,9 @@ updates:
     directory: "/php"
     schedule:
       interval: "weekly"
+
+  # Maintain dependencies for Cargo
+  - package-ecosystem: "cargo"
+    directory: "/rust"
+    schedule:
+      interval: "weekly"
