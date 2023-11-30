@@ -20,6 +20,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-pub fn bowling_score(rolls: &mut [i32]) -> i32 {
+pub fn bowling_score(rolls: &[u32]) -> u32 {
     0
 }
