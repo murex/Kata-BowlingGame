@@ -5,17 +5,7 @@
 - macOS, Linux or Windows
 - [git](https://git-scm.com/) client
 - [curl](https://curl.se/download.html) command line utility
-- [Go SDK](https://go.dev/dl/)
-  <details><summary>Go Version</summary>
-
-  The kata is configured to run with Go version 1.21 by default.
-
-  To use a different version, simply modify the line below in [go.mod](go.mod).
-
-    ```text
-    go 1.21
-    ```
-  </details>
+- [Rust](https://www.rust-lang.org/tools/install) compiler and tools
 
 ## Getting ready
 
@@ -25,28 +15,10 @@
 git clone https://github.com/murex/Kata-BowlingGame.git
 ```
 
-### 2 - Go to the kata's `go` directory
+### 2 - Go to the kata's `rust` directory
 
 ```shell
-cd Kata-BowlingGame/go
-```
-
-### 3 - Install `gotestsum`
-
-When running tests, we use [`gotestsum`](https://github.com/gotestyourself/gotestsum)
-instead of `go test` so that we can easily capture test results in Xunit format.
-
-```shell
-go install gotest.tools/gotestsum@latest
-```
-
-### 4 - Download 3rd-party packages used by the kata
-
-We recommend running this command before starting the kata to ensure that you have
-all the required 3rd party packages installed and up to date in you local environment.
-
-```shell
-go get -u -t -d ./...
+cd Kata-BowlingGame/rust
 ```
 
 ## Running the kata
@@ -57,8 +29,8 @@ You may also run it using [TCR](../tcr/TCR.md) if you want to add a bit of spice
 
 - [From a terminal](#running-the-kata-from-a-terminal)
 - [From a terminal with TCR](#running-the-kata-from-a-terminal-with-tcr)
-- [From GoLand](#running-the-kata-from-goland)
-- [From GoLand with TCR](#running-the-kata-from-goland-with-tcr)
+- [From RustRover](#running-the-kata-from-rustrover)
+- [From RustRover with TCR](#running-the-kata-from-rustrover-with-tcr)
 - [From IntelliJ](#running-the-kata-from-intellij)
 - [From IntelliJ with TCR](#running-the-kata-from-intellij-with-tcr)
 - [From Visual Studio Code](#running-the-kata-from-visual-studio-code)
@@ -68,24 +40,19 @@ You may also run it using [TCR](../tcr/TCR.md) if you want to add a bit of spice
 
 ### Running the kata from a terminal
 
-> ***Reminder***: the commands below should be run from [Kata-BowlingGame/go](.) directory
+> ***Reminder***: the commands below should be run from [Kata-BowlingGame/rust](.) directory
 
 To build the project:
 
 ```shell
-go build ./...
+cargo build
 ```
 
 To run the tests:
 
-- Using `gotestsum`:
-  ```shell
-  gotestsum ./...
-  ```
-- Using `go` built-in tools:
-  ```shell
-  go test -v ./...
-  ```
+```shell
+cargo test
+```
 
 <a name="running-the-kata-from-a-terminal-with-tcr"/></a>
 
@@ -97,7 +64,7 @@ To run the tests:
 > _Windows CMD and PowerShell are not supported_
 
 
-> ***Reminder***: the command below should be run from [Kata-BowlingGame/go](.) directory
+> ***Reminder***: the command below should be run from [Kata-BowlingGame/rust](.) directory
 
 Type the following to start TCR:
 
@@ -107,35 +74,35 @@ Type the following to start TCR:
 
 Refer to [Using TCR](#using-tcr) section for additional details about TCR and available options.
 
-<a name="running-the-kata-from-goland"/></a>
+<a name="running-the-kata-from-rustrover"/></a>
 
-### Running the kata from GoLand
+### Running the kata from RustRover
 
-Open GoLand and select:
+Open RustRover and select:
 
-`File` > `Open` > `Kata-BowlingGame` > `go`
+`File` > `Open` > `Kata-BowlingGame` > `rust`
 
 Run all the tests in the project.
 
 The "**Run**" tool window should display all the executed tests.
 
-<a name="running-the-kata-from-goland-with-tcr"/></a>
+<a name="running-the-kata-from-rustrover-with-tcr"/></a>
 
-### Running the kata from GoLand with TCR
+### Running the kata from RustRover with TCR
 
 TCR is provided as a command line utility running in a terminal.
-You can run it from GoLand directly, through leveraging on its built-in terminal.
+You can run it from RustRover directly, through leveraging on its built-in terminal.
 
 #### 1. Open the kata
 
-Open GoLand and select:
+Open RustRover and select:
 
-`File` > `Open` > `Kata-BowlingGame` > `go`
+`File` > `Open` > `Kata-BowlingGame` > `rust`
 
 #### 2. Turn off auto-save
 
 TCR is constantly watching the filesystem for changes.
-For this reason you need to turn off GoLand's auto-save in order for it to behave as expected.
+For this reason you need to turn off RustRover's auto-save in order for it to behave as expected.
 
 `File` > `Settings` > `Appearance & Behavior` > `System Settings`
 
@@ -150,7 +117,7 @@ Under `Autosave` section, uncheck the 2 following options:
 >
 > Skip this step if you're on macOS or Linux
 
-GoLand for Windows is usually set up to run PowerShell by default in its built-in terminal.
+RustRover for Windows is usually set up to run PowerShell by default in its built-in terminal.
 TCR does not run in PowerShell.
 
 `File` > `Settings` > `Tools` > `Terminal`
@@ -166,7 +133,7 @@ different location.
 
 #### 5. Launch TCR
 
-> ***Reminder***: the command below should be run from [Kata-BowlingGame/go](.) directory
+> ***Reminder***: the command below should be run from [Kata-BowlingGame/rust](.) directory
 
 From the built-in terminal:
 
@@ -182,20 +149,20 @@ Refer to [Using TCR](#using-tcr) section for additional details about TCR and av
 
 > ***Important***: This requires to have `IntelliJ IDEA Ultimate` edition.
 >
-> IntelliJ's Go plugin is not available with the Community edition.
-> You can still use it as an editor for Go files, but you will not
-> be able to use the benefits brought by the Go plugin, such as syntax highlighting,
+> IntelliJ's Rust plugin is not available with the Community edition.
+> You can still use it as an editor for Rust files, but you will not
+> be able to use the benefits brought by the Rust plugin, such as syntax highlighting,
 > code refactoring or integration with IntelliJ's test navigator.
 
-Installing `Go plugin`:
+Installing `Rust plugin`:
 
 - Open IntelliJ and select:`File` > `Settings` > `Plugins` > `Marketplace`
-- Search for `Go` and click `Install`
+- Search for `Rust` and click `Install`
 - Restart `IntelliJ` to activate the plugin
 
 Open IntelliJ and select:
 
-`File` > `Open` > `Kata-BowlingGame` > `go`
+`File` > `Open` > `Kata-BowlingGame` > `rust`
 
 Run all the tests in the project.
 
@@ -208,7 +175,7 @@ The "**Run**" tool window should display all the executed tests.
 > ***Important***: This requires to have `IntelliJ IDEA Ultimate` edition.
 >
 > Refer to the section [Running the kata from IntelliJ](#running-the-kata-from-intellij)
-> for instructions related to installation of IntelliJ's Go plugin.
+> for instructions related to installation of IntelliJ's Rust plugin.
 
 TCR is provided as a command line utility running in a terminal.
 You can run it from IntelliJ directly, through leveraging on its built-in terminal.
@@ -217,7 +184,7 @@ You can run it from IntelliJ directly, through leveraging on its built-in termin
 
 Open IntelliJ and select:
 
-`File` > `Open` > `Kata-BowlingGame` > `go`
+`File` > `Open` > `Kata-BowlingGame` > `rust`
 
 #### 2. Turn off auto-save
 
@@ -253,7 +220,7 @@ different location.
 
 #### 5. Launch TCR
 
-> ***Reminder***: the command below should be run from [Kata-BowlingGame/go](.) directory
+> ***Reminder***: the command below should be run from [Kata-BowlingGame/rust](.) directory
 
 From the built-in terminal:
 
@@ -267,10 +234,15 @@ Refer to [Using TCR](#using-tcr) section for additional details about TCR and av
 
 ### Running the kata from Visual Studio Code
 
-Open Visual Studio Code, choose `Open Folder`, navigate to `Kata-BowlingGame` / `go`
+Open Visual Studio Code, choose `Open Folder`, navigate to `Kata-BowlingGame` / `rust`
 then click `Select Folder`.
 
-In order to run the tests, select `View` > `Testing`, then click on the `Play` button.
+In order to run the tests, select `View` > `Terminal` to open a terminal,
+then type the following:
+
+```shell
+cargo test
+```
 
 <a name="running-the-kata-from-visual-studio-code-with-tcr"/></a>
 
@@ -281,7 +253,7 @@ You can run it from Visual Studio Code directly, through leveraging on its built
 
 #### 1. Open the kata
 
-Open Visual Studio Code, choose `Open Folder`, navigate to `Kata-BowlingGame` / `go`
+Open Visual Studio Code, choose `Open Folder`, navigate to `Kata-BowlingGame` / `rust`
 then click `Select Folder`.
 
 #### 2. Turn off auto-save
@@ -317,7 +289,7 @@ different location.
 
 #### 5. Launch TCR
 
-> ***Reminder***: the command below should be run from [Kata-BowlingGame/go](.) directory
+> ***Reminder***: the command below should be run from [Kata-BowlingGame/rust](.) directory
 
 From the built-in terminal:
 
