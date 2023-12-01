@@ -154,17 +154,20 @@ Refer to [Using TCR](#using-tcr) section for additional details about TCR and av
 > be able to use the benefits brought by the Rust plugin, such as syntax highlighting,
 > code refactoring or integration with IntelliJ's test navigator.
 
-Installing `Rust plugin`:
+#### 1. Install `Rust plugin`
 
 - Open IntelliJ and select:`File` > `Settings` > `Plugins` > `Marketplace`
 - Search for `Rust` and click `Install`
 - Restart `IntelliJ` to activate the plugin
 
-Open IntelliJ and select:
+#### 2. Launch IntelliJ and open the project
 
 `File` > `Open` > `Kata-BowlingGame` > `rust`
 
-Run all the tests in the project.
+#### 3. Run the tests
+
+From the `Project` navigator window, right click on `rust` directory and select
+`Run All Tests`.
 
 The "**Run**" tool window should display all the executed tests.
 

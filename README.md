@@ -11,7 +11,7 @@
 [![Check Markdown links](https://github.com/murex/Kata-BowlingGame/actions/workflows/markdown-link-check.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/markdown-link-check.yml)
 [![Add contributors](https://github.com/murex/Kata-BowlingGame/actions/workflows/contributors.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/contributors.yml)
 
-# Bowling Game Kata
+# Bowling Game
 
 ![Bowling Game](./images/BowlingGame.png) <br>
 "[Bowling Strike Bullet Isolated](https://pixabay.com/illustrations/bowling-strike-bullet-isolated-3d-3427969/)" by [MasterTux](https://pixabay.com/fr/users/mastertux-470906/) is licenced under [Pixabay License](https://pixabay.com/fr/service/license/)
