@@ -24,17 +24,12 @@ SOFTWARE.
 
 #include <vector>
 
-namespace com {
-namespace murex {
-namespace kata {
-namespace bowling_game {
-
-int bowlingScore(const std::vector<int> & rolls)
+namespace com::murex::kata::bowling_game
 {
-   return 0;
-}
 
-} // namespace bowling_game
-} // namespace kata
-} // namespace murex
-} // namespace com
+   int bowlingScore(const std::vector<int> & rolls)
+   {
+      return 0;
+   }
+
+} // namespace com::murex::kata::bowling_game

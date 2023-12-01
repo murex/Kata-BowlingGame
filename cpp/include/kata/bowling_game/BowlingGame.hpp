@@ -24,14 +24,9 @@ SOFTWARE.
 
 #include <vector>
 
-namespace com {
-namespace murex {
-namespace kata {
-namespace bowling_game {
+namespace com::murex::kata::bowling_game
+{
 
    BOWLING_GAME_API int bowlingScore(const std::vector<int> & rolls);
 
-} // namespace bowling_game
-} // namespace kata
-} // namespace murex
-} // namespace com
+} // namespace com::murex::kata::bowling_game
