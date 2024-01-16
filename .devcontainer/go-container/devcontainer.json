@@ -1,9 +1,8 @@
 {
-  "name": "Go Container",
-  "dockerComposeFile": [
-    "../../docker-compose.yml"
-  ],
-  "service": "go",
-  "shutdownAction": "none",
+  "name": "Go",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "shutdownAction": "stopContainer",
   "workspaceFolder": "/workspace/go"
 }

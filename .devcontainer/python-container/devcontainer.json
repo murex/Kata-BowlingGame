@@ -1,9 +1,8 @@
 {
-  "name": "Python Container",
-  "dockerComposeFile": [
-    "../../docker-compose.yml"
-  ],
-  "service": "python",
-  "shutdownAction": "none",
+  "name": "Python",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "shutdownAction": "stopContainer",
   "workspaceFolder": "/workspace/python"
 }

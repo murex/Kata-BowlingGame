@@ -1,9 +1,9 @@
 {
-  "name": "Java Container",
-  "dockerComposeFile": [
-    "../../docker-compose.yml"
-  ],
-  "service": "java",
-  "shutdownAction": "none",
-  "workspaceFolder": "/workspace/java"
+  "name": "Java",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "workspaceMount": "source=${localWorkspaceFolder}/../..,target=/workspace,type=bind,consistency=cached",
+  "workspaceFolder": "/workspace/java",
+  "shutdownAction": "stopContainer"
 }
