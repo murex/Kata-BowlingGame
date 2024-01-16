@@ -8,6 +8,14 @@ services:
     command: sleep infinity
     # ...
 
+  go:
+    image: mcr.microsoft.com/devcontainers/go:dev-1.21-bookworm
+    volumes:
+      # Mount the root folder that contains .git
+      - .:/workspace:cached
+    command: sleep infinity
+    # ...
+
   java:
     image: mcr.microsoft.com/devcontainers/java:dev-17-jdk-bookworm
     volumes:
