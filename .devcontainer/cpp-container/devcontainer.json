@@ -1,0 +1,9 @@
+{
+  "name": "C++ Container",
+  "dockerComposeFile": [
+    "../../docker-compose.yml"
+  ],
+  "service": "cpp",
+  "shutdownAction": "none",
+  "workspaceFolder": "/workspace/cpp"
+}
