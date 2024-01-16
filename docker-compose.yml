@@ -1,0 +1,19 @@
+version: '3'
+services:
+  python:
+    image: mcr.microsoft.com/devcontainers/python:1-3.12-bookworm
+    volumes:
+      # Mount the root folder that contains .git
+      - .:/workspace:cached
+    command: sleep infinity
+    #    links:
+    #      - node-app
+    # ...
+
+  java:
+    image: mcr.microsoft.com/devcontainers/java:dev-17-jdk-bookworm
+    volumes:
+      # Mount the root folder that contains .git
+      - .:/workspace:cached
+    command: sleep infinity
+    # ...

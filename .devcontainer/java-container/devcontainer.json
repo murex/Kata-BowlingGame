@@ -1,0 +1,9 @@
+{
+  "name": "Java Container",
+  "dockerComposeFile": [
+    "../../docker-compose.yml"
+  ],
+  "service": "java",
+  "shutdownAction": "none",
+  "workspaceFolder": "/workspace/java"
+}
