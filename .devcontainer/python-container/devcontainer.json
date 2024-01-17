@@ -3,6 +3,7 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "shutdownAction": "stopContainer",
-  "workspaceFolder": "/workspace/python"
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "workspaceFolder": "/workspace/python",
+  "shutdownAction": "stopContainer"
 }

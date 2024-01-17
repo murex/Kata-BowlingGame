@@ -3,6 +3,7 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "shutdownAction": "stopContainer",
-  "workspaceFolder": "/workspace/go"
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "workspaceFolder": "/workspace/go",
+  "shutdownAction": "stopContainer"
 }

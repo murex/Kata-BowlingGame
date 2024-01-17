@@ -5,5 +5,13 @@
   },
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
   "workspaceFolder": "/workspace/java",
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "latest",
+      "jdkDistro": "open",
+      "installGradle": true,
+      "installMaven": true,
+    }
+  },
   "shutdownAction": "stopContainer"
 }

@@ -3,7 +3,8 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "shutdownAction": "stopContainer",
-  "workspaceFolder": "/workspace/cpp"
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "workspaceFolder": "/workspace/cpp",
+  "shutdownAction": "stopContainer"
 }
 
