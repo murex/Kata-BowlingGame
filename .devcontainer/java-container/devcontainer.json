@@ -7,8 +7,8 @@
   "workspaceFolder": "/workspace/java",
   "features": {
     "ghcr.io/devcontainers/features/java:1": {
-      "version": "latest",
-      "jdkDistro": "open",
+      "version": "17",
+      "jdkDistro": "tem",
       "installGradle": true,
       "installMaven": true,
     }
