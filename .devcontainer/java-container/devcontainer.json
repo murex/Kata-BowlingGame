@@ -16,7 +16,8 @@
   "customizations": {
     "codespaces": {
       "openFiles": [
-        "../README.md"
+        "README.md",
+        "QuickRetrospective.md"
       ]
     }
   },
