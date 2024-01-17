@@ -13,5 +13,12 @@
       "installMaven": true,
     }
   },
+  "customizations": {
+    "codespaces": {
+      "openFiles": [
+        "../README.md"
+      ]
+    }
+  },
   "shutdownAction": "stopContainer"
 }
