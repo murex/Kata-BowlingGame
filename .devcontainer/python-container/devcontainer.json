@@ -5,6 +5,6 @@
   },
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
   "workspaceFolder": "/workspace/python",
-  "postCreateCommand": "./start_python_venv.sh",
+  "postCreateCommand": "./setup_python_venv.sh",
   "shutdownAction": "stopContainer"
 }
