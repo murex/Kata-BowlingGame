@@ -4,15 +4,15 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 
-name:           leap
-version:        1.6.0.10
+name:           bowling-game
+version:        1.0.0.0
 build-type:     Simple
 
 library
   exposed-modules:
-      LeapYear
+      BowlingGame
   other-modules:
-      Paths_leap
+      Paths_bowling_game
   hs-source-dirs:
       src
   ghc-options: -Wall
@@ -24,11 +24,11 @@ test-suite test
   type: exitcode-stdio-1.0
   main-is: Tests.hs
   other-modules:
-      Paths_leap
+      Paths_bowling_game
   hs-source-dirs:
       test
   build-depends:
       base
+    , bowling-game
     , hspec
-    , leap
   default-language: Haskell2010

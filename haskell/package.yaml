@@ -1,11 +1,11 @@
-name: leap
-version: 1.6.0.10
+name: bowling-game
+version: 1.0.0.0
 
 dependencies:
   - base
 
 library:
-  exposed-modules: LeapYear
+  exposed-modules: BowlingGame
   source-dirs: src
   ghc-options: -Wall
   # dependencies:
@@ -17,5 +17,5 @@ tests:
     main: Tests.hs
     source-dirs: test
     dependencies:
-      - leap
+      - bowling-game
       - hspec
