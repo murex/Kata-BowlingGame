@@ -42,6 +42,9 @@ erl_crash.dump
 **/vendor/
 **/.phpunit.cache/*
 
+# Haskell folders containing generated stuff
+**/.stack-work/
+ 
 # ApprovalTests - generated golden master files
 GoldenMasterTest.*.txt
 *.txt.bak
