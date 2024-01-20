@@ -19,3 +19,4 @@ tests:
     dependencies:
       - bowling-game
       - hspec
+      - hspec-junit-formatter

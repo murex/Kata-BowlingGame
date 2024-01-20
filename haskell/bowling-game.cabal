@@ -31,4 +31,5 @@ test-suite test
       base
     , bowling-game
     , hspec
+    , hspec-junit-formatter
   default-language: Haskell2010

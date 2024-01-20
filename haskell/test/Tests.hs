@@ -5,9 +5,21 @@ import BowlingGame (bowlingScore)
 import Data.Foldable (for_)
 import Test.Hspec (Spec, describe, it, shouldBe, xdescribe, xit)
 import Test.Hspec.Runner (configFailFast, defaultConfig, hspecWith)
+import Test.Hspec.JUnit
+import System.Environment (setEnv)
 
 main :: IO ()
-main = hspecWith defaultConfig {configFailFast = True} specs
+-- main = hspecWith defaultConfig {configFailFast = True} specs
+
+main = do
+  -- setup JUnit file
+  setEnv "JUNIT_ENABLED" "1"
+  setEnv "JUNIT_OUTPUT_DIRECTORY" ".stack-work/report"
+  setEnv "JUNIT_SUITE_NAME" "bowling-game"
+
+  -- hspecWith defaultConfig {configFailFast = True} specs
+  hspecJUnitWith defaultConfig {configFailFast = True} specs
+  -- hspecJUnit specs
 
 specs :: Spec
 -- Replace "xdecribe" with "describe" below to enable acceptance tests
