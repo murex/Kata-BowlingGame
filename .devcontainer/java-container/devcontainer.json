@@ -10,15 +10,15 @@
       "version": "17",
       "jdkDistro": "tem",
       "installGradle": true,
-      "installMaven": true,
+      "installMaven": true
+    },
+    "ghcr.io/devcontainers/features/sshd:1": {
+      "version": "latest"
     }
   },
   "customizations": {
     "codespaces": {
-      "openFiles": [
-        "README.md",
-        "QuickRetrospective.md"
-      ]
+      "openFiles": ["README.md", "QuickRetrospective.md"]
     }
   },
   "shutdownAction": "stopContainer"
