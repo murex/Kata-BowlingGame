@@ -15,9 +15,8 @@ main = do
   setEnv "JUNIT_OUTPUT_DIRECTORY" ".stack-work/report"
   setEnv "JUNIT_SUITE_NAME" "bowling-game"
 
-  -- Until we figure out a way to send test results simustaneously in console and in JUnit file
-  -- we run the tests twice
-  hspecJUnitWith defaultConfig {configFailFast = False} specs
+  -- Stll need to figure out a way to send test results simustaneously in console and in JUnit file
+  -- hspecJUnitWith defaultConfig {configFailFast = False} specs
   hspecWith defaultConfig {configFailFast = False} specs
 
 specs :: Spec
