@@ -6,8 +6,11 @@
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
   "workspaceFolder": "/workspace/haskell",
   "features": {
-    "ghcr.io/devcontainers-contrib/features/haskell:2.2.1": {}
+    "ghcr.io/devcontainers-contrib/features/haskell:2.2.1": {
+    },
+    "ghcr.io/devcontainers/features/sshd:1": {
+      "version": "latest"
+    }
   },
   "shutdownAction": "stopContainer"
 }
-

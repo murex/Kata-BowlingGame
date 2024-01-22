@@ -16,10 +16,5 @@
       "version": "latest"
     }
   },
-  "customizations": {
-    "codespaces": {
-      "openFiles": ["README.md", "QuickRetrospective.md"]
-    }
-  },
   "shutdownAction": "stopContainer"
 }
