@@ -33,7 +33,7 @@ main = do
   setEnv "JUNIT_OUTPUT_DIRECTORY" ".stack-work/report"
   setEnv "JUNIT_SUITE_NAME" "bowling-game"
 
-  -- Still need to figure out a way to send test results simustaneously in console and in JUnit file
+  -- Still need to figure out a way to send test results simultaneously in console and in JUnit file
   -- hspecJUnitWith defaultConfig {configFailFast = False} specs
   hspecWith defaultConfig {configFailFast = False} specs
 
