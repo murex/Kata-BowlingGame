@@ -1,0 +1,14 @@
+{
+  "name": "Rust",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "workspaceFolder": "/workspace/rust",
+  "features": {
+    "ghcr.io/devcontainers/features/sshd:1": {
+      "version": "latest"
+    }
+  },
+  "shutdownAction": "stopContainer"
+}
