@@ -8,7 +8,7 @@
 - [PHP](https://www.php.net/manual/en/install.php)
     <details><summary>PHP version</summary>
 
-    The kata is configured to run with PHP version 8.1 or above.
+    The kata is configured to run with PHP version 8.3 or above.
 
     To use a different version, simply update the value for `php` in [composer.json](composer.json).
     </details>
