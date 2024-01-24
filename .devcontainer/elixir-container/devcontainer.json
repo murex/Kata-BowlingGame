@@ -1,0 +1,17 @@
+{
+  "name": "Elixir",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "workspaceFolder": "/workspace/elixir",
+  "features": {
+    "ghcr.io/devcontainers-contrib/features/elixir-asdf:2": {
+    },
+    "ghcr.io/devcontainers/features/sshd:1": {
+      "version": "latest"
+    }
+  },
+  "postCreateCommand": "mix deps.get",
+  "shutdownAction": "stopContainer"
+}
