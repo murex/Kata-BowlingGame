@@ -55,7 +55,7 @@ specs = do
         bowlingScore [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5] `shouldBe` 150
 
       -- Replace "xit" with "it" below to enable this test
-      xit "stikes - all 10" $ do
+      xit "strikes - all 10" $ do
         bowlingScore [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10] `shouldBe` 300
 
       -- Replace "xit" with "it" below to enable this test
