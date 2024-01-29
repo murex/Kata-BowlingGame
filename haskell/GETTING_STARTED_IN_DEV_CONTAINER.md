@@ -91,4 +91,3 @@ of using your local IDE.
   follow the instructions from either of these sections:
   - [Running the kata from Visual Studio Code](GETTING_STARTED.md#running-the-kata-from-visual-studio-code)
   - [Running the kata from Visual Studio Code with TCR](GETTING_STARTED.md#running-the-kata-from-visual-studio-code-with-tcr)
-
