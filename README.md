@@ -8,6 +8,7 @@
 [![Mix](https://github.com/murex/Kata-BowlingGame/actions/workflows/mix.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/mix.yml)
 [![Composer](https://github.com/murex/Kata-BowlingGame/actions/workflows/composer.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/composer.yml)
 [![Cargo](https://github.com/murex/Kata-BowlingGame/actions/workflows/cargo.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/cargo.yml)
+[![Stack](https://github.com/murex/Kata-BowlingGame/actions/workflows/stack.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/stack.yml)
 [![Check Markdown links](https://github.com/murex/Kata-BowlingGame/actions/workflows/markdown-link-check.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/markdown-link-check.yml)
 [![Add contributors](https://github.com/murex/Kata-BowlingGame/actions/workflows/contributors.yml/badge.svg)](https://github.com/murex/Kata-BowlingGame/actions/workflows/contributors.yml)
 
