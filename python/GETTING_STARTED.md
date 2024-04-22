@@ -397,14 +397,17 @@ Refer to [Using TCR](#using-tcr) section for additional details about TCR and av
 
 Here are the main shortcuts available once TCR utility is running:
 
-| Shortcut  | Description                                   |
-|-----------|-----------------------------------------------|
-| `?`       | List available options                        |
-| `d` / `D` | Enter driver role (from main menu)            |
-| `n` / `N` | Enter navigator role (from main menu)         |
-| `q` / `Q` | Quit current role - Quit TCR (from main menu) |
-| `t` / `T` | Query timer status (from driver role only)    |
-| `p` / `P` | Toggle on/off git auto-push (from main menu)  |
+| Shortcut  | Description                                  |
+|-----------|----------------------------------------------|
+| `o` / `O` | Open in browser (with `web` subcommand only) |
+| `d` / `D` | Enter driver role                            |
+| `n` / `N` | Enter navigator role                         |
+| `t` / `T` | Query timer status                           |
+| `p` / `P` | Toggle on/off git auto-push                  |
+| `l` / `L` | Pull from remote                             |
+| `s` / `S` | Push to remote                               |
+| `q` / `Q` | Quit current role / Quit TCR                 |
+| `?`       | List available options                       |
 
 ### Additional Details
 
