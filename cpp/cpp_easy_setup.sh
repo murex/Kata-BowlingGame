@@ -48,7 +48,7 @@ MINGW64_NT-*)
     cmake_bin_dir="bin"
     cmake="cmake.exe"
     ctest="ctest.exe"
-    cmake_generator_options="-G \"Visual Studio 16 2019\""
+    cmake_generator_options="-G \"Visual Studio 17 2022\""
     ;;
 *)
     echo "os $(uname -s) is currently not supported."
@@ -67,9 +67,9 @@ cmake_home="cmake-${os}-${arch}"
 
 build_dir="build"
 mkdir -p "${build_dir}"
-cd "${build_dir}"
+# cd "${build_dir}"
 
-cmake_build_dir="cmake"
+cmake_build_dir=".cmake"
 mkdir -p "${cmake_build_dir}"
 cd "${cmake_build_dir}"
 
@@ -100,6 +100,6 @@ cd ..
 
 cmake_bin_path="${cmake_build_dir}/${cmake_home}/${cmake_bin_dir}"
 
-eval ${cmake_bin_path}/${cmake} "${cmake_generator_options}" -S .. -B .
-${cmake_bin_path}/${cmake} --build . --config Debug
-${cmake_bin_path}/${ctest} --output-on-failure -C Debug
+eval ${cmake_bin_path}/${cmake} "${cmake_generator_options}" -S . -B "${build_dir}"
+${cmake_bin_path}/${cmake} --build "${build_dir}" --config Debug
+${cmake_bin_path}/${ctest} --test-dir "${build_dir}" --output-on-failure --build-config Debug
