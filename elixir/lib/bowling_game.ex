@@ -20,7 +20,7 @@
 
 defmodule BowlingGame do
 
-  def score(rolls) do
+  def score(_rolls) do
     # TODO - Implement me!
   end
 

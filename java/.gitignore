@@ -1,0 +1,9 @@
+# java downloaded or generated stuff
+
+**/.gradle/
+**/build/
+**/.mvn/wrapper/maven-wrapper.jar
+**/target/
+.project
+.classpath
+*.class

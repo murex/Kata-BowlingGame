@@ -1,0 +1,8 @@
+# elixir downloaded or generated stuff
+
+**/_build/
+**/cover/
+**/deps/
+**/.fetch
+erl_crash.dump
+*.ez

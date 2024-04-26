@@ -1,0 +1,4 @@
+# typescript downloaded or generated stuff
+
+**/node_modules/
+**/test_results/

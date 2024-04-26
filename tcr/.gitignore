@@ -1,7 +1,6 @@
 # Below files and directories are automatically created
-# by tcr.sh and do not need to be committed to this repository
+# by tcr.sh and sould not be committed to this repository
 
 bin/**
 doc/**
 download/**
-tcr_go/**
