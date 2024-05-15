@@ -28,14 +28,13 @@ namespace BowlingGame\Tests;
 use BowlingGame\BowlingGame;
 use PHPUnit\Framework\TestCase;
 
-class BowlingGameTest extends TestCase
+final class BowlingGameTest extends TestCase
 {
-    /** @test */
-    public function acceptance_test(): void
+    public function test_acceptance_test(): void
     {
         // Comment or remove this line to enable this test case
         $this->markTestSkipped('test currently disabled');
-        $bowling = new BowlingGame();
+        $bowling = new BowlingGame;
         $this->assertEquals(133, $bowling->score(1,4, 4,5, 6,4, 5,5, 10, 0,1, 7,3, 6,4, 10, 2,8,6));
     }
 }
