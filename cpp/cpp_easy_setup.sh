@@ -67,11 +67,10 @@ cmake_home="cmake-${os}-${arch}"
 
 build_dir="build"
 mkdir -p "${build_dir}"
-# cd "${build_dir}"
 
-cmake_build_dir=".cmake"
-mkdir -p "${cmake_build_dir}"
-cd "${cmake_build_dir}"
+cmake_dir=".cmake"
+mkdir -p "${cmake_dir}"
+cd "${cmake_dir}"
 
 if ! [ -f "${cmake_expected_archive_file}" ]
 then
@@ -98,7 +97,7 @@ fi
 
 cd ..
 
-cmake_bin_path="${cmake_build_dir}/${cmake_home}/${cmake_bin_dir}"
+cmake_bin_path="${cmake_dir}/${cmake_home}/${cmake_bin_dir}"
 
 eval ${cmake_bin_path}/${cmake} "${cmake_generator_options}" -S . -B "${build_dir}"
 ${cmake_bin_path}/${cmake} --build "${build_dir}" --config Debug

@@ -1,5 +1,5 @@
 # Below files and directories are automatically created
-# by tcr.sh and sould not be committed to this repository
+# by tcr.sh and should not be committed to this repository
 
 bin/**
 doc/**
