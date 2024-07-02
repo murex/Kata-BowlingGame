@@ -3,5 +3,5 @@ pytest == 7.4.4; python_version in '3.7'
 pytest == 8.2.2; python_version >= '3.8'
 pytest-parametrization == 2022.2.1
 mypy == 0.971; python_version < '3.7'
-mypy == 1.4.1; python_version in '3.7'
+mypy == 1.10.1; python_version in '3.7'
 mypy == 1.10.1; python_version >= '3.8'
