@@ -1,3 +1,2 @@
-# Prevents Maven wrapper from failing when launched from git bash on a Windows box
-maven-wrapper.properties    text eol=lf
-
+*.sh      text eol=lf
+tcrw      text eol=lf
