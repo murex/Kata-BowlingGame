@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 #
 # Copyright (c) 2024 Murex
 # 
@@ -20,9 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-. ./cmake/set-options.sh
+base_dir="$(cd "$(dirname -- "$0")" && pwd)"
+CMAKEW_BASE_DIR="${base_dir}/cmake"
+CMAKEW_CACHE_DIR="${base_dir}/.cmake"
+CMAKEW_CMD="$(basename "$0" | sed -e 's/w$//g')"
 
-mkdir -p "${CMAKE_BUILD_DIR}" || exit 1
-./cmakew -G "${CMAKE_GENERATOR}" -S . -B "${CMAKE_BUILD_DIR}"
-./cmakew --build "${CMAKE_BUILD_DIR}" --config "${CMAKE_CONFIG}"
-./ctestw --test-dir "${CMAKE_BUILD_DIR}"  --output-on-failure --build-config "${CMAKE_CONFIG}"
+. "${CMAKEW_BASE_DIR}/cmake-wrapper.sh"

@@ -7,8 +7,8 @@
   "devDependencies": {
     "@types/jest": "*",
     "jest": "*",
-    "ts-jest": "*",
     "jest-junit": "*",
+    "ts-jest": "*",
     "typescript": "*"
   },
   "scripts": {
@@ -16,5 +16,6 @@
   },
   "jest-junit": {
     "outputDirectory": "./test_results"
-  }
+  },
+  "packageManager": "yarn@4.3.1"
 }

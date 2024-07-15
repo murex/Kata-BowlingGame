@@ -2,3 +2,6 @@
 
 **/node_modules/
 **/test_results/
+.pnp.*
+.yarn/
+.yarnrc.yml

@@ -49,7 +49,7 @@ This setup script does the following:
 - Create a build directory: ***Kata-BowlingGame/cpp/build***. All build-related files are generated under this directory.
 - Download a copy of cmake compatible with your platform.
 - Download the dependencies required to build and test the kata (such as GoogleTest).
-- Generate the solution file ***Kata-BowlingGame.sln*** for **Visual Studio 2019** on Windows,
+- Generate the solution file ***Kata-BowlingGame.sln*** for **Visual Studio 2022** on Windows,
   or the project file ***Kata-BowlingGame.xcodeproj*** for **Xcode** on macOS.
 - Run an initial build and test of the kata to ensure that everything is set up properly.
 
@@ -113,7 +113,7 @@ Refer to [Using TCR](#using-tcr) section for additional details about TCR and av
 <a name="running-the-kata-from-visual-studio"/></a>
 ### Running the kata from Visual Studio
 
-> ***Supported Versions***: Visual Studio 2019 or later
+> ***Supported Versions***: Visual Studio 2022 or later
 
 Open Visual Studio, choose `Open a project or solution`, navigate to
 the location containing the cloned kata repository, and open the solution file:
@@ -133,7 +133,7 @@ TCR is provided as a command line utility running in a terminal.
 You can run it from Visual Studio directly, through leveraging on its built-in terminal.
 
 > ***Notes***
-> - Supported Versions: Visual Studio 2019 or later
+> - Supported Versions: Visual Studio 2022 or later
 > - Visual Studio 2017 and earlier versions are not supported as they do not have a built-in terminal.
 
 #### 1. Open the kata
