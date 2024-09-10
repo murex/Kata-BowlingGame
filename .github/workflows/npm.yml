@@ -16,10 +16,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 22.x
       - name: Yarn install
         working-directory: typescript
-        run: yarn install
+        run: corepack yarn install
       - name: Test
         working-directory: typescript
-        run: yarn jest
+        run: corepack yarn jest
