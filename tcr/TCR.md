@@ -1,10 +1,10 @@
-# TCR - Test && (Commit || Revert)
+# TCR - Test && Commit || Revert
 
 ## What is TCR
 
-TCR is a programming workflow, which stands for **Test && (Commit || Revert)**.
-Kent Beck and Oddmund Strømme came up with this concept
-in [this post](https://medium.com/@kentbeck_7670/test-commit-revert-870bbd756864).
+TCR is a programming workflow, which stands for **Test && Commit || Revert**.
+Kent Beck, Oddmund Strømme, Lars Barlindhaug and Ole Johannessen came up with this concept
+as described in [this post](https://medium.com/@kentbeck_7670/test-commit-revert-870bbd756864).
 
 Since then several people experimented with this idea.
 
