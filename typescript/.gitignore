@@ -5,3 +5,5 @@
 .pnp.*
 .yarn/
 .yarnrc.yml
+# To prevent conflicts between yarn and npm as long as we're using yarn
+package-lock.json

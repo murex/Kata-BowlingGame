@@ -5,11 +5,12 @@
   "author": "Murex",
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "*",
-    "jest": "*",
-    "jest-junit": "*",
-    "ts-jest": "*",
-    "typescript": "*"
+    "@tsconfig/node22": "^22.0.0",
+    "@types/jest": "^29.5.13",
+    "jest": "^29.7.0",
+    "jest-junit": "^16.0.0",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.6.2"
   },
   "scripts": {
     "test": "jest --watchAll"
