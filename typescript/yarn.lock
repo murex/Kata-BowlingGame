@@ -867,12 +867,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^22.7.8":
-  version: 22.7.8
-  resolution: "@types/node@npm:22.7.8"
+"@types/node@npm:^22.8.1":
+  version: 22.8.1
+  resolution: "@types/node@npm:22.8.1"
   dependencies:
-    undici-types: "npm:~6.19.2"
-  checksum: 10c0/3d3b3a2ec5a57ca4fd37b34dce415620993ca5f87cea2c728ffe73aa31446dbfe19c53171c478447bd7d78011ef4845a46ab2f0dc38e699cc75b3d100a60c690
+    undici-types: "npm:~6.19.8"
+  checksum: 10c0/83550fdf72a7db5b55eceac3f4fb038844eaee20202bdd2297a8248370cfa08317bda1605b781a8043eda4f173b75e73632e652fc85509eb14dfef78fa17337f
   languageName: node
   linkType: hard
 
@@ -1098,7 +1098,7 @@ __metadata:
   dependencies:
     "@tsconfig/node22": "npm:^22.0.0"
     "@types/jest": "npm:^29.5.14"
-    "@types/node": "npm:^22.7.8"
+    "@types/node": "npm:^22.8.1"
     jest: "npm:^29.7.0"
     jest-junit: "npm:^16.0.0"
     ts-jest: "npm:^29.2.5"
@@ -3493,7 +3493,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~6.19.2":
+"undici-types@npm:~6.19.2, undici-types@npm:~6.19.8":
   version: 6.19.8
   resolution: "undici-types@npm:6.19.8"
   checksum: 10c0/078afa5990fba110f6824823ace86073b4638f1d5112ee26e790155f481f2a868cc3e0615505b6f4282bdf74a3d8caad715fd809e870c2bb0704e3ea6082f344
