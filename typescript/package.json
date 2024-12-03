@@ -14,7 +14,9 @@
     "typescript": "^5.7.2"
   },
   "scripts": {
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "coverage": "jest --coverage",
+    "update-snapshot": "jest --update-snapshot"
   },
   "jest-junit": {
     "outputDirectory": "./test_results"

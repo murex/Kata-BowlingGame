@@ -89,12 +89,11 @@ After starting the script, you will see a menu that looks like the following:
 [TCR] Loading configuration: (...)
 [TCR] Loading toolchains configuration
 [TCR] Loading languages configuration
-[TCR] Starting TCR version 0.28.0...
+[TCR] Starting TCR version 1.4.0...
 [TCR] Base directory is (...)
 [TCR] Found 1 source and 1 test file(s) for java language
 [TCR] Work directory is (...)
 [TCR] Git auto-push is turned on
-[TCR] Test-breaking changes will not be committed
 [TCR] Timer duration is 5m0s
 [TCR] ─────────────────────────────────────────────────────────────────────────
 [TCR] Running in mob mode
@@ -103,10 +102,12 @@ After starting the script, you will see a menu that looks like the following:
 [TCR] Work Directory: (...)
 [TCR] Language=java, Toolchain=gradle-wrapper
 [TCR] Running on git branch "(...)" with auto-push enabled
+[TCR] Variant is relaxed
 [TCR] ─────────────────────────────────────────────────────────────────────────
 [TCR] What shall we do?
 [TCR]   D ─▶ Driver role
 [TCR]   N ─▶ Navigator role
+[TCR]   T ─▶ Timer status
 [TCR]   P ─▶ Turn on/off git auto-push
 [TCR]   L ─▶ Pull from remote
 [TCR]   S ─▶ Push to remote
