@@ -8,12 +8,12 @@
 - [Go SDK](https://go.dev/dl/)
   <details><summary>Go Version</summary>
 
-  The kata is configured to run with Go version 1.22 by default.
+  The kata is configured to run with Go version 1.23 by default.
 
   To use a different version, simply modify the line below in [go.mod](go.mod).
 
     ```text
-    go 1.22
+    go 1.23
     ```
   </details>
 
