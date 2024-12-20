@@ -98,28 +98,28 @@ See [ACKNOWLEDGEMENTS.md](ACKNOWLEDGEMENTS.md) for more information.
 <tr>
     <td align="center" style="word-wrap: break-word; width: 150.0; height: 150.0">
         <a href=https://github.com/mengdaming>
-            <img src=https://avatars.githubusercontent.com/u/1313765?v=4 width="100;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=Damien Menanteau/>
+            <img src=https://private-avatars.githubusercontent.com/u/1313765?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MzQ2NTkyMjAsIm5iZiI6MTczNDY1ODAyMCwicGF0aCI6Ii91LzEzMTM3NjUifQ.fPFgm3hZEvxFrXuMiAzdYDsn8VnyRIQHLrHrXFXflG4&v=4 width="100;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=Damien Menanteau/>
             <br />
             <sub style="font-size:14px"><b>Damien Menanteau</b></sub>
         </a>
     </td>
     <td align="center" style="word-wrap: break-word; width: 150.0; height: 150.0">
         <a href=https://github.com/philou>
-            <img src=https://avatars.githubusercontent.com/u/23983?v=4 width="100;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=Philippe Bourgau/>
+            <img src=https://private-avatars.githubusercontent.com/u/23983?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MzQ2NTkyMjAsIm5iZiI6MTczNDY1ODAyMCwicGF0aCI6Ii91LzIzOTgzIn0.Qack-A4Au19liFLUe1ssiyY6iH5VobQ0LNd9J_PYmxg&v=4 width="100;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=Philippe Bourgau/>
             <br />
             <sub style="font-size:14px"><b>Philippe Bourgau</b></sub>
         </a>
     </td>
     <td align="center" style="word-wrap: break-word; width: 150.0; height: 150.0">
         <a href=https://github.com/aatwi>
-            <img src=https://avatars.githubusercontent.com/u/11088496?v=4 width="100;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=Ahmad Atwi/>
+            <img src=https://private-avatars.githubusercontent.com/u/11088496?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MzQ2NTk0MDAsIm5iZiI6MTczNDY1ODIwMCwicGF0aCI6Ii91LzExMDg4NDk2In0.joPA10oDcLtq_-YTD5EgUT05roX4fGivoIBN5vs0KLc&v=4 width="100;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=Ahmad Atwi/>
             <br />
             <sub style="font-size:14px"><b>Ahmad Atwi</b></sub>
         </a>
     </td>
     <td align="center" style="word-wrap: break-word; width: 150.0; height: 150.0">
         <a href=https://github.com/AntoineMx>
-            <img src=https://avatars.githubusercontent.com/u/77109701?v=4 width="100;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=AntoineMx/>
+            <img src=https://private-avatars.githubusercontent.com/u/77109701?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MzQ2NTg3NDAsIm5iZiI6MTczNDY1NzU0MCwicGF0aCI6Ii91Lzc3MTA5NzAxIn0.wxaNd2xTSnbOtpxVPlP8QX3utvpBK2LP7HAydw3tpUQ&v=4 width="100;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=AntoineMx/>
             <br />
             <sub style="font-size:14px"><b>AntoineMx</b></sub>
         </a>
