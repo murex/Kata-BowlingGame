@@ -8,12 +8,12 @@
 - [elixir](https://elixir-lang.org/install.html)
   <details><summary>Elixir Version</summary>
 
-  The kata is configured to run with Elixir version 1.16 by default.
+  The kata is configured to run with Elixir version 1.18 by default.
 
   To use a different version, simply modify the line below in [mix.exs](mix.exs).
 
     ```text
-    elixir: "~> 1.16",
+    elixir: "~> 1.18",
     ```
   </details>
 

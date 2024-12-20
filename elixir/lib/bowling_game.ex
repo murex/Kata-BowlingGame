@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Murex
+# Copyright (c) 2024 Murex
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -20,8 +20,10 @@
 
 defmodule BowlingGame do
 
+  @spec score([integer()]) :: integer()
   def score(_rolls) do
     # TODO - Implement me!
+    0
   end
 
 end
