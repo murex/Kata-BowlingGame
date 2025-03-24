@@ -125,7 +125,7 @@ download_cmake() {
   # ----------------------------------------------------------------------------
 
   [ -d "${cmake_home}" ] && rm -Rf "${cmake_home}"
-  mv "${cmake_expected_dir}" "${cmake_home}"
+  mv -f "${cmake_expected_dir}" "${cmake_home}"
 
   popd >/dev/null 2>/dev/null || return 1
 }
