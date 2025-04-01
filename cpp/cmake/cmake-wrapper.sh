@@ -124,7 +124,9 @@ download_cmake() {
   # 4) make the expanded archive the current version in cache
   # ----------------------------------------------------------------------------
 
-  [ -d "${cmake_home}" ] && rm -Rf "${cmake_home}"
+  if [ -d "${cmake_home}" ]; then
+    rm -Rf "${cmake_home}"
+  fi
   mv -f "${cmake_expected_dir}" "${cmake_home}"
 
   popd >/dev/null 2>/dev/null || return 1
