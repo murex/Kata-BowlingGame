@@ -103,7 +103,7 @@ download_cmake() {
   print_info "extracting cmake ${cmake_version}"
   case "${archive_extension}" in
   zip)
-    if ! unzip -q -o "${cmake_expected_archive_file}"; then
+    if ! unzip -q -K -o "${cmake_expected_archive_file}"; then
       print_error "failed to expand ${cmake_expected_archive_file}"
       return 1
     fi
@@ -124,9 +124,7 @@ download_cmake() {
   # 4) make the expanded archive the current version in cache
   # ----------------------------------------------------------------------------
 
-  if [ -d "${cmake_home}" ]; then
-    rm -Rf "${cmake_home}"
-  fi
+  [ -d "${cmake_home}" ] && rm -Rf "${cmake_home}"
   mv -f "${cmake_expected_dir}" "${cmake_home}"
 
   popd >/dev/null 2>/dev/null || return 1
