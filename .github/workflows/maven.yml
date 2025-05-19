@@ -1,5 +1,9 @@
 name: Maven
 
+permissions:
+  contents: read
+  actions: write
+
 on: 
   push:
     branches:

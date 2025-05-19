@@ -7,6 +7,9 @@
 **/out/
 modules.xml
 
+# Eclipse / Zed IDE's
+**/.settings/
+
 # VSCode IDE
 
 **/.vscode/
@@ -23,7 +26,10 @@ modules.xml
 
 GoldenMasterTest.*.txt
 
-# Miscellaneous temporary Files
+# Test results
+**/_test_results/
+
+# Miscellaneous temporary  and non-text Files
 
 *.bak
 *.swp
@@ -35,3 +41,4 @@ GoldenMasterTest.*.txt
 *.tar.gz
 *.rar
 *.jar
+.DS_Store
