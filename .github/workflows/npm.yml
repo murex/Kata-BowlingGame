@@ -10,6 +10,8 @@ on:
       - '**'
     paths:
       - 'typescript/**'
+  workflow_dispatch:
+    inputs: { }
 
 jobs:
   build:

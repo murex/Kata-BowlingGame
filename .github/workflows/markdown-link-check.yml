@@ -11,6 +11,8 @@ on:
   schedule:
     # Run every Monday
     - cron: "0 0 * * 1"
+  workflow_dispatch:
+    inputs: { }
 
 jobs:
   markdown-link-check:

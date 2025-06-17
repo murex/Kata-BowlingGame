@@ -10,6 +10,8 @@ on:
       - '**'
     paths:
       - 'php/**'
+  workflow_dispatch:
+    inputs: { }
 
 jobs:
   build:

@@ -4,12 +4,14 @@ permissions:
   contents: read
   actions: write
 
-on: 
+on:
   push:
     branches:
       - '**'
     paths:
       - 'cpp/**'
+  workflow_dispatch:
+    inputs: { }
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
@@ -19,32 +21,32 @@ jobs:
   build-gcc:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Build & Test
-      uses: ashutoshvarma/action-cmake-build@master
-      with:
-        submodule-update: true
-        source-dir: ${{github.workspace}}/cpp
-        build-dir: ${{github.workspace}}/cpp/build
-        cc: gcc
-        cxx: g++
-        build-type: Release
-        run-test: true
-        ctest-options: "--output-on-failure"
-        install-build: false
+      - uses: actions/checkout@v4
+      - name: Build & Test
+        uses: ashutoshvarma/action-cmake-build@master
+        with:
+          submodule-update: true
+          source-dir: ${{github.workspace}}/cpp
+          build-dir: ${{github.workspace}}/cpp/build
+          cc: gcc
+          cxx: g++
+          build-type: Release
+          run-test: true
+          ctest-options: "--output-on-failure"
+          install-build: false
   build-clang:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Build & Test
-      uses: ashutoshvarma/action-cmake-build@master
-      with:
-        submodule-update: true
-        source-dir: ${{github.workspace}}/cpp
-        build-dir: ${{github.workspace}}/cpp/build
-        cc: clang
-        cxx: clang++
-        build-type: Release
-        run-test: true
-        ctest-options: "--output-on-failure"
-        install-build: false
+      - uses: actions/checkout@v4
+      - name: Build & Test
+        uses: ashutoshvarma/action-cmake-build@master
+        with:
+          submodule-update: true
+          source-dir: ${{github.workspace}}/cpp
+          build-dir: ${{github.workspace}}/cpp/build
+          cc: clang
+          cxx: clang++
+          build-type: Release
+          run-test: true
+          ctest-options: "--output-on-failure"
+          install-build: false

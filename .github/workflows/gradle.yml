@@ -4,26 +4,28 @@ permissions:
   contents: read
   actions: write
 
-on: 
+on:
   push:
     branches:
       - '**'
     paths:
       - 'java/**'
+  workflow_dispatch:
+    inputs: { }
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-      with:
-        lfs: true
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        distribution: 'zulu'
-        java-version: 17
-        java-package: jdk
-    - name: Build with Gradle
-      working-directory: java
-      run: ./gradlew clean test --no-daemon
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: 17
+          java-package: jdk
+      - name: Build with Gradle
+        working-directory: java
+        run: ./gradlew clean test --no-daemon
