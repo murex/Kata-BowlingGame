@@ -6,6 +6,8 @@ on:
       - '**'
     paths:
       - 'haskell/**'
+  workflow_dispatch:
+    inputs: { }
 
 jobs:
   build:
