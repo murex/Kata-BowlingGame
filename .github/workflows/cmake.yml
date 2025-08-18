@@ -21,7 +21,7 @@ jobs:
   build-gcc:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Build & Test
         uses: ashutoshvarma/action-cmake-build@master
         with:
@@ -37,7 +37,7 @@ jobs:
   build-clang:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Build & Test
         uses: ashutoshvarma/action-cmake-build@master
         with:
