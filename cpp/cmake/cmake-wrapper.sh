@@ -99,17 +99,20 @@ download_cmake() {
   # ----------------------------------------------------------------------------
   # 3) expand cmake archive
   # ----------------------------------------------------------------------------
+  # Note: we now selectively extract only the necessary files from cmake archive (e.g. bin and share directories).
+  # Help files are becoming really big and antivirus checks on Windows are slowing down the extraction process
+  # up to a point that it breaks the script due to crappy file permission handling by Windows OS.
 
   print_info "extracting cmake ${cmake_version}"
   case "${archive_extension}" in
   zip)
-    if ! unzip -q -K -o "${cmake_expected_archive_file}"; then
+    if ! unzip -q -K -o "${cmake_expected_archive_file}" "${cmake_expected_dir}/bin/*" "${cmake_expected_dir}/share/**/*"; then
       print_error "failed to expand ${cmake_expected_archive_file}"
       return 1
     fi
     ;;
   tar.gz)
-    if ! tar zxf "${cmake_expected_archive_file}"; then
+    if ! tar zxf "${cmake_expected_archive_file}" "${cmake_expected_dir}/bin" "${cmake_expected_dir}/share"; then
       print_error "failed to expand ${cmake_expected_archive_file}"
       return 1
     fi
