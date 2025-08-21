@@ -106,16 +106,29 @@ download_cmake() {
   print_info "extracting cmake ${cmake_version}"
   case "${archive_extension}" in
   zip)
+    # Windows case -- selective extraction to bypass inefficiency of crappy OS combined with invasive antivirus
     if ! unzip -q -K -o "${cmake_expected_archive_file}" "${cmake_expected_dir}/bin/*" "${cmake_expected_dir}/share/**/*"; then
       print_error "failed to expand ${cmake_expected_archive_file}"
       return 1
     fi
     ;;
   tar.gz)
-    if ! tar zxf "${cmake_expected_archive_file}" "${cmake_expected_dir}/bin" "${cmake_expected_dir}/share"; then
-      print_error "failed to expand ${cmake_expected_archive_file}"
-      return 1
-    fi
+    case "${os}" in
+    "macos")
+      # With macos, we extract the entire archive (easier than handling directory tree specifics)
+      if ! tar zxf "${cmake_expected_archive_file}"; then
+        print_error "failed to expand ${cmake_expected_archive_file}"
+        return 1
+      fi
+      ;;
+    "linux"|*)
+      # With linux, we extract selectively like in Windows so that it can also run with WSL
+      if ! tar zxf "${cmake_expected_archive_file}" "${cmake_expected_dir}/bin" "${cmake_expected_dir}/share"; then
+        print_error "failed to expand ${cmake_expected_archive_file}"
+        return 1
+      fi
+      ;;
+    esac
     ;;
   *)
     print_error "archive format ${archive_extension} is currently not supported"
