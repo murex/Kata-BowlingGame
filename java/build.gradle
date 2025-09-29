@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'java-library'
     id 'com.adarshr.test-logger' version '4.0.0'
-    id 'com.github.ben-manes.versions' version '0.52.0'
+    id 'com.github.ben-manes.versions' version '0.53.0'
 }
 
 java {
